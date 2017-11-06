@@ -1,0 +1,75 @@
+Math conversions for the recipe nutrition labels
+NOTE::::: SEE COOKING CHART PRINTOUTS!!!!
+
+Dry (mass) Measurements
+http://www.metric-conversions.org
+
+ounces to grams
+g = oz/0.035274
+28.349 grams = 1 oz.
+
+grams to ounces
+oz = g * 0.035274
+
+ounces to pounds
+lb = oz * 0.062500
+
+pounds to oz
+oz = lb * 16.000
+
+milligrams to grams
+g = mg/1000.0
+
+Liquid (volume) measurements
+https://www.checkyourmath.com/convert/volume/us_fluid_ounces_ml.php
+Bookmarked under "my recipe project"
+All fluid measurements US gallons, quarts, pints, cups, fluid oz
+
+1 teaspoon = 0.1666666667 fl oz
+1 Tablespoon = 0.5 fl oz
+1 cup = 8 fl oz
+2 cups = 1 pint OR 16 fl oz
+1 quart = 2 pints or 32 fl oz
+1 gallon = 128 fl oz
+
+Math is hard
+
+1a) Label: get the values for Serving Size and return gram equivalent
+// find the grams per serving with a function convert_measurement_to_grams( ) NOTE: normally, the serving size is in grams, but it might need to be converted for some labels
+If ( measurementType  !=  grams )
+	//convert label measurement-per-serving to grams-per-servings 
+	convert_measurement_to_grams( )
+else
+	measurementType == grams
+
+1b) Convert the measurement type to grams and return the gram equivalent.
+// convert the amount of ingredient (specified by recipe) to grams,
+convert_measurement_to_grams( )
+switch (type)
+	grams: measurementInGrams = 1
+	oz: measurementInGrams = OUNCES_EXCHANGE_RATE 
+	cup:  measurementInGrams = CUPS_EXCHANGE_RATE
+	Tablespoon: measurementInGrams = convert (measurementType) 
+	teaspoon: measurementInGrams = convert (measurementType) 
+	pint: measurementInGrams = convert (measurementType)
+	pound: measurementInGrams = convert (measurementType)
+
+2) Find the total Grams of each nutrient in the ingredient
+// find total grams of each nutrient from the ingredient in the recipe, return grams in recipe
+totalGramsOfNutrientInIngredient  =  measurementInGrams  x  amountOfIngredientInRecipe
+
+3) Find the percent of each nutrient that is in each gram. Use this number to multiply with total amount in grams of ingredient in recipe.
+// Find % of nutrient in each gram. Use this to multiply by total
+percentageOfNutrientInEachGram  =  totalNutrientInGramsOnLabel  /  totalServingsInGramsOnLabel
+
+4) Find the totals that will be displayed in the table (on Recipe.jsp) for each nutrient in each ingredient. Multiplying the percentage of the nutrient with the total grams that are in the ingredient will give the total nutrient value of that ingredient.
+// find total nutrient for the ingredient
+totalNutrientForIngredient  =  percentageOfNutrientInEachGram  x  totalGramsOfNutrientInIngredient
+
+5) Find the totals for each nutrient that will be used for the final Nutrition Label for printing
+// find total nutrient for each serving
+totalNutrientForWholeRecipe  =  totalNutrientForIngredient  /  numberOfServings
+
+6) Find the weight of each serving. The dish must be weighed by the user. Then divide by number of servings.
+// find weight in grams for each serving
+weightPerServing  =  totalGramsOfWholeRecipe  /  numberOfServings
