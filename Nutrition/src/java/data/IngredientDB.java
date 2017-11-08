@@ -1,24 +1,24 @@
 
 package data;
 
-import business.DeleteThisClass;
+import business.Ingredient;
 import business.Recipe;
 
 public class IngredientDB {
     
-    public static void insert(DeleteThisClass ingredient) {
+    public static void insert(Ingredient ingredient) {
         // TODO: 
     }
 
-    public static void update(DeleteThisClass ingredient) {
+    public static void update(Ingredient ingredient) {
         // TODO
     }
 
-    public static void delete(DeleteThisClass ingredient) {
+    public static void delete(Ingredient ingredient) {
         // TODO       
     }
     
-    public static DeleteThisClass selectIngredient(DeleteThisClass ingredient) {
+    public static Ingredient selectIngredient(Ingredient ingredient) {
         // TODO
         return null;
     }

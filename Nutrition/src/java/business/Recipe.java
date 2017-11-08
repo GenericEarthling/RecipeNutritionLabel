@@ -32,7 +32,7 @@ public class Recipe implements Serializable {
     private String[] directions;
     
     @OneToMany(mappedBy="recipe")                 // Is "recipe" right??     FOREIGN KEY???
-    private Collection<Ingredients> ingredient;        
+    private Collection<Ingredient> ingredient;        
     @Column(name = "Amount")
     private double amountInRecipe;
     @Column(name = "Measure Type")
@@ -57,7 +57,7 @@ public class Recipe implements Serializable {
         this.directions = directions;
     }
 
-    public Recipe(Collection<Ingredients> ingredient, double amountInRecipe, String measurementType) {
+    public Recipe(Collection<Ingredient> ingredient, double amountInRecipe, String measurementType) {
         this.ingredient = ingredient;
         this.amountInRecipe = amountInRecipe;
         this.measurementType = measurementType;
@@ -88,11 +88,11 @@ public class Recipe implements Serializable {
         this.time = time;
     }
 
-    public Collection<Ingredients> getIngredient() {
+    public Collection<Ingredient> getIngredient() {
         return ingredient;
     }
 
-    public void setIngredient(Collection<Ingredients> ingredient) {
+    public void setIngredient(Collection<Ingredient> ingredient) {
         this.ingredient = ingredient;
     }
 

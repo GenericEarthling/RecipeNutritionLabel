@@ -26,23 +26,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
-    , @NamedQuery(name = "User.findByUserID", query = "SELECT u FROM User u WHERE u.userID = :userID")
     , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
-    , @NamedQuery(name = "User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName = :firstName")
-    , @NamedQuery(name = "User.findByLastName", query = "SELECT u FROM User u WHERE u.lastName = :lastName")})
+    , @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")})
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "UserID")    
-    private Integer userId;
-    
-    @Column(name = "Name")
-    private String userName;
-    
     @Column(name = "Email")    
     private String userEmail;
     
+    @Column(name = "Name")
+    private String userName;
+   
     @Column(name = "Password")
     private String userPassword;
     
@@ -65,14 +59,6 @@ public class User implements Serializable {
     }
     
     // getters and setters
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }    
-    
     public String getUserName() {
         return userName;
     }
@@ -99,8 +85,8 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.userId);
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.userEmail);
         return hash;
     }   
 
@@ -125,9 +111,6 @@ public class User implements Serializable {
         if (!Objects.equals(this.userPassword, other.userPassword)) {
             return false;
         }
-        if (!Objects.equals(this.userId, other.userId)) {
-            return false;
-        }
         return true;
     }
 
@@ -137,6 +120,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "";
+        return "User Bean";
     }    
 }

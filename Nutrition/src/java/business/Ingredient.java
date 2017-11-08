@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Ingredients.findAll", query = "SELECT i FROM Ingredients i")
     , @NamedQuery(name = "Ingredients.findByIngredientName", query = "SELECT i FROM Ingredients i WHERE i.ingredientName = :ingredientName")})
-public class Ingredients implements Serializable {
+public class Ingredient implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -54,7 +54,7 @@ public class Ingredients implements Serializable {
     private double protein;
     
     // default constructor
-    public Ingredients() {
+    public Ingredient() {
         this.ingredientName = "";
         this.servingSizeInGrams = 0;
         this.calories = 0;
@@ -68,7 +68,7 @@ public class Ingredients implements Serializable {
     }
 
     // Constructor 
-    public Ingredients(String ingredientName, double servingSizeInGrams, 
+    public Ingredient(String ingredientName, double servingSizeInGrams, 
             double calories, double fat, double cholesterol, double sodium, 
             double potassium, double carbohydrate, double fiber, double protein) {
         this.ingredientName = ingredientName;
@@ -181,10 +181,10 @@ public class Ingredients implements Serializable {
     @Override
     public boolean equals(Object object) {
         // ALERT !! - this method won't work in the case the ingredientId fields are not set
-        if (!(object instanceof Ingredients)) {
+        if (!(object instanceof Ingredient)) {
             return false;
         }
-        Ingredients other = (Ingredients) object;
+        Ingredient other = (Ingredient) object;
         if ((this.ingredientId == null && other.ingredientId != null) || (this.ingredientId != null && !this.ingredientId.equals(other.ingredientId))) {
             return false;
         }

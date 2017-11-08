@@ -1,10 +1,11 @@
 /*
 MainControl class
-mainControl controls "on-click" events for main.html and recipe.html
+
+This needs to move to the individual servlets for Form onlick events
 */
 package model;
 
-import business.DeleteThisClass;
+import business.Ingredient;
 import business.Recipe;
 
 public class MainControl {
@@ -12,8 +13,8 @@ public class MainControl {
     private String userEmail;
     private String userPassword;
     private String userChoice;
-    private DeleteThisClass newIngredient;
-    private DeleteThisClass savedIngredient;
+    private Ingredient newIngredient;
+    private Ingredient savedIngredient;
     private Recipe newRecipe;
     private Recipe savedRecipe;
     private String recipeName;
@@ -48,25 +49,25 @@ public class MainControl {
         // TODO
     }
     // load retrieved ingredient from DB
-    public DeleteThisClass loadIngredient() {
+    public Ingredient loadIngredient() {
         // TODO
         return savedIngredient;
     }
-    // save DeleteThisClass to DB
-    public void saveIngredientToDB(DeleteThisClass newIngredient) {
+    // save Ingredient to DB
+    public void saveIngredientToDB(Ingredient newIngredient) {
         // TODO
     }
     // add ingredient to recipe session object
-    public void addIngredientToRecipe(DeleteThisClass ingredient) {
+    public void addIngredientToRecipe(Ingredient ingredient) {
         // TODO
     }
     // edit ingredient in recipe session object
-    public DeleteThisClass editIngredientInRecipe(DeleteThisClass ingredient) {
+    public Ingredient editIngredientInRecipe(Ingredient ingredient) {
         // TODO
         return ingredient;
     }
     // delete ingredeint from recipe session object
-    public void deleteIngredientFromRecipe(DeleteThisClass ingredient) {
+    public void deleteIngredientFromRecipe(Ingredient ingredient) {
         // TODO
     }
     
@@ -128,7 +129,7 @@ public class MainControl {
     public void logOut() {
 //        if status = logOut
 //            RecipeDB.saveRecipeToDB()
-//            foreach (DeleteThisClass in ingredient) {
+//            foreach (Ingredient in ingredient) {
 //                IngredientDB.saveIngredientsToDB()
 //            }
 //        logOut()	
