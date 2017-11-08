@@ -15,6 +15,10 @@ import java.util.Objects;
 import javax.persistence.*;              // look this up in javadocs!!
 
 public class Recipe implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)    
+    private Long RecipeId;
     private String name;
     private int ovenTemp;
     private int cookTime;
@@ -93,11 +97,11 @@ public class Recipe implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.name);
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.RecipeId);
         return hash;
-    }
-
+    }    
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

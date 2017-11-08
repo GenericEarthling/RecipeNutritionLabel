@@ -10,6 +10,7 @@ public ArrayList(Collection<? extends E> c);
 package business;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -219,8 +220,8 @@ public class Ingredients implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (ingredientId != null ? ingredientId.hashCode() : 0);
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.ingredientId);
         return hash;
     }
 
