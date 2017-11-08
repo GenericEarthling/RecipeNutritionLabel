@@ -42,8 +42,8 @@ public class RecipeTest {
     public void testGetOvenTemp() {
         System.out.println("getOvenTemp");
         int expResult = 450;
-        r1.setOvenTemp(expResult);
-        int result = r1.getOvenTemp();
+        r1.setTemperature(expResult);
+        int result = r1.getTemperature();
         assertEquals(expResult, result);
     }
 
@@ -54,8 +54,8 @@ public class RecipeTest {
     public void testSetOvenTemp() {
         System.out.println("setOvenTemp");
         int ovenTemp = 320;
-        r1.setOvenTemp(ovenTemp);
-        assertEquals(ovenTemp, r1.getOvenTemp());
+        r1.setTemperature(ovenTemp);
+        assertEquals(ovenTemp, r1.getTemperature());
     }
 
     /**
@@ -65,8 +65,8 @@ public class RecipeTest {
     public void testGetCookTime() {
         System.out.println("getCookTime");
         int expResult = 20;
-        r1.setCookTime(expResult);
-        int result = r1.getCookTime();
+        r1.setTime(expResult);
+        int result = r1.getTime();
         assertEquals(expResult, result);
     }
 
@@ -77,8 +77,8 @@ public class RecipeTest {
     public void testSetCookTime() {
         System.out.println("setCookTime");
         int cookTime = 30;
-        r1.setCookTime(cookTime);
-        assertEquals(cookTime, r1.getCookTime());
+        r1.setTime(cookTime);
+        assertEquals(cookTime, r1.getTime());
     }
 
     /**
@@ -179,9 +179,9 @@ public class RecipeTest {
     public void testToString() {
         System.out.println("toString");
         r1.setDescription("do this two more times");
-        r1.setCookTime(12);
+        r1.setTime(12);
         r1.setStep(2);
-        r1.setOvenTemp(425);
+        r1.setTemperature(425);
         r1.setName("Pie");        
         System.out.println(r1);
     }

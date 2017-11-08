@@ -31,10 +31,6 @@ public class Ingredients implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ingredientId;
     
-    @Column(name = "Amount")
-    private double amountInRecipe;
-    @Column(name = "Measure Type")
-    private String measurementType;
     @OneToMany(mappedBy="ingredient")        // one ingredient to many Recipes?
     @Column(name = "Ingredient")
     private String ingredientName;           
@@ -60,8 +56,6 @@ public class Ingredients implements Serializable {
     
     // default constructor
     public Ingredients() {
-        this.amountInRecipe = 0;
-        this.measurementType = "";
         this.ingredientName = "";
         this.labelServingSizeInGrams = 0;
         this.labelValueMilligrams = 0;
@@ -82,8 +76,6 @@ public class Ingredients implements Serializable {
             int labelValueMilligrams, double labelValueGrams, double calories, 
             double fat, double cholesterol, double sodium, double potassium, 
             double carbohydrate, double fiber, double protein) {
-        this.amountInRecipe = amountInRecipe;
-        this.measurementType = measurementType;
         this.ingredientName = ingredientName;
         this.labelServingSizeInGrams = labelServingSizeInGrams;
         this.labelValueMilligrams = labelValueMilligrams;
@@ -104,22 +96,6 @@ public class Ingredients implements Serializable {
 
     public void setIngredientId(Long ingredientId) {
         this.ingredientId = ingredientId;
-    }
-
-    public double getAmountInRecipe() {
-        return amountInRecipe;
-    }
-
-    public void setAmountInRecipe(double amountInRecipe) {
-        this.amountInRecipe = amountInRecipe;
-    }
-
-    public String getMeasurementType() {
-        return measurementType;
-    }
-
-    public void setMeasurementType(String measurementType) {
-        this.measurementType = measurementType;
     }
 
     public String getIngredientName() {
@@ -242,8 +218,6 @@ public class Ingredients implements Serializable {
     @Override
     public String toString() {
         return "Ingredient "
-                + "amount: " + amountInRecipe + "  "
-                + "measurement: " + measurementType + "  "
                 + "name: " + ingredientName + "  "
                 + "calories: " + calories + "  "
                 + "fat: " + fat + "  "

@@ -2,58 +2,67 @@
 Recipe class
 This class holds ingredient collection and step collection  
 
+Collection tutorial:
 http://www.codejava.net/java-core/collections/java-map-collection-tutorial-and-examples
-
-replace(K key, V value) method replaces the entry for the specified key only if it is currently mapping to some value.
-public ArrayList(Collection<? extends E> c);
+* replace(K key, V value) method replaces the entry for the specified key only if it is currently mapping to some value.
+* public ArrayList(Collection<? extends E> c);
+* TreeMap can be alphabetic(ingredient/recipe) or numeric(steps) order
+* LinkedHashMap for sorting by insertion order
+* Map<Integer, String> steps = new TreeMap<>();
 */
 package business;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
-import javax.persistence.*;              // look this up in javadocs!!
+import javax.persistence.*;                        // look this up in javadocs!!
 
 public class Recipe implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
     private Long RecipeId;
+    @Column(name = "Name")
     private String name;
-    private int ovenTemp;
-    private int cookTime;
-    private int step;                     // I think these need to be in an arraylist
-    private String description;           // I think these need to be in an arraylist
-    @OneToMany(mappedBy="recipe")         // Is "recipe" right??
-    private Collection<Steps> steps;
+    @Column(name = "Temp")
+    private int temperature;
+    @Column(name = "Time")
+    private int time;
+    @Column(name = "Directions")
+    private String[] directions;
     
-    @OneToMany(mappedBy="recipe")         // Is "recipe" right??
-    private Collection<Ingredients> ingredient;        // ArrayList too??
-    
-    
-    // TreeMap can be alphabetic(ingredient/recipe) or numeric(steps) order
-    // LinkedHashMap for sorting by insertion order
-//    Map<Integer, String> steps = new TreeMap<>();
-    
-    // constructors
+    @OneToMany(mappedBy="recipe")                 // Is "recipe" right??     FOREIGN KEY???
+    private Collection<Ingredients> ingredient;        
+    @Column(name = "Amount")
+    private double amountInRecipe;
+    @Column(name = "Measure Type")
+    private String measurementType;
+
     public Recipe() {
         name = "";
-        ovenTemp = 0;
-        cookTime = 0;
-        step = 0;
-        description = "";
-    }    
-    // not sure if the ingredient should be different since there
-    // are many ingredients  ..........................................
-    public Recipe(String name, int ovenTemp, int cookTime, int step, String description, DeleteThisClass ingredient) {
-        this.name = name;
-        this.ovenTemp = ovenTemp;
-        this.cookTime = cookTime;
-        this.step = step;
-        this.description = description;
-//        this.ingredient = ingredient;             // this is a Collection
+        temperature = 0;
+        time = 0;
     }
-    
+
+    public Recipe(int ovenTemp, int cookTime) {
+        this.temperature = ovenTemp;
+        this.time = cookTime;
+    }
+
+    public Recipe(String name) {
+        this.name = name;
+    }
+
+    public Recipe(String[] directions) {
+        this.directions = directions;
+    }
+
+    public Recipe(Collection<Ingredients> ingredient, double amountInRecipe, String measurementType) {
+        this.ingredient = ingredient;
+        this.amountInRecipe = amountInRecipe;
+        this.measurementType = measurementType;
+    }
+     
     // getters and setters
     public String getName() {
         return name;
@@ -63,37 +72,55 @@ public class Recipe implements Serializable {
         this.name = name;
     }
 
-    public int getOvenTemp() {
-        return ovenTemp;
+    public int getTemperature() {
+        return temperature;
     }
 
-    public void setOvenTemp(int ovenTemp) {
-        this.ovenTemp = ovenTemp;
+    public void setTemperature(int temperature) {
+        this.temperature = temperature;
     }
 
-    public int getCookTime() {
-        return cookTime;
+    public int getTime() {
+        return time;
     }
 
-    public void setCookTime(int cookTime) {
-        this.cookTime = cookTime;
+    public void setTime(int time) {
+        this.time = time;
     }
 
-    public int getStep() {
-        return step;
+    public Collection<Ingredients> getIngredient() {
+        return ingredient;
     }
 
-    public void setStep(int step) {
-        this.step = step;
+    public void setIngredient(Collection<Ingredients> ingredient) {
+        this.ingredient = ingredient;
     }
 
-    public String getDescription() {
-        return description;
+    public double getAmountInRecipe() {
+        return amountInRecipe;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAmountInRecipe(double amountInRecipe) {
+        this.amountInRecipe = amountInRecipe;
     }
+
+    public String getMeasurementType() {
+        return measurementType;
+    }
+
+    public void setMeasurementType(String measurementType) {
+        this.measurementType = measurementType;
+    }
+
+    public String[] getDirections() {
+        return directions;
+    }
+
+    public void setDirections(String[] directions) {
+        this.directions = directions;
+    }
+    
+
 
     @Override
     public int hashCode() {
@@ -124,11 +151,9 @@ public class Recipe implements Serializable {
     public String toString() {
         return "Recipe object:::  " 
                 + "Name: " + name + "   "
-                + "Cooking Time: " + cookTime + "   "
-                + "Oven Temp: " + ovenTemp + "   "
+                + "Cooking Time: " + time + "   "
+                + "Oven Temp: " + temperature + "   "
                 + "Ingredient: " + ingredient + "   "
-                + "Step: " + step + "   "
-                + "Description: " + description;
+                + "Direction: " + directions[0];
     }
-
 }
