@@ -1,5 +1,5 @@
 /*
-Ingredient class: This class holds ingredient and gets the nutrient values 
+Ingredient Bean class: This class holds ingredient and gets the nutrient values 
 
 http://www.codejava.net/java-core/collections/java-map-collection-tutorial-and-examples
 
@@ -33,10 +33,9 @@ public class Ingredients implements Serializable {
     
     @OneToMany(mappedBy="ingredient")        // one ingredient to many Recipes?
     @Column(name = "Ingredient")
-    private String ingredientName;           
-    private double labelServingSizeInGrams;
-    private int labelValueMilligrams;
-    private double labelValueGrams;
+    private String ingredientName;
+    @Column(name = "Serving Size")
+    private double servingSizeInGrams;
     @Column(name = "Calories")
     private double calories;
     @Column(name = "Fat")
@@ -57,9 +56,7 @@ public class Ingredients implements Serializable {
     // default constructor
     public Ingredients() {
         this.ingredientName = "";
-        this.labelServingSizeInGrams = 0;
-        this.labelValueMilligrams = 0;
-        this.labelValueGrams = 0;
+        this.servingSizeInGrams = 0;
         this.calories = 0;
         this.fat = 0;
         this.cholesterol = 0;
@@ -70,16 +67,12 @@ public class Ingredients implements Serializable {
         this.protein = 0;
     }
 
-    // Constructor  
-    public Ingredients(double amountInRecipe, String measurementType, 
-            String ingredientName, double labelServingSizeInGrams, 
-            int labelValueMilligrams, double labelValueGrams, double calories, 
-            double fat, double cholesterol, double sodium, double potassium, 
-            double carbohydrate, double fiber, double protein) {
+    // Constructor 
+    public Ingredients(String ingredientName, double servingSizeInGrams, 
+            double calories, double fat, double cholesterol, double sodium, 
+            double potassium, double carbohydrate, double fiber, double protein) {
         this.ingredientName = ingredientName;
-        this.labelServingSizeInGrams = labelServingSizeInGrams;
-        this.labelValueMilligrams = labelValueMilligrams;
-        this.labelValueGrams = labelValueGrams;
+        this.servingSizeInGrams = servingSizeInGrams;
         this.calories = calories;
         this.fat = fat;
         this.cholesterol = cholesterol;
@@ -88,7 +81,7 @@ public class Ingredients implements Serializable {
         this.carbohydrate = carbohydrate;
         this.fiber = fiber;
         this.protein = protein;
-    }
+    }    
     
     public Long getIngredientId() {
         return ingredientId;
@@ -106,28 +99,12 @@ public class Ingredients implements Serializable {
         this.ingredientName = ingredientName;
     }
 
-    public double getLabelServingSizeInGrams() {
-        return labelServingSizeInGrams;
+    public double getServingSizeInGrams() {
+        return servingSizeInGrams;
     }
 
-    public void setLabelServingSizeInGrams(double labelServingSizeInGrams) {
-        this.labelServingSizeInGrams = labelServingSizeInGrams;
-    }
-
-    public int getLabelValueMilligrams() {
-        return labelValueMilligrams;
-    }
-
-    public void setLabelValueMilligrams(int labelValueMilligrams) {
-        this.labelValueMilligrams = labelValueMilligrams;
-    }
-
-    public double getLabelValueGrams() {
-        return labelValueGrams;
-    }
-
-    public void setLabelValueGrams(double labelValueGrams) {
-        this.labelValueGrams = labelValueGrams;
+    public void setServingSizeInGrams(double ServingSizeInGrams) {
+        this.servingSizeInGrams = ServingSizeInGrams;
     }
 
     public double getCalories() {
@@ -219,6 +196,7 @@ public class Ingredients implements Serializable {
     public String toString() {
         return "Ingredient "
                 + "name: " + ingredientName + "  "
+                + "serving size in grams: " + servingSizeInGrams + "  "
                 + "calories: " + calories + "  "
                 + "fat: " + fat + "  "
                 + "cholesterol: " + cholesterol + "  "
@@ -227,6 +205,5 @@ public class Ingredients implements Serializable {
                 + "carbohydrate: " + carbohydrate + "  "
                 + "fiber: " + fiber + "  "
                 + "protein: " + protein + "  ";
-    }
-    
+    }    
 }
