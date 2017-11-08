@@ -1,21 +1,49 @@
 /*
 User class
-for future use, userName is included for this class.
+for future use: userFirstName and userLastName is included for this class.
  */
-package model;
+package business;
 
 import java.io.Serializable;
 import java.util.Objects;
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
-//@Entity
+/**
+ *
+ * @author Tender
+ */
+@Entity
+@Table(name = "user")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+    , @NamedQuery(name = "User.findByUserID", query = "SELECT u FROM User u WHERE u.userID = :userID")
+    , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
+    , @NamedQuery(name = "User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName = :firstName")
+    , @NamedQuery(name = "User.findByLastName", query = "SELECT u FROM User u WHERE u.lastName = :lastName")})
 public class User implements Serializable {
-    private Long userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "UserID")    
+    private Integer userId;
+    
+    @Column(name = "Name")
     private String userName;
+    
+    @Column(name = "Email")    
     private String userEmail;
+    
+    @Column(name = "Password")
     private String userPassword;
     
     // constructors
@@ -37,13 +65,11 @@ public class User implements Serializable {
     }
     
     // getters and setters
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }    
     
@@ -75,11 +101,8 @@ public class User implements Serializable {
     public int hashCode() {
         int hash = 7;
         hash = 61 * hash + Objects.hashCode(this.userId);
-        hash = 61 * hash + Objects.hashCode(this.userName);
-        hash = 61 * hash + Objects.hashCode(this.userEmail);
-        hash = 61 * hash + Objects.hashCode(this.userPassword);
         return hash;
-    }
+    }   
 
     @Override
     public boolean equals(Object obj) {

@@ -5,8 +5,8 @@
  */
 package data;
 
-import controller.Ingredient;
-import controller.Recipe;
+import business.DeleteThisClass;
+import business.Recipe;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -25,7 +25,7 @@ public class IngredientDBTest {
     @Test
     public void testInsert() {
         System.out.println("insert");
-        Ingredient ingredient = null;
+        DeleteThisClass ingredient = null;
         IngredientDB.insert(ingredient);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -37,7 +37,7 @@ public class IngredientDBTest {
     @Test
     public void testUpdate() {
         System.out.println("update");
-        Ingredient ingredient = null;
+        DeleteThisClass ingredient = null;
         IngredientDB.update(ingredient);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -49,7 +49,7 @@ public class IngredientDBTest {
     @Test
     public void testDelete() {
         System.out.println("delete");
-        Ingredient ingredient = null;
+        DeleteThisClass ingredient = null;
         IngredientDB.delete(ingredient);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -61,9 +61,9 @@ public class IngredientDBTest {
     @Test
     public void testSelectIngredient() {
         System.out.println("selectIngredient");
-        Ingredient ingredient = null;
-        Ingredient expResult = null;
-        Ingredient result = IngredientDB.selectIngredient(ingredient);
+        DeleteThisClass ingredient = null;
+        DeleteThisClass expResult = null;
+        DeleteThisClass result = IngredientDB.selectIngredient(ingredient);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

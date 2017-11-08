@@ -1,5 +1,7 @@
 package controller;
 
+import business.Recipe;
+import business.DeleteThisClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -131,8 +133,8 @@ public class RecipeTest {
     @Test
     public void testGetIngredient() {
         System.out.println("getIngredient");
-        Ingredient expResult = null;
-        Ingredient result = r1.getIngredient();
+        DeleteThisClass expResult = null;
+        DeleteThisClass result = r1.getIngredient();
         assertEquals(expResult, result);
     }
 
@@ -142,7 +144,7 @@ public class RecipeTest {
     @Test
     public void testSetIngredient() {
         System.out.println("setIngredient");
-        Ingredient ingredient = null;
+        DeleteThisClass ingredient = null;
         r1.setIngredient(ingredient);
         assertEquals(ingredient, r1.getIngredient());
     }

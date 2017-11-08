@@ -2,15 +2,18 @@
 MainControl class
 mainControl controls "on-click" events for main.html and recipe.html
 */
-package controller;
+package model;
+
+import business.DeleteThisClass;
+import business.Recipe;
 
 public class MainControl {
     // Variables
     private String userEmail;
     private String userPassword;
     private String userChoice;
-    private Ingredient newIngredient;
-    private Ingredient savedIngredient;
+    private DeleteThisClass newIngredient;
+    private DeleteThisClass savedIngredient;
     private Recipe newRecipe;
     private Recipe savedRecipe;
     private String recipeName;
@@ -45,25 +48,25 @@ public class MainControl {
         // TODO
     }
     // load retrieved ingredient from DB
-    public Ingredient loadIngredient() {
+    public DeleteThisClass loadIngredient() {
         // TODO
         return savedIngredient;
     }
-    // save Ingredient to DB
-    public void saveIngredientToDB(Ingredient newIngredient) {
+    // save DeleteThisClass to DB
+    public void saveIngredientToDB(DeleteThisClass newIngredient) {
         // TODO
     }
     // add ingredient to recipe session object
-    public void addIngredientToRecipe(Ingredient ingredient) {
+    public void addIngredientToRecipe(DeleteThisClass ingredient) {
         // TODO
     }
     // edit ingredient in recipe session object
-    public Ingredient editIngredientInRecipe(Ingredient ingredient) {
+    public DeleteThisClass editIngredientInRecipe(DeleteThisClass ingredient) {
         // TODO
         return ingredient;
     }
     // delete ingredeint from recipe session object
-    public void deleteIngredientFromRecipe(Ingredient ingredient) {
+    public void deleteIngredientFromRecipe(DeleteThisClass ingredient) {
         // TODO
     }
     
@@ -125,7 +128,7 @@ public class MainControl {
     public void logOut() {
 //        if status = logOut
 //            RecipeDB.saveRecipeToDB()
-//            foreach (Ingredient in ingredient) {
+//            foreach (DeleteThisClass in ingredient) {
 //                IngredientDB.saveIngredientsToDB()
 //            }
 //        logOut()	

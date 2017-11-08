@@ -3,8 +3,8 @@ do I need to add the user, stepDescription, and Ingredient???
  */
 package data;
 
-import controller.Recipe;
-import model.User;
+import business.Recipe;
+import business.User;
 
 /**
  *

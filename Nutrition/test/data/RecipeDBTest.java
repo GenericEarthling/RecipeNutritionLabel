@@ -1,6 +1,6 @@
 package data;
 
-import controller.Recipe;
+import business.Recipe;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

@@ -1,18 +1,18 @@
 /*
-Ingredient class extends Recipe
-This class holds ingredient and gets the nutrient 
-values from the nutrient class
+Recipe class
+This class holds ingredient collection and step collection  
 
 http://www.codejava.net/java-core/collections/java-map-collection-tutorial-and-examples
 
 replace(K key, V value) method replaces the entry for the specified key only if it is currently mapping to some value.
 public ArrayList(Collection<? extends E> c);
-See CoinPurse example
 */
-package controller;
+package business;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
+import javax.persistence.*;              // look this up in javadocs!!
 
 public class Recipe implements Serializable {
     private String name;
@@ -20,7 +20,16 @@ public class Recipe implements Serializable {
     private int cookTime;
     private int step;                     // I think these need to be in an arraylist
     private String description;           // I think these need to be in an arraylist
-    private Ingredient ingredient;        // ArrayList too??
+    @OneToMany(mappedBy="recipe")         // Is "recipe" right??
+    private Collection<Steps> steps;
+    
+    @OneToMany(mappedBy="recipe")         // Is "recipe" right??
+    private Collection<Ingredients> ingredient;        // ArrayList too??
+    
+    
+    // TreeMap can be alphabetic(ingredient/recipe) or numeric(steps) order
+    // LinkedHashMap for sorting by insertion order
+//    Map<Integer, String> steps = new TreeMap<>();
     
     // constructors
     public Recipe() {
@@ -32,13 +41,13 @@ public class Recipe implements Serializable {
     }    
     // not sure if the ingredient should be different since there
     // are many ingredients  ..........................................
-    public Recipe(String name, int ovenTemp, int cookTime, int step, String description, Ingredient ingredient) {
+    public Recipe(String name, int ovenTemp, int cookTime, int step, String description, DeleteThisClass ingredient) {
         this.name = name;
         this.ovenTemp = ovenTemp;
         this.cookTime = cookTime;
         this.step = step;
         this.description = description;
-        this.ingredient = ingredient;
+//        this.ingredient = ingredient;             // this is a Collection
     }
     
     // getters and setters
@@ -80,14 +89,6 @@ public class Recipe implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Ingredient getIngredient() {
-        return ingredient;
-    }
-
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
     }
 
     @Override

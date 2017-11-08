@@ -1,5 +1,6 @@
 package model;
 
+import business.User;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,10 +20,10 @@ public class UserTest {
     @Test
     public void testGetUserId() {
         System.out.println("getUserId");
-        Long expResult = null;
-        Long result = user1.getUserId();
+        Integer expResult = null;
+        Integer result = user1.getUserId();
         assertEquals(expResult, result);
-        Long id = 234333L;
+        Integer id = 234333;
         user2.setUserId(id);
         assertEquals(user2.getUserId(), id);
         System.out.println("user2 id: " + user2.getUserId() + " id: " + id);

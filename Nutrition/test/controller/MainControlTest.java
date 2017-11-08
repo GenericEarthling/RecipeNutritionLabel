@@ -1,5 +1,8 @@
 package controller;
 
+import model.MainControl;
+import business.Recipe;
+import business.DeleteThisClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -63,8 +66,8 @@ public class MainControlTest {
     @Test
     public void testLoadIngredient() {
         System.out.println("loadIngredient");
-        Ingredient expResult = null;
-        Ingredient result = mc.loadIngredient();
+        DeleteThisClass expResult = null;
+        DeleteThisClass result = mc.loadIngredient();
         assertEquals(expResult, result);
     }
 
@@ -74,7 +77,7 @@ public class MainControlTest {
     @Test
     public void testSaveIngredientToDB() {
         System.out.println("saveIngredientToDB");
-        Ingredient newIngredient = null;
+        DeleteThisClass newIngredient = null;
         mc.saveIngredientToDB(newIngredient);
     }
 
@@ -84,7 +87,7 @@ public class MainControlTest {
     @Test
     public void testAddIngredientToRecipe() {
         System.out.println("addIngredientToRecipe");
-        Ingredient ingredient = null;
+        DeleteThisClass ingredient = null;
         mc.addIngredientToRecipe(ingredient);
     }
 
@@ -94,9 +97,9 @@ public class MainControlTest {
     @Test
     public void testEditIngredientInRecipe() {
         System.out.println("editIngredientInRecipe");
-        Ingredient ingredient = null;
-        Ingredient expResult = null;
-        Ingredient result = mc.editIngredientInRecipe(ingredient);
+        DeleteThisClass ingredient = null;
+        DeleteThisClass expResult = null;
+        DeleteThisClass result = mc.editIngredientInRecipe(ingredient);
         assertEquals(expResult, result);
     }
 
@@ -106,7 +109,7 @@ public class MainControlTest {
     @Test
     public void testDeleteIngredientFromRecipe() {
         System.out.println("deleteIngredientFromRecipe");
-        Ingredient ingredient = null;
+        DeleteThisClass ingredient = null;
         mc.deleteIngredientFromRecipe(ingredient);
     }
 

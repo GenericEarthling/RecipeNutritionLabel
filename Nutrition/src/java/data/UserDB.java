@@ -4,7 +4,7 @@ See chap 13 email example
 package data;
 
 
-import model.User;
+import business.User;
 
 public class UserDB {
     
