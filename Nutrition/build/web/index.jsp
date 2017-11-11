@@ -7,18 +7,31 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<title>Recipe</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="styles/w3.css">
-<link rel="stylesheet" href="styles/main.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<head>    
+    <title>Nutrition App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/w3.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <body class="w3-light-grey">
-    <!-- FORM BOX FOR SIGNING IN OR SIGNING UP OR GUEST  -->  
+    
+<nav class="w3-bar w3-black">
+  <a href="#" class="w3-bar-item w3-button w3-hover-blue">HOME</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-blue">START OVER</a>
+<!--  <a href="#" class="w3-bar-item w3-button w3-hover-blue w3-right">PRINT</a>-->
+</nav> 
+    
+    <div class="w3-container w3-padding-16" style="width: 400px; margin: auto;">
+    <!-- FORM BOX FOR SIGNING IN OR SIGNING UP OR GUEST  -->
+    <div class="w3-container w3-blue">
+        <h1>Nutrition Generator</h1>
+    </div>
     <div class="w3-container w3-white w3-padding-16">
         <form action="SignInServlet" method="post">
+            <p>Enter your email and password to start creating your own nutrition label for your favorite recipe.</p>
             <p><i>${message}</i></p> 
         <div class="w3-row-padding" style="margin:0 -16px;">
           <div class="w3-margin-bottom">
@@ -30,7 +43,7 @@
         <div class="w3-row-padding" style="margin:8px -16px;">
           <div class="w3-margin-bottom">
             <label>Password</label>
-            <input class="w3-input w3-border" type="text" 
+            <input class="w3-input w3-border w3-left" type="text" 
                    placeholder="0" name="password" value="${user.userPassword}">
           </div>
         </div>
@@ -42,10 +55,10 @@
             <input type="radio" name="user_status" value="Guest" checked> Guest <br>
           </div>  
         </div>    
-        <input class="w3-button w3-dark-grey"  type="submit" value="Continue" 
-               class="margin_left">
+        <input class="w3-button w3-red"  type="submit" value="Continue">
       </form>
       <!-- END OF FORM BOX FOR SIGN-IN  -->   
+    </div>
     </div>
 </body>
 </html>
