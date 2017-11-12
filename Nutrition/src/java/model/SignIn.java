@@ -1,4 +1,5 @@
 /*
+------------  I THINK THIS CLASS IS NOT NEEDED ----------------
 SignIn class
 initial user entry point
 controls on-click events for index.html

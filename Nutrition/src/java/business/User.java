@@ -1,20 +1,12 @@
 /*
 User class
-for future use: userFirstName and userLastName is included for this class.
+for future use: userPassword is included for this class.
  */
 package business;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -47,9 +39,9 @@ public class User implements Serializable {
         userPassword = "";
     }
 
-    public User(String userEmail, String userPassword) {
+    public User(String userName, String userEmail) {
+        this.userName = userName;
         this.userEmail = userEmail;
-        this.userPassword = userPassword;
     }
 
     public User(String userName, String userEmail, String userPassword) {

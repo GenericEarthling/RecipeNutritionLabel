@@ -24,7 +24,7 @@
 <!--  <a href="#" class="w3-bar-item w3-button w3-hover-blue w3-right">PRINT</a>-->
 </nav> 
     
-    <div class="w3-container w3-padding-16" style="width: 400px; margin: auto;">
+    <div class="w3-container w3-padding" style="width: 400px; margin: auto;">
     <!-- FORM BOX FOR SIGNING IN OR SIGNING UP OR GUEST  -->
     <div class="w3-container w3-blue">
         <h1>Nutrition Generator</h1>
@@ -33,6 +33,14 @@
         <form action="SignInServlet" method="post">
             <p>Enter your email and password to start creating your own nutrition label for your favorite recipe.</p>
             <p><i>${message}</i></p> 
+        <div class="w3-row-padding w3-margin-bottom" style="margin:8px -16px;">
+          <div class="w3-margin-bottom">
+            <label>User Name</label>
+            <input class="w3-input w3-border w3-left" type="text" 
+                   placeholder="0" name="password" value="${user.userName}"><br>
+          </div>
+        </div>
+          
         <div class="w3-row-padding" style="margin:0 -16px;">
           <div class="w3-margin-bottom">
             <label>E-mail address</label>
@@ -40,13 +48,7 @@
                    placeholder="Enter email" name="email" value="${user.userEmail}" required>
           </div>          
         </div>
-        <div class="w3-row-padding" style="margin:8px -16px;">
-          <div class="w3-margin-bottom">
-            <label>Password</label>
-            <input class="w3-input w3-border w3-left" type="text" 
-                   placeholder="0" name="password" value="${user.userPassword}">
-          </div>
-        </div>
+
         <div class="w3-row-padding" style="margin:8px -16px;">
           <div class="w3-margin-bottom">
               <label>Choose one: </label><br>
