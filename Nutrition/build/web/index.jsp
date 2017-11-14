@@ -37,7 +37,7 @@
           <div class="w3-margin-bottom">
             <label>User Name</label>
             <input class="w3-input w3-border w3-left" type="text" 
-                   placeholder="0" name="password" value="${user.userName}"><br>
+                   placeholder="0" name="name" value="${user.userName}"><br>
           </div>
         </div>
           
@@ -52,9 +52,9 @@
         <div class="w3-row-padding" style="margin:8px -16px;">
           <div class="w3-margin-bottom">
               <label>Choose one: </label><br>
-            <input type="radio" name="user_status" value="Member" > Member 
-            <input type="radio" name="user_status" value="New Member" > Sign Up 
-            <input type="radio" name="user_status" value="Guest" checked> Guest <br>
+            <input type="radio" name="status" value="member" > Member 
+            <input type="radio" name="status" value="newMember" > Sign Up 
+            <input type="radio" name="status" value="guest" checked> Guest <br>
           </div>  
         </div>    
         <input class="w3-button w3-red"  type="submit" value="Continue">

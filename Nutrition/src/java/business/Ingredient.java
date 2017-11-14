@@ -31,7 +31,7 @@ public class Ingredient implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ingredientId;
     
-    @OneToMany(mappedBy="ingredient")        // one ingredient to many Recipes?
+    @OneToMany(mappedBy="ingredient")        // one ingredient to many Recipes
     @Column(name = "Ingredient")
     private String ingredientName;
     @Column(name = "Serving Size")

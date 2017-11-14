@@ -42,7 +42,25 @@ public class SignInServlet extends HttpServlet {
             throws ServletException, IOException {
         String url = "/index.jsp";
         
+        // get the parameter from the radio selection -- ' name="status" '
+        // <input type="radio" name="status" value="member" > Member
+        String userStatus = request.getParameter("status");
+        
+        // process parameter for radio selection
+        if (userStatus == null ) {
+            userStatus = "guest";
+        }
+        if (userStatus == "member") {
+            // set to guest for now ----------once DB is working change this
+            userStatus = "guest";
+        }
+        if (userStatus == "newMember") {
+            // set to guest for now ----------once DB is working change this
+            userStatus = "guest";
+        }
+        
         // get action. if null, set to join as a default action
+        // <form action="
         String action = request.getParameter("action");
         if (action == null) {
             action = "guest";
@@ -54,8 +72,8 @@ public class SignInServlet extends HttpServlet {
         }
         else if (action.equals("add")) {
             // get parameters from the request object
-            String userName = request.getParameter("userName");
-            String userEmail = request.getParameter("userEmail");
+            String userName = request.getParameter("name");
+            String userEmail = request.getParameter("email");
             
             // store data in user object
             User user = new User();
