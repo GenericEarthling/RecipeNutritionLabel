@@ -46,6 +46,10 @@ public class Recipe implements Serializable {
         time = 0;
     }
 
+    public Recipe(double amountInRecipe) {
+        this.amountInRecipe = amountInRecipe;
+    }
+
     public Recipe(int ovenTemp, int cookTime) {
         this.temperature = ovenTemp;
         this.time = cookTime;

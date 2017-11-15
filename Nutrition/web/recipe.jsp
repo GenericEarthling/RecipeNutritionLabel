@@ -36,7 +36,7 @@
         <form action="ingredient" method="post" >
             <!-- Modal Cancel button -->
             <div class="">            
-                <!--<span class="close">cancel</span>-->
+                <span class="close">cancel</span>
             </div>
             
             <div class="w3-margin-top">
@@ -46,67 +46,67 @@
             <div class="">
                 <label style="display: inline-block;" >Ingredient </label>
                 <input class="w3-border" style="float: right;" type="text" 
-                   placeholder="0" name="ingredientName" value="${Ingredient.ingredientName}"> 
+                   placeholder="0" name="ingredientName" value="${ingredient.ingredientName}" > 
             </div> <hr class="nut-line nut-line-1" >
             
             <div class="">
                 <label style="display: inline-block;" >Serving Size from Label (in grams)</label> 
                 <input class="w3-border"  style="float: right;" type="number" min="1" max="100" size="5"
-                       placeholder="0" name="servingSizeInGrams" value="ingredient.servingSizeInGrams">
+                       placeholder="0" name="servingSizeInGrams" value="ingredient.servingSizeInGrams" >
             </div> <hr class="nut-line nut-line-3" >
                        
             <div class="">
                 <label style="display: inline-block;" >Calories	&emsp;</label> 
-                <input class="w3-border" type="number" min="1" max="100" size="5"
-                       placeholder="0" name="calories" value="ingredient.calories">
+                <input class="w3-border" type="number" min="0" size="5"
+                       placeholder="0" name="calories" value="${ingredient.calories}" >
             </div>   <hr class="nut-line nut-line-2" >
             
             <div class="">
                 <label style="display: inline-block;" >Fat &emsp;</label> 
-                <input class="w3-border" type="number" min="1" max="100" size="5"
-                       placeholder="0" name="fat" value="ingredient.fat">
+                <input class="w3-border" type="number" min="0" size="5"
+                       placeholder="0" name="fat" value="${ingredient.fat}" >
             </div> <hr class="nut-line nut-line-1" style=""> 
             
             <div class="">
                 <label style="display: inline-block;" >Cholesterol &emsp;</label> 
-                <input class="w3-border" type="number" min="1" max="100" size="5"
-                       placeholder="0" name="cholesterol" value="ingredient.cholesterol">
+                <input class="w3-border" type="number" min="0" size="5"
+                       placeholder="0" name="cholesterol" value="${ingredient.cholesterol}" >
             </div>  <hr class="nut-line nut-line-1" style="">          
 
             <div class="">
                 <label style="display: inline-block;" >Sodium  &emsp;</label> 
-                <input class="w3-border" type="number" min="1" max="100" size="5"
-                       placeholder="0" name="sodium" value="ingredient.sodium">
+                <input class="w3-border" type="number" min="0" size="5"
+                       placeholder="0" name="sodium" value="${ingredient.sodium}" >
             </div>    <hr class="nut-line nut-line-1" style="">        
 
             <div class="">
                 <label style="display: inline-block;" >Potassium  &emsp;</label> 
-                <input class="w3-border" type="number" min="1" max="100" size="5"
-                       placeholder="0" name="potassium" value="ingredient.potassium">
+                <input class="w3-border" type="number" min="0" size="5"
+                       placeholder="0" name="potassium" value="${ingredient.potassium}" >
             </div>     <hr class="nut-line nut-line-1" style="">       
 
             <div class="">
                 <label style="display: inline-block;" >Carbohydrates  &emsp;</label> 
-                <input class="w3-border" type="number" min="1" max="100" size="5"
-                       placeholder="0" name="carbohydrates" value="ingredient.carbohydrates">
+                <input class="w3-border" type="number" min="0" size="5"
+                       placeholder="0" name="carbohydrates" value="${ingredient.carbohydrates}" >
             </div>      <hr class="nut-line nut-line-1" style="">      
 
             <div class="">
                 <label style="display: inline-block;" >Fiber  &emsp;</label> 
-                <input class="w3-border" type="number" min="1" max="100" size="5"
-                       placeholder="0" name="fiber" value="ingredient.fiber">
+                <input class="w3-border" type="number" min="0" size="5"
+                       placeholder="0" name="fiber" value="${ingredient.fiber}" >
             </div>   <hr class="nut-line nut-line-1" style="">         
 
             <div class="">
                 <label style="display: inline-block;" >Protein  &emsp;</label> 
-                <input class="w3-border" type="number" min="1" max="100" size="5"
-                       placeholder="0" name="protein" value="ingredient.protein">
+                <input class="w3-border" type="number" min="0" size="5"
+                       placeholder="0" name="protein" value="${ingredient.protein}" >
             </div>   <hr class="nut-line nut-line-2" style="">         
 
             <div class="w3-margin-bottom">
                 <label style="display: inline-block;" >Amount in recipe &emsp;</label> 
-                <input class="w3-border" type="number" min="1" max="100" size="5"
-                       placeholder="0" name="amount" value="recipe.amount">
+                <input class="w3-border" type="number" min="1" size="5"
+                       placeholder="0" name="amount" value="${recipe.amount}" >
                 <select name="measurementType">
                   <option value="grams">grams</option>
                   <option value="liquid oz">liquid oz</option>
@@ -239,11 +239,11 @@
     <div class="w3-container w3-grey w3-padding-16 w3-margin-top">
         <h2>Nutrition Label</h2>
         <label> servings &emsp;</label>
-        <input class="w3-border" type="number" min="-32" max="500" size="5"
-                       placeholder="0" name="servingSize" value="">
+        <input class="w3-border" type="number" min="1" size="5"
+                       placeholder="0" name="servings" value="recipe.servings" required>
         <label>Total weight after cooking (in oz) &emsp;</label>
-        <input class="w3-border" type="number" min="-32" max="500" size="5"
-                       placeholder="0" name="servingSize" value="">        
+        <input class="w3-border" type="number" size="5"
+                       placeholder="0" name="weight" value="recipe.weight">        
         <button class="w3-button w3-red">Get Nutrition Label</button>
     </div>
 </div>

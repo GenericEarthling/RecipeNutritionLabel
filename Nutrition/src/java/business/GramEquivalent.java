@@ -21,8 +21,11 @@ public enum GramEquivalent {
     LIQUID_PINT(480),
     DRY_PINT(460);
     
-    private int value;
-    private GramEquivalent(int value) {
-        this.value=value;
+    private int grams;
+    private GramEquivalent(int grams) {
+        this.grams = grams;
+    }
+    private int grams() {
+        return grams;
     }
 }
