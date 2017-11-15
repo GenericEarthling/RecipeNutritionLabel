@@ -104,15 +104,20 @@ public class IngredientServlet extends HttpServlet {
         double totalCarb = Calculate.totalNutrientValueInRecipe(percentOfCarb, amtOfIngredInGrams);
         double totalFiber = Calculate.totalNutrientValueInRecipe(percentOfFiber, amtOfIngredInGrams);
         double totalProtein = Calculate.totalNutrientValueInRecipe(percentOfProtein, amtOfIngredInGrams);
-        
+
+        // display the totals in the Recipe.jsp Ingredient table
+        // save to a session
 
 
 
 
-        
-        
-        System.out.println(r);
-        System.out.println(i);
+
+        // stay on current jsp page
+        String url = "/recipe.jsp";
+        // forward to the view
+        getServletContext()
+                .getRequestDispatcher(url)
+                .forward(request, response);
 
     }
 
