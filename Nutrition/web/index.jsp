@@ -23,9 +23,16 @@
   <a href="#" class="w3-bar-item w3-button w3-hover-blue">START OVER</a>
 <!--  <a href="#" class="w3-bar-item w3-button w3-hover-blue w3-right">PRINT</a>-->
 </nav> 
+    <div lass="w3-container w3-white" style="width: 400px; margin: auto;">
+       <input 
+           class="w3-right-align w3-margin w3-button w3-red"  type="submit" value="Enter Site">
+     
+    </div>
     
-    <div class="w3-container w3-padding" style="width: 400px; margin: auto;">
+    
     <!-- FORM BOX FOR SIGNING IN OR SIGNING UP OR GUEST  -->
+<!--    <div class="w3-container w3-padding" style="width: 400px; margin: auto;">
+    
     <div class="w3-container w3-blue">
         <h1>Nutrition Generator</h1>
     </div>
@@ -58,7 +65,7 @@
           </div>  
         </div>    
         <input class="w3-button w3-red"  type="submit" value="Continue">
-      </form>
+      </form>-->
       <!-- END OF FORM BOX FOR SIGN-IN  -->   
     </div>
     </div>

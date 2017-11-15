@@ -78,7 +78,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("          <div class=\"w3-margin-bottom\">\n");
       out.write("            <label>User Name</label>\n");
       out.write("            <input class=\"w3-input w3-border w3-left\" type=\"text\" \n");
-      out.write("                   placeholder=\"0\" name=\"password\" value=\"");
+      out.write("                   placeholder=\"0\" name=\"name\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.userName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\"><br>\n");
       out.write("          </div>\n");
@@ -97,9 +97,9 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"w3-row-padding\" style=\"margin:8px -16px;\">\n");
       out.write("          <div class=\"w3-margin-bottom\">\n");
       out.write("              <label>Choose one: </label><br>\n");
-      out.write("            <input type=\"radio\" name=\"user_status\" value=\"Member\" > Member \n");
-      out.write("            <input type=\"radio\" name=\"user_status\" value=\"New Member\" > Sign Up \n");
-      out.write("            <input type=\"radio\" name=\"user_status\" value=\"Guest\" checked> Guest <br>\n");
+      out.write("            <input type=\"radio\" name=\"status\" value=\"member\" > Member \n");
+      out.write("            <input type=\"radio\" name=\"status\" value=\"newMember\" > Sign Up \n");
+      out.write("            <input type=\"radio\" name=\"status\" value=\"guest\" checked> Guest <br>\n");
       out.write("          </div>  \n");
       out.write("        </div>    \n");
       out.write("        <input class=\"w3-button w3-red\"  type=\"submit\" value=\"Continue\">\n");
