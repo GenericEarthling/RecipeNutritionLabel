@@ -53,6 +53,10 @@ public class Ingredient implements Serializable {
     @Column(name = "Protein")
     private double protein;
     
+    // these are not saved to the IngredientDB. They are for display session only.
+    private double ingredientAmount;
+    private String measurement; 
+    
     // default constructor
     public Ingredient() {
         this.ingredientName = "";
@@ -82,6 +86,22 @@ public class Ingredient implements Serializable {
         this.fiber = fiber;
         this.protein = protein;
     }    
+
+    public double getIngredientAmount() {
+        return ingredientAmount;
+    }
+
+    public void setIngredientAmount(double ingredientAmount) {
+        this.ingredientAmount = ingredientAmount;
+    }
+
+    public String getMeasurement() {
+        return measurement;
+    }
+
+    public void setMeasurement(String measurement) {
+        this.measurement = measurement;
+    }
     
     public Long getIngredientId() {
         return ingredientId;

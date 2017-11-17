@@ -68,6 +68,10 @@ public class IngredientServlet extends HttpServlet {
         i.setCarbohydrate(carb);
         i.setFiber(fiber);
         i.setProtein(protein);
+        i.setIngredientAmount(amt);  // These 2 are for diplay purposes only, 
+        i.setMeasurement(measure);   // they are not saved to ingredientDB
+        
+        // save this ingredient object to a session
         
         // store recipe amount of the ingredient into recipe object
         Recipe r = new Recipe();
