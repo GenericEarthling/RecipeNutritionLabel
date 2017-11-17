@@ -44,7 +44,7 @@
     <div id="modal-1" class="modal w3-animate-top">
     <!-- Modal content -->
     <div class="modal-content">
-        <form action="ingredient" method="post" >
+        <form action="/recipe" method="post" >
             <!-- Modal Cancel button -->
             <div class="">            
                 <span class="close">cancel</span>
@@ -131,6 +131,8 @@
                   <option value="dry pint">dry pint</option>
                 </select>            
             </div>     <hr class="nut-line nut-line-2" style="">             
+            <!-- for servlet to process post method  -->
+            <input type="hidden" name="process" value="addIngredient"
             <input class="w3-button w3-red"  type="submit" value="Add">
             <input class="w3-button w3-gray" type="reset" value="Reset">
             

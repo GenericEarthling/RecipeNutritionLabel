@@ -32,25 +32,15 @@ public class Ingredient implements Serializable {
     private Long ingredientId;
     
     @OneToMany(mappedBy="ingredient")        // one ingredient to many Recipes
-    @Column(name = "Ingredient")
     private String ingredientName;
-    @Column(name = "Serving Size")
     private double servingSizeInGrams;
-    @Column(name = "Calories")
     private double calories;
-    @Column(name = "Fat")
     private double fat;
-    @Column(name = "Cholesterol")
     private double cholesterol;
-    @Column(name = "Sodium")
     private double sodium;
-    @Column(name = "Potassium")
     private double potassium;
-    @Column(name = "Carbohydrates")
     private double carbohydrate;
-    @Column(name = "Fiber")
     private double fiber;
-    @Column(name = "Protein")
     private double protein;
     
     // these are not saved to the IngredientDB. They are for display session only.
@@ -244,5 +234,7 @@ public class Ingredient implements Serializable {
                 + "carbohydrate: " + carbohydrate + "  "
                 + "fiber: " + fiber + "  "
                 + "protein: " + protein + "  ";
-    }    
+    } 
+    
+
 }

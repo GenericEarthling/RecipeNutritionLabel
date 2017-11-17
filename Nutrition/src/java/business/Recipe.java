@@ -1,13 +1,13 @@
 /*
-TODO: Measurement type switch statement
 Recipe class
-This class holds ingredient collection and step collection  
+This class holds ingredients collection and step collection 
+User was added for future use
 
 Collection tutorial:
 http://www.codejava.net/java-core/collections/java-map-collection-tutorial-and-examples
 * replace(K key, V value) method replaces the entry for the specified key only if it is currently mapping to some value.
 * public ArrayList(Collection<? extends E> c);
-* TreeMap can be alphabetic(ingredient/recipe) or numeric(steps) order
+* TreeMap can be alphabetic(ingredients/recipe) or numeric(steps) order
 * LinkedHashMap for sorting by insertion order
 * Map<Integer, String> steps = new TreeMap<>();
 */
@@ -17,27 +17,24 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 import javax.persistence.*;                        // look this up in javadocs!!
+import static javax.persistence.FetchType.EAGER;
 
 public class Recipe implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
     private Long RecipeId;
-    @Column(name = "Name")
+    @ManyToOne
+    private User user;
     private String name;
-    @Column(name = "Temp")
     private int temperature;
-    @Column(name = "Time")
     private int time;
-    @Column(name = "Directions")
     private String[] directions;
     
-    // one ingredient to many recipes
-    @OneToMany(mappedBy="recipe")                 // Is "recipe" right??     FOREIGN KEY???
-    private Collection<Ingredient> ingredient;        
-    @Column(name = "Amount")
+    // one ingredients to many recipes
+    @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)
+    private Collection<Ingredient> ingredients;        
     private double amountInRecipe;
-    @Column(name = "Measure Type")
     private String measurementType;
 
     public Recipe() {
@@ -65,7 +62,7 @@ public class Recipe implements Serializable {
 
     public Recipe(Collection<Ingredient> ingredient, 
             double amountInRecipe, String measurementType) {
-        this.ingredient = ingredient;
+        this.ingredients = ingredient;
         this.amountInRecipe = amountInRecipe;
         this.measurementType = measurementType;
     }
@@ -95,12 +92,12 @@ public class Recipe implements Serializable {
         this.time = time;
     }
 
-    public Collection<Ingredient> getIngredient() {
-        return ingredient;
+    public Collection<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setIngredient(Collection<Ingredient> ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredients(Collection<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public double getAmountInRecipe() {
@@ -126,8 +123,22 @@ public class Recipe implements Serializable {
     public void setDirections(String[] directions) {
         this.directions = directions;
     }
-    
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Long getRecipeId() {
+        return RecipeId;
+    }
+
+    public void setRecipeId(Long RecipeId) {
+        this.RecipeId = RecipeId;
+    }
 
     @Override
     public int hashCode() {
@@ -160,7 +171,7 @@ public class Recipe implements Serializable {
                 + "Name: " + name + "   "
                 + "Cooking Time: " + time + "   "
                 + "Oven Temp: " + temperature + "   "
-                + "Ingredient: " + ingredient + "   "
+                + "Ingredient: " + ingredients + "   "
                 + "Direction: " + directions[0];
     }
 }
