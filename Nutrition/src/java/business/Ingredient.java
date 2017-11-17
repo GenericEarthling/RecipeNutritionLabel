@@ -71,7 +71,7 @@ public class Ingredient implements Serializable {
         this.protein = 0;
     }
 
-    // Constructor 
+    // Constructor for saving to database
     public Ingredient(String ingredientName, double servingSizeInGrams, 
             double calories, double fat, double cholesterol, double sodium, 
             double potassium, double carbohydrate, double fiber, double protein) {
@@ -85,7 +85,26 @@ public class Ingredient implements Serializable {
         this.carbohydrate = carbohydrate;
         this.fiber = fiber;
         this.protein = protein;
-    }    
+    }
+
+    // constructor for saving to session to display in table
+    public Ingredient(double ingredientAmount, String measurement,
+            String ingredientName, double calories, double fat, 
+            double cholesterol, double sodium, double potassium, 
+            double carbohydrate, double fiber, double protein) {
+        this.ingredientName = ingredientName;
+        this.calories = calories;
+        this.fat = fat;
+        this.cholesterol = cholesterol;
+        this.sodium = sodium;
+        this.potassium = potassium;
+        this.carbohydrate = carbohydrate;
+        this.fiber = fiber;
+        this.protein = protein;
+        this.ingredientAmount = ingredientAmount;
+        this.measurement = measurement;
+    }
+    
 
     public double getIngredientAmount() {
         return ingredientAmount;

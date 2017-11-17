@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Calculate;
 
 /**
@@ -57,6 +58,7 @@ public class IngredientServlet extends HttpServlet {
         // check for values less than zero   ||   Have the web form do it??
         
         // store data into Ingredient object
+        // save the ingredient object to a session after getting totals
         Ingredient i = new Ingredient();
         i.setIngredientName(name);
         i.setServingSizeInGrams(servingSize);
@@ -69,9 +71,7 @@ public class IngredientServlet extends HttpServlet {
         i.setFiber(fiber);
         i.setProtein(protein);
         i.setIngredientAmount(amt);  // These 2 are for diplay purposes only, 
-        i.setMeasurement(measure);   // they are not saved to ingredientDB
-        
-        // save this ingredient object to a session
+        i.setMeasurement(measure);   // they are not saved to ingredientDB    
         
         // store recipe amount of the ingredient into recipe object
         Recipe r = new Recipe();
@@ -110,8 +110,19 @@ public class IngredientServlet extends HttpServlet {
         double totalProtein = Calculate.totalNutrientValueInRecipe(percentOfProtein, amtOfIngredInGrams);
 
         // display the totals in the Recipe.jsp Ingredient table
-        // save to a session
-
+        // save the ingredient object to a session after getting totals
+        HttpSession session = request.getSession();
+        Ingredient iSession = new Ingredient(amt, measure, name, totalCal, 
+                totalFat, totalChol, totalSod, totalPot, totalCarb, totalFiber, 
+                totalProtein);
+        session.setAttribute("iSession", iSession);
+        
+        // start a running total for all the ingredients for the PrintServlet
+        // need to figure out how the PrintServlet gets the running total values
+        double totalRecipeCal = totalCal;
+        
+        // get session to display it in the table
+//        Ingredient iTable = (Ingredient) session.getAttribute("i");
 
 
 
@@ -123,6 +134,13 @@ public class IngredientServlet extends HttpServlet {
                 .getRequestDispatcher(url)
                 .forward(request, response);
 
+    }
+    
+    // this handles the directions form needs a better name
+    protected void processDirectionsRequest(HttpServletRequest request, 
+            HttpServletResponse response)
+            throws ServletException, IOException {
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
