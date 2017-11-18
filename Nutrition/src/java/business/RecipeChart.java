@@ -70,12 +70,62 @@ public class RecipeChart implements Serializable {
         this.chartNumber = chartNumber;
     }
     
-    // I need to access the nutrient totals
-//    public double getIngredientTotals() {
-//        double nutrientTotal = 0.0;
-//        for (ChartLineItems items : lineItems) {
-//            nutrientTotal += item.getTotal();
-//        }
-//        return nutrientTotal;
-//    }
+    // increment the nutrient totals
+    public double getCalorieTotals() {
+        double calorieTotal = 0.0;
+        for (ChartLineItems lineItem : lineItems) {
+                calorieTotal += lineItem.getCalorieSum();
+        }
+        return calorieTotal;
+    }
+    public double getFatTotals() {
+        double totalFat = 0.0;
+        for (ChartLineItems lineItem : lineItems) {
+                totalFat += lineItem.getFatSum();
+        }
+        return totalFat;
+    }
+        public double getCholesterolTotals() {
+        double totalCholesterol = 0.0;
+        for (ChartLineItems lineItem : lineItems) {
+                totalCholesterol += lineItem.getCholesterolSum();
+        }
+        return totalCholesterol;
+    }
+        public double getSodiumTotals() {
+        double totalSodium = 0.0;
+        for (ChartLineItems lineItem : lineItems) {
+                totalSodium += lineItem.getSodiumSum();
+        }
+        return totalSodium;
+    }
+        public double getPotassiumTotals() {
+        double totalPotassium = 0.0;
+        for (ChartLineItems lineItem : lineItems) {
+                totalPotassium += lineItem.getPotassiumSum();
+        }
+        return totalPotassium;
+    }
+        public double getCarbohydrateTotals() {
+        double totalCarbohydrate = 0.0;
+        for (ChartLineItems lineItem : lineItems) {
+                totalCarbohydrate += lineItem.getCarbohydrateSum();
+        }
+        return totalCarbohydrate;
+    }
+        public double getFiberTotals() {
+        double totalFiber = 0.0;
+        for (ChartLineItems lineItem : lineItems) {
+                totalFiber += lineItem.getFiberSum();
+        }
+        return totalFiber;
+    }
+        public double getProteinTotals() {
+        double totalProtein = 0.0;
+        for (ChartLineItems lineItem : lineItems) {
+                totalProtein += lineItem.getProteinSum();
+        }
+        return totalProtein;
+    }
+
 }

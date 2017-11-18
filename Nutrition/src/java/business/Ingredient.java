@@ -142,15 +142,9 @@ public class Ingredient implements Serializable {
     public double getCalories() {
         return calories;
     }
-    // 1&2) convert the Ingredient amount (in the recipe) to gram equivalent
-    // convert measurementType to grams 
-    double amtOfIngredInGrams = Calculate.amountToGrams(ingredientAmount, measurementType);
+
     public void setCalories(double calories) {
-        // 3) find the percent of each nutrient in each gram. (for ChartLineItems)
-        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(calories, servingSizeInGrams);
-        // 4) find the total value for each nutrient in each ingredient
-        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
-        this.calories = ingredientNutrientValue;
+        this.calories = calories;
     }
 
     public double getFat() {
@@ -158,9 +152,7 @@ public class Ingredient implements Serializable {
     }
 
     public void setFat(double fat) {
-        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(fat, servingSizeInGrams);
-        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);        
-        this.fat = ingredientNutrientValue;
+        this.fat = fat;
     }
 
     public double getCholesterol() {
@@ -168,8 +160,6 @@ public class Ingredient implements Serializable {
     }
 
     public void setCholesterol(double cholesterol) {
-        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(cholesterol, servingSizeInGrams);
-        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);        
         this.cholesterol = cholesterol;
     }
 
@@ -178,9 +168,7 @@ public class Ingredient implements Serializable {
     }
 
     public void setSodium(double sodium) {
-        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(sodium, servingSizeInGrams);
-        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
-        this.sodium = ingredientNutrientValue;
+        this.sodium = sodium;
     }
 
     public double getPotassium() {
@@ -188,9 +176,7 @@ public class Ingredient implements Serializable {
     }
 
     public void setPotassium(double potassium) {
-        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(potassium, servingSizeInGrams);
-        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
-        this.potassium = ingredientNutrientValue;
+        this.potassium = potassium;
     }
 
     public double getCarbohydrate() {
@@ -198,9 +184,7 @@ public class Ingredient implements Serializable {
     }
 
     public void setCarbohydrate(double carbohydrate) {
-        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(carbohydrate, servingSizeInGrams);
-        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
-        this.carbohydrate = ingredientNutrientValue;
+        this.carbohydrate = carbohydrate;
     }
 
     public double getFiber() {
@@ -208,9 +192,7 @@ public class Ingredient implements Serializable {
     }
 
     public void setFiber(double fiber) {
-        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(fiber, servingSizeInGrams);
-        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
-        this.fiber = ingredientNutrientValue;
+        this.fiber = fiber;
     }
 
     public double getProtein() {
@@ -218,9 +200,7 @@ public class Ingredient implements Serializable {
     }
 
     public void setProtein(double protein) {
-        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(protein, servingSizeInGrams);
-        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
-        this.protein = ingredientNutrientValue;
+        this.protein = protein;
     }    
 
     @Override

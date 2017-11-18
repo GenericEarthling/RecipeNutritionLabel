@@ -126,10 +126,6 @@ public class ChartLineItems implements Serializable {
     // measurementType converted to grams
     double amtOfIngredInGrams = Calculate.amountToGrams(amountInRecipe, measurementType);
     
-    public double getSum() {
-        double sum = 0;
-        return sum;
-    }
     // calculate values for each nutrient for diplay as a chart line item
     public double getCalorieSum() {
         // 3) calculate percentage of each nutrient per gram
