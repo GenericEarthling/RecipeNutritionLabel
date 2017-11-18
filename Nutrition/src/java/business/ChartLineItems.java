@@ -27,10 +27,6 @@ public class ChartLineItems implements Serializable {
     private Ingredient ingredient;
     @OneToOne                         // one recipe to one chart line item
     private Recipe recipe;
-//    private double amountInRecipe = recipe.getAmountInRecipe();
-//    private String directions = recipe.getDirections();
-//    private String measurementType = recipe.getMeasurementType();
-//    private int servingSize = ingredient.getServingSizeInGrams();
     
     private double amountInRecipe;
     private String directions;

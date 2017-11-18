@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This class holds the data to be displayed in the Total Nutrion Print view
  */
 package business;
 
@@ -33,7 +31,15 @@ public class RecipeChart implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long chartNumber;    
     private boolean isProcessed;
-    
+    double calorieTotal;
+    double totalFat;
+    double totalCholesterol;
+    double totalSodium;
+    double totalPotassium;
+    double totalCarbohydrate;
+    double totalFiber;
+    double totalProtein;
+            
     // constructor
     public RecipeChart() {
     }
@@ -72,56 +78,56 @@ public class RecipeChart implements Serializable {
     
     // increment the nutrient totals
     public double getCalorieTotals() {
-        double calorieTotal = 0.0;
+        calorieTotal = 0.0;
         for (ChartLineItems lineItem : lineItems) {
                 calorieTotal += lineItem.getCalorieSum();
         }
         return calorieTotal;
     }
     public double getFatTotals() {
-        double totalFat = 0.0;
+        totalFat = 0.0;
         for (ChartLineItems lineItem : lineItems) {
                 totalFat += lineItem.getFatSum();
         }
         return totalFat;
     }
-        public double getCholesterolTotals() {
-        double totalCholesterol = 0.0;
+    public double getCholesterolTotals() {
+        totalCholesterol = 0.0;
         for (ChartLineItems lineItem : lineItems) {
                 totalCholesterol += lineItem.getCholesterolSum();
         }
         return totalCholesterol;
     }
-        public double getSodiumTotals() {
-        double totalSodium = 0.0;
+    public double getSodiumTotals() {
+        totalSodium = 0.0;
         for (ChartLineItems lineItem : lineItems) {
                 totalSodium += lineItem.getSodiumSum();
         }
         return totalSodium;
     }
-        public double getPotassiumTotals() {
-        double totalPotassium = 0.0;
+    public double getPotassiumTotals() {
+        totalPotassium = 0.0;
         for (ChartLineItems lineItem : lineItems) {
                 totalPotassium += lineItem.getPotassiumSum();
         }
         return totalPotassium;
     }
-        public double getCarbohydrateTotals() {
-        double totalCarbohydrate = 0.0;
+    public double getCarbohydrateTotals() {
+        totalCarbohydrate = 0.0;
         for (ChartLineItems lineItem : lineItems) {
                 totalCarbohydrate += lineItem.getCarbohydrateSum();
         }
         return totalCarbohydrate;
     }
-        public double getFiberTotals() {
-        double totalFiber = 0.0;
+    public double getFiberTotals() {
+        totalFiber = 0.0;
         for (ChartLineItems lineItem : lineItems) {
                 totalFiber += lineItem.getFiberSum();
         }
         return totalFiber;
     }
-        public double getProteinTotals() {
-        double totalProtein = 0.0;
+    public double getProteinTotals() {
+        totalProtein = 0.0;
         for (ChartLineItems lineItem : lineItems) {
                 totalProtein += lineItem.getProteinSum();
         }

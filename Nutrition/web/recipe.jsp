@@ -132,7 +132,7 @@
                 </select>            
             </div>     <hr class="nut-line nut-line-2" style="">             
             <!-- for servlet to process post method  -->
-            <input type="hidden" name="process" value="addIngredient"
+            <input type="hidden" name="process" value="addIngredient">
             <input class="w3-button w3-red"  type="submit" value="Add">
             <input class="w3-button w3-gray" type="reset" value="Reset">
             
@@ -141,7 +141,12 @@
     </div>   <!-- END OF MODAL FORM   -->
     
     <!-- INGREDIENT TABLE -->
-    <table class="w3-table-all">
+<c:choose>    
+    <c:when test="${emptyList != null}">
+        <p>Your ingredient list is empty.</p>
+    </c:when>
+        <c:otherwise>        
+        <table class="w3-table-all">
         <tr>
             <th></th>
             <th>Amount</th>
@@ -156,77 +161,44 @@
             <th>Fiber</th>
             <th>Protein</th>
         </tr>
-        <tr>
-            <td>edit delete</td>
-            <td>3</td>
-            <td>cups</td>
-            <td>Publix brand Sugar</td>
-            <td>2.5</td>
-            <td>300</td>
-            <td>100</td>
-            <td>255</td>
-            <td>233</td>
-            <td>80</td>
-            <td>25</td>
-            <td>9</td>
-        </tr>
-        <c:forEach var="i" items="${ingredient}">
-        <tr>
-            <td>edit delete</td>
-            <td>${i.value.ingredientAmount}</td>
-            <td>${i.value.measurement}</td>
-            <td>${i.value.ingredientName}</td>
-            <td>${i.value.calories}</td>
-            <td>${i.value.fat}</td>
-            <td>${i.value.sodium}</td>
-            <td>${i.value.potassium}</td>
-            <td>${i.value.carbohydrates}</td>
-            <td>${i.value.fiber}</td>
-            <td>${i.value.protein}</td>
-        </tr>
-        </c:forEach>
-    </table>
-    
-    <!-- FORM FOR DIRECTION INPUT -->
-    <div class="w3-container w3-blue w3-padding-16 w3-margin-top w3-margin-bottom">
-        <h2><b>Step 2:</b> Enter Directions</h2>    
-        <form class="">        
-            <div class=""> 
-                <label>You can add multiple directions.</label>
-                <textarea class="w3-input w3-border" action="" name="direction" value="${recipe.direction}" > </textarea>
-                <input class="w3-button w3-red w3-margin-top" name="action" value="Add" >
-                <input class="w3-button w3-gray w3-margin-top" name="reset" value="Reset" >
-            </div>
-        </form>
-    </div> <!-- ENTER DIRECTIONS FORM   -->    
-    
-    
-    <!-- DISPLAY DIRECTIONS TABLE -->
-    <table class="w3-table-all">
-        <tr>
-            <th style="width:15px;text-align: center;"></th>
-            <th class="w3-left">Directions</th>
-        </tr>
-        <tr>
-            <td>edit delete</td>
-            <td>At est illum suscipit vulputate, mei eu accumsan legendos. Per cu wisi adipisci dissentias. Sea ei soluta prompta menandri, ocurreret concludaturque pro ne, quodsi animal voluptatum cu eum. Sed quis indoctum explicari in, dicunt deserunt expetendis ea has. Audire laoreet est ei. Homero audire conceptam in qui, eruditi habemus lobortis id vim?</td>
-        </tr>
 
-        <c:forEach var="r" items="${recipe}">
+        <c:forEach var="item" items="${list.items}">
             <tr>
-                <td>edit delete</td>
-                <td>${r.value.direction}</td>
+                <td><!-- DELETE INGREDIENT BUTTON -->
+                    <form action="<c:url value='/ingredient/removeIngredient'/>" method="post">
+                    <input type="hidden" name="ingredientId" value="<c:out value='${item.ingredient.ingredientId}'/>">
+                    <input type="submit" value="Delete">
+                    </form>
+                </td>
+                <td>${item.value.ingredientAmount}</td>
+                <td>${item.value.measurement}</td>
+                <td>${item.value.ingredientName}</td>
+                <td>${item.value.calories}</td>
+                <td>${item.value.fat}</td>
+                <td>${item.value.sodium}</td>
+                <td>${item.value.potassium}</td>
+                <td>${item.value.carbohydrates}</td>
+                <td>${item.value.fiber}</td>
+                <td>${item.value.protein}</td>
             </tr>
+            
         </c:forEach>
-    </table>  <!-- END DIRECTIONS TABLE -->
-
-<!-- NUTRITION LABEL BUTTON -->
+        </table>
+    </c:otherwise>
+</c:choose>
+    
+   
+    <!-- NUTRITION LABEL BUTTON -->
     <div class="w3-container w3-blue w3-padding-16 w3-margin-top w3-margin-bottom">
-        <h2><b>Step 3:</b> Prepare Nutrition Label</h2>
+        <h2><b>Step 2:</b> Prepare Nutrition Label</h2>
         <form action="recipe" method="get">
             
             <div class="w3-cell-row">
-                Recipe Name &emsp; <input class="w3-input w3-border" type="text" name="recipe" value="${recipe.name}">                       
+                Recipe Name &emsp; <input class="w3-input w3-border" type="text" name="name" value="${recipe.name}">                       
+            </div>
+            
+            <div class="w3-cell-row">
+                Preparation Directions &emsp; <br><textarea class="w3-input w3-border" type="text" name="directions" value="${recipe.directions}"></textarea>                       
             </div>
             
             <div class="w3-cell-row w3-block w3-margin-top">    
@@ -234,7 +206,7 @@
                     <label> Number of servings &emsp;</label>
                     <input class="w3-input w3-border" type="number" min="1" name="servings" value="${recipe.servings}" required>
                 </div>
-                <div class="w3-container w3-cell">
+                <div class="w3-container">
                     <label>Weight after cooking (in oz) &emsp;</label>
                     <input class="w3-input w3-border" type="number" name="weight" value="${recipe.weight}">  
                 </div>    
@@ -250,12 +222,7 @@
                     <input class="w3-input w3-border" type="number" name="weight" value="${recipe.time}">                
                 </div>
             </div>
-            
-            
-            
-            
-                        
-            
+          
             <input class="w3-button w3-red w3-margin-top" name="" value="Get Nutrition Label">         
         </form>
     </div>
