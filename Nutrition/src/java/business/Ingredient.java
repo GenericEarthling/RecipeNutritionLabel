@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
 import model.Calculate;
+import static model.Calculate.totalNutrientValueInRecipe;
 
 /**
  *
@@ -38,7 +39,7 @@ public class Ingredient implements Serializable {
     
     // these are not saved to the IngredientDB. They are for display session only.
     private double ingredientAmount;         
-    private String measurement;             // example: cups, teas, oz,...
+    private String measurementType;             // example: cups, teas, oz,...
     private double nutrientSum;             // for each nutrient
     
     // default constructor
@@ -86,7 +87,7 @@ public class Ingredient implements Serializable {
         this.fiber = fiber;
         this.protein = protein;
         this.ingredientAmount = ingredientAmount;
-        this.measurement = measurement;
+        this.measurementType = measurement;
     }    
 
     // getters and setters
@@ -106,12 +107,12 @@ public class Ingredient implements Serializable {
         this.ingredientAmount = ingredientAmount;
     }
 
-    public String getMeasurement() {
-        return measurement;
+    public String getMeasurementType() {
+        return measurementType;
     }
 
-    public void setMeasurement(String measurement) {
-        this.measurement = measurement;
+    public void setMeasurementType(String measurementType) {
+        this.measurementType = measurementType;
     }
     
     public Long getIngredientId() {
@@ -141,9 +142,15 @@ public class Ingredient implements Serializable {
     public double getCalories() {
         return calories;
     }
-
+    // 1&2) convert the Ingredient amount (in the recipe) to gram equivalent
+    // convert measurementType to grams 
+    double amtOfIngredInGrams = Calculate.amountToGrams(ingredientAmount, measurementType);
     public void setCalories(double calories) {
-        this.calories = calories;
+        // 3) find the percent of each nutrient in each gram. (for ChartLineItems)
+        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(calories, servingSizeInGrams);
+        // 4) find the total value for each nutrient in each ingredient
+        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
+        this.calories = ingredientNutrientValue;
     }
 
     public double getFat() {
@@ -151,7 +158,9 @@ public class Ingredient implements Serializable {
     }
 
     public void setFat(double fat) {
-        this.fat = fat;
+        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(fat, servingSizeInGrams);
+        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);        
+        this.fat = ingredientNutrientValue;
     }
 
     public double getCholesterol() {
@@ -159,6 +168,8 @@ public class Ingredient implements Serializable {
     }
 
     public void setCholesterol(double cholesterol) {
+        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(cholesterol, servingSizeInGrams);
+        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);        
         this.cholesterol = cholesterol;
     }
 
@@ -167,7 +178,9 @@ public class Ingredient implements Serializable {
     }
 
     public void setSodium(double sodium) {
-        this.sodium = sodium;
+        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(sodium, servingSizeInGrams);
+        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
+        this.sodium = ingredientNutrientValue;
     }
 
     public double getPotassium() {
@@ -175,7 +188,9 @@ public class Ingredient implements Serializable {
     }
 
     public void setPotassium(double potassium) {
-        this.potassium = potassium;
+        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(potassium, servingSizeInGrams);
+        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
+        this.potassium = ingredientNutrientValue;
     }
 
     public double getCarbohydrate() {
@@ -183,7 +198,9 @@ public class Ingredient implements Serializable {
     }
 
     public void setCarbohydrate(double carbohydrate) {
-        this.carbohydrate = carbohydrate;
+        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(carbohydrate, servingSizeInGrams);
+        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
+        this.carbohydrate = ingredientNutrientValue;
     }
 
     public double getFiber() {
@@ -191,7 +208,9 @@ public class Ingredient implements Serializable {
     }
 
     public void setFiber(double fiber) {
-        this.fiber = fiber;
+        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(fiber, servingSizeInGrams);
+        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
+        this.fiber = ingredientNutrientValue;
     }
 
     public double getProtein() {
@@ -199,7 +218,9 @@ public class Ingredient implements Serializable {
     }
 
     public void setProtein(double protein) {
-        this.protein = protein;
+        double percentOfNutrientPerGram = Calculate.nutrientsPerGram(protein, servingSizeInGrams);
+        double ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
+        this.protein = ingredientNutrientValue;
     }    
 
     @Override
@@ -238,7 +259,4 @@ public class Ingredient implements Serializable {
                 + "protein: " + protein + "  ";
     } 
     
-    // 3) find the percent of each nutrient in each gram. (for ChartLineItems)
-    // Use result to multiply by total
-    double percentOfCal = Calculate.nutrientsPerGram(calories, servingSizeInGrams);
 }

@@ -4,6 +4,7 @@
  */
 package business;
 
+import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,20 +17,25 @@ import static model.Calculate.totalNutrientValueInRecipe;
  *
  * @author Tender
  */
-public class ChartLineItems {
+public class ChartLineItems implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long lineItemId;
     
     @OneToOne                         // one ingredient to one chart line item
-    private Ingredient i;
+    private Ingredient ingredient;
     @OneToOne                         // one recipe to one chart line item
-    private Recipe r;
-    private double amountInRecipe = r.getAmountInRecipe();
-    private String directions = r.getDirections();
-    private String measurementType = r.getMeasurementType();
-    private int servingSize = i.getServingSizeInGrams();
+    private Recipe recipe;
+//    private double amountInRecipe = recipe.getAmountInRecipe();
+//    private String directions = recipe.getDirections();
+//    private String measurementType = recipe.getMeasurementType();
+//    private int servingSize = ingredient.getServingSizeInGrams();
+    
+    private double amountInRecipe;
+    private String directions;
+    private String measurementType;
+    private int servingSize;
     private double ingredientNutrientValue;
     private double percentOfNutrientPerGram;
 
@@ -43,51 +49,127 @@ public class ChartLineItems {
     public void setLineItemId(Long lineItemId) {
         this.lineItemId = lineItemId;
     }
+
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+    public double getAmountInRecipe() {
+        return amountInRecipe;
+    }
+
+    public void setAmountInRecipe(double amountInRecipe) {
+        this.amountInRecipe = amountInRecipe;
+    }
+
+    public String getDirections() {
+        return directions;
+    }
+
+    public void setDirections(String directions) {
+        this.directions = directions;
+    }
+
+    public String getMeasurementType() {
+        return measurementType;
+    }
+
+    public void setMeasurementType(String measurementType) {
+        this.measurementType = measurementType;
+    }
+
+    public int getServingSize() {
+        return servingSize;
+    }
+
+    public void setServingSize(int servingSize) {
+        this.servingSize = servingSize;
+    }
+
+    public double getIngredientNutrientValue() {
+        return ingredientNutrientValue;
+    }
+
+    public void setIngredientNutrientValue(double ingredientNutrientValue) {
+        this.ingredientNutrientValue = ingredientNutrientValue;
+    }
+
+    public double getPercentOfNutrientPerGram() {
+        return percentOfNutrientPerGram;
+    }
+
+    public void setPercentOfNutrientPerGram(double percentOfNutrientPerGram) {
+        this.percentOfNutrientPerGram = percentOfNutrientPerGram;
+    }
+
+    public double getAmtOfIngredInGrams() {
+        return amtOfIngredInGrams;
+    }
+
+    public void setAmtOfIngredInGrams(double amtOfIngredInGrams) {
+        this.amtOfIngredInGrams = amtOfIngredInGrams;
+    }
     
     // 1&2) convert the Ingredient amount in the recipe to the grams equivalent
     // measurementType converted to grams
     double amtOfIngredInGrams = Calculate.amountToGrams(amountInRecipe, measurementType);
     
+    public double getSum() {
+        double sum = 0;
+        return sum;
+    }
     // calculate values for each nutrient for diplay as a chart line item
     public double getCalorieSum() {
         // 3) calculate percentage of each nutrient per gram
-        percentOfNutrientPerGram = Calculate.nutrientsPerGram(i.getCalories(), servingSize);
+        percentOfNutrientPerGram = Calculate.nutrientsPerGram(ingredient.getCalories(), servingSize);
         // 4) find the total value for each nutrient in each ingredient
         ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
         return ingredientNutrientValue;        
     }
     public double getFatSum() {
-        percentOfNutrientPerGram = Calculate.nutrientsPerGram(i.getFat(), servingSize);
+        percentOfNutrientPerGram = Calculate.nutrientsPerGram(ingredient.getFat(), servingSize);
         ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
         return ingredientNutrientValue;        
     }
     public double getCholesterolSum() {
-        percentOfNutrientPerGram = Calculate.nutrientsPerGram(i.getCholesterol(), servingSize);
+        percentOfNutrientPerGram = Calculate.nutrientsPerGram(ingredient.getCholesterol(), servingSize);
         ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
         return ingredientNutrientValue;        
     }
     public double getSodiumSum() {
-        percentOfNutrientPerGram = Calculate.nutrientsPerGram(i.getSodium(), servingSize);
+        percentOfNutrientPerGram = Calculate.nutrientsPerGram(ingredient.getSodium(), servingSize);
         ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
         return ingredientNutrientValue;        
     }    
     public double getPotassiumSum() {
-        percentOfNutrientPerGram = Calculate.nutrientsPerGram(i.getPotassium(), servingSize);
+        percentOfNutrientPerGram = Calculate.nutrientsPerGram(ingredient.getPotassium(), servingSize);
         ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
         return ingredientNutrientValue;        
     }
     public double getCarbohydrateSum() {
-        percentOfNutrientPerGram = Calculate.nutrientsPerGram(i.getCarbohydrate(), servingSize);
+        percentOfNutrientPerGram = Calculate.nutrientsPerGram(ingredient.getCarbohydrate(), servingSize);
         ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
         return ingredientNutrientValue;        
     }
     public double getFiberSum() {
-        percentOfNutrientPerGram = Calculate.nutrientsPerGram(i.getFiber(), servingSize);
+        percentOfNutrientPerGram = Calculate.nutrientsPerGram(ingredient.getFiber(), servingSize);
         ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
         return ingredientNutrientValue;        
     }
     public double getProteinSum() {
-        percentOfNutrientPerGram = Calculate.nutrientsPerGram(i.getProtein(), servingSize);
+        percentOfNutrientPerGram = Calculate.nutrientsPerGram(ingredient.getProtein(), servingSize);
         ingredientNutrientValue = totalNutrientValueInRecipe(percentOfNutrientPerGram, amtOfIngredInGrams);
         return ingredientNutrientValue;        
     }    
