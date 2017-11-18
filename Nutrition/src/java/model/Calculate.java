@@ -81,7 +81,7 @@ public class Calculate {
     
     // 3)calculate percentage of each nutrient per gram
     // percentageOfNutrientInEachGram = totalNutrientGramsPerServingOnLabel / totalGramsPerServing
-    public static double nutrientsPerGram(double nutrientValue, int servingSize) {
+    public static double nutrientsPerGram(double nutrientValue, double servingSize) {
         return nutrientValue / servingSize;
     }
     

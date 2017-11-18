@@ -29,7 +29,7 @@ public class Recipe implements Serializable {
     private String name;
     private int temperature;
     private int time;
-    private String[] directions;
+    private String directions;
     
     // one ingredients to many recipes
     @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)
@@ -41,6 +41,7 @@ public class Recipe implements Serializable {
         name = "";
         temperature = 0;
         time = 0;
+        directions = "";
     }
 
     public Recipe(double amountInRecipe) {
@@ -54,10 +55,6 @@ public class Recipe implements Serializable {
 
     public Recipe(String name) {
         this.name = name;
-    }
-
-    public Recipe(String[] directions) {
-        this.directions = directions;
     }
 
     public Recipe(Collection<Ingredient> ingredient, 
@@ -112,15 +109,15 @@ public class Recipe implements Serializable {
         return measurementType;
     }
 
-    public void setMeasurementType(String measurementType) {
+    public void setMeasurementType(String measurementType) {        
         this.measurementType = measurementType;
     }
 
-    public String[] getDirections() {
+    public String getDirections() {
         return directions;
     }
 
-    public void setDirections(String[] directions) {
+    public void setDirections(String directions) {
         this.directions = directions;
     }
 
@@ -172,6 +169,6 @@ public class Recipe implements Serializable {
                 + "Cooking Time: " + time + "   "
                 + "Oven Temp: " + temperature + "   "
                 + "Ingredient: " + ingredients + "   "
-                + "Direction: " + directions[0];
+                + "Direction: " + directions;
     }
 }

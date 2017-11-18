@@ -12,28 +12,21 @@ package business;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import model.Calculate;
 
 /**
  *
  * @author Tender
  */
 @Entity
-@Table(name = "ingredients")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Ingredients.findAll", query = "SELECT i FROM Ingredients i")
-    , @NamedQuery(name = "Ingredients.findByIngredientName", query = "SELECT i FROM Ingredients i WHERE i.ingredientName = :ingredientName")})
 public class Ingredient implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ingredientId;
     
-    @OneToMany(mappedBy="ingredient")        // one ingredient to many Recipes
     private String ingredientName;
-    private double servingSizeInGrams;
+    private int servingSizeInGrams;       // not displayed in RecipeChart
     private double calories;
     private double fat;
     private double cholesterol;
@@ -44,8 +37,9 @@ public class Ingredient implements Serializable {
     private double protein;
     
     // these are not saved to the IngredientDB. They are for display session only.
-    private double ingredientAmount;
-    private String measurement; 
+    private double ingredientAmount;         
+    private String measurement;             // example: cups, teas, oz,...
+    private double nutrientSum;             // for each nutrient
     
     // default constructor
     public Ingredient() {
@@ -62,7 +56,7 @@ public class Ingredient implements Serializable {
     }
 
     // Constructor for saving to database
-    public Ingredient(String ingredientName, double servingSizeInGrams, 
+    public Ingredient(String ingredientName, int servingSizeInGrams, 
             double calories, double fat, double cholesterol, double sodium, 
             double potassium, double carbohydrate, double fiber, double protein) {
         this.ingredientName = ingredientName;
@@ -93,8 +87,16 @@ public class Ingredient implements Serializable {
         this.protein = protein;
         this.ingredientAmount = ingredientAmount;
         this.measurement = measurement;
+    }    
+
+    // getters and setters
+    public double getNutrientSum() {
+        return nutrientSum;
     }
-    
+
+    public void setNutrientSum(double nutrientSum) {
+        this.nutrientSum = nutrientSum;
+    }
 
     public double getIngredientAmount() {
         return ingredientAmount;
@@ -128,11 +130,11 @@ public class Ingredient implements Serializable {
         this.ingredientName = ingredientName;
     }
 
-    public double getServingSizeInGrams() {
+    public int getServingSizeInGrams() {
         return servingSizeInGrams;
     }
 
-    public void setServingSizeInGrams(double ServingSizeInGrams) {
+    public void setServingSizeInGrams(int ServingSizeInGrams) {
         this.servingSizeInGrams = ServingSizeInGrams;
     }
 
@@ -236,5 +238,7 @@ public class Ingredient implements Serializable {
                 + "protein: " + protein + "  ";
     } 
     
-
+    // 3) find the percent of each nutrient in each gram. (for ChartLineItems)
+    // Use result to multiply by total
+    double percentOfCal = Calculate.nutrientsPerGram(calories, servingSizeInGrams);
 }

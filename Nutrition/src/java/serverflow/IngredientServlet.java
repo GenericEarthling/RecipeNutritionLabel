@@ -82,7 +82,11 @@ public class IngredientServlet extends HttpServlet {
         Ingredient ingred = new Ingredient(name, servingSize, cal, fat, chol, 
                 sod, pot, carb, fiber, protein);
         IngredientDB.insert(ingred);
-               
+         
+        
+        
+        
+        
         // 1) Find the gram equivalent from the measurementType
         // 2) Get the amount of the ingredient in grams
         double amtOfIngredInGrams = Calculate.amountToGrams(amt, measure);

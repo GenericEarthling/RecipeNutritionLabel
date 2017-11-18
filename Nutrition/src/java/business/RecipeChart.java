@@ -27,7 +27,7 @@ public class RecipeChart implements Serializable {
     private User user;
     
     @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)
-    private Collection<Ingredient> ingredients;
+    private Collection<ChartLineItems> lineItems;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,12 +54,12 @@ public class RecipeChart implements Serializable {
         this.user = user;
     }
 
-    public Collection<Ingredient> getIngredients() {
-        return ingredients;
+    public Collection<ChartLineItems> getLineItems() {
+        return lineItems;
     }
 
-    public void setIngredients(Collection<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setLineItems(Collection<ChartLineItems> lineItems) {
+        this.lineItems = lineItems;
     }
 
     public Long getChartNumber() {
@@ -73,8 +73,8 @@ public class RecipeChart implements Serializable {
     // I need to access the nutrient totals
 //    public double getIngredientTotals() {
 //        double nutrientTotal = 0.0;
-//        for (Ingredient nutrient : ingredients) {
-//            nutrientTotal += nutrient.getTotal();
+//        for (ChartLineItems items : lineItems) {
+//            nutrientTotal += item.getTotal();
 //        }
 //        return nutrientTotal;
 //    }
