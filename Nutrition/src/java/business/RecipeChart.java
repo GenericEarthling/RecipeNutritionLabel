@@ -31,7 +31,7 @@ public class RecipeChart implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long chartNumber;    
     private boolean isProcessed;
-    double calorieTotal;
+    double totalCalorie;
     double totalFat;
     double totalCholesterol;
     double totalSodium;
@@ -78,11 +78,11 @@ public class RecipeChart implements Serializable {
     
     // increment the nutrient totals
     public double getCalorieTotals() {
-        calorieTotal = 0.0;
+        totalCalorie = 0.0;
         for (ChartLineItems lineItem : lineItems) {
-                calorieTotal += lineItem.getCalorieSum();
+                totalCalorie += lineItem.getCalorieSum();
         }
-        return calorieTotal;
+        return totalCalorie;
     }
     public double getFatTotals() {
         totalFat = 0.0;

@@ -4,7 +4,8 @@
     Author     : Tender
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,17 +19,13 @@
 
 </head>
 <body class="w3-light-grey">
-<nav class="w3-bar w3-black">
-  <a href="#" class="w3-bar-item w3-button w3-hover-blue">HOME</a>
-  <a href="#" class="w3-bar-item w3-button w3-hover-blue">START OVER</a>
-  <a href="#" class="w3-bar-item w3-button w3-hover-blue w3-right">PRINT</a>
-</nav>
+
 <div class="w3-container w3-padding-24" style="margin: auto; width: 800px">
 <!--  NUTRITION LABEL  -->
 <div class="w3-card-4 w3-border w3-margin-bottom w3-padding" style="width: 320px; margin: auto;">
 
     <header class="w3-container w3-blue">
-        <h3 class="nut-facts"><b>${recipe.name}</b></h3>
+        <h3 class="nut-facts"><b>${recipe.name}Recipe Name</b></h3>
     </header>
 
     <div class="w3-margin-top">
@@ -36,45 +33,43 @@
     </div>   <hr class="nut-line nut-line-1" style="">
     
         <label style="display: inline-block;" >Number of servings in Recipe</label>
-        <span class="display-total" >0</span>
+        <span class="display-total" >3</span>
         <hr class="nut-line nut-line-1"  style="">
     
         <label style="display: inline-block;" >Single Serving Weight (in grams)</label> 
-        <span class="display-total" >0</span>
+        <span class="display-total" >3</span>
         <hr class="nut-line nut-line-3" >
 
         <label style="display: inline-block;" >Calories	&emsp;</label> 
-        <span class="display-total" >0</span>
+        <span class="display-total" >${recipeChart.totalCalories}3</span>
         <hr class="nut-line nut-line-2" style="">
     
         <label style="display: inline-block;" >Fat &emsp;</label> 
-        <span class="display-total" >0</span>
+        <span class="display-total" >${recipeChart.totalfat}3</span>
         <hr class="nut-line nut-line-1" style=""> 
     
         <label style="display: inline-block;" >Cholesterol &emsp;</label> 
-        <span class="display-total" >0</span>
+        <span class="display-total" >${recipeChart.totalcholesterol}3</span>
         <hr class="nut-line nut-line-1" style="">
     
         <label style="display: inline-block;" >Sodium  &emsp;</label> 
-        <span class="display-total" >0</span>
+        <span class="display-total" >${recipeChart.totalsodium}3</span>
         <hr class="nut-line nut-line-1" style="">       
     
         <label style="display: inline-block;" >Potassium  &emsp;</label> 
-        <span class="display-total" >0</span>
+        <span class="display-total" >${recipeChart.totalpotassium}3</span>
         <hr class="nut-line nut-line-1" style="">       
 
         <label style="display: inline-block;" >Carbohydrates  &emsp;</label> 
-        <span class="display-total" >510</span>
+        <span class="display-total" >${recipeChart.totalcarbohydrates}3</span>
         <hr class="nut-line nut-line-1" style="">      
 
         <label style="display: inline-block;" >Fiber  &emsp;</label> 
-        <!--<span class="display-total" >0</span>-->
-        <input class="w3-border-0 w3-right display-total"   
-                   placeholder="0" name="fiber" value="${recipe.totals}">
+        <span class="display-total" >${recipeChart.totalfiber}3</span>        
         <hr class="nut-line nut-line-1" style="">         
 
         <label style="display: inline-block;" >Protein  &emsp;</label> 
-        <span class="display-total" >0</span>
+        <span class="display-total" >${recipeChart.totalprotein}3</span>
         <hr class="nut-line nut-line-2" style="">         
 </div><!--  END NUTRITION LABEL  -->
 
@@ -94,18 +89,21 @@
             <th>Fiber</th>
             <th>Protein</th>
         </tr>
+        
+        <c:forEach var="item" items="${recipeChart.chartLineItems}">
         <tr>
-            <td class="w3-right-align" >3</td>
-            <td class="w3-left-align" >cups</td>
-            <td>Sugar by Pubblix</td>
-            <td>300</td>
-            <td>100</td>
-            <td>255</td>
-            <td>233</td>
-            <td>80</td>
-            <td>25</td>
-            <td>9</td>
+            <td>${item.recipe.amountInRecipe}3</td>
+            <td>${item.recipe.measurementType}3</td>
+            <td>${item.ingredient.getCalorieSum()} 3</td>
+            <td>${item.ingredient.getFatSum()}3</td>
+            <td>${item.ingredient.getCholesterolSum()}3</td>
+            <td>${item.ingredient.getSodiumSum()}3</td>
+            <td>${item.ingredient.getPotassiumSum()}3</td>
+            <td>${item.ingredient.getCarbohydrateSum()}3</td>
+            <td>${item.ingredient.getFiberSum()}3</td>
+            <td>${item.ingredient.getProteinSum()}3</td>
         </tr>
+        </c:forEach>
         <tr>
             <td></td>
             <td></td>
@@ -125,22 +123,24 @@
 <div>    
     <table class="w3-table-all w3-left-align">
         <tr>
-            <th></th>
             <th>Directions</th>
         </tr>
         <tr>
-            <td></td>
-            <td>mix dry ingredients. mix liquid ingredients and stir it into dry ingredients. Bake in oven.</td>
+            <td>${chartLineItems.recipe.directions} OR ${recipe.directions}</td>
+        </tr>
+        <tr>            
         </tr>
     </table>   
 </div> <!--  END DIRECTIONS TABLE  -->
 
 <!--  OVEN TEMP AND TIME  -->
 <div class="w3-margin-top w3-margin-bottom">
+    <label style="display: inline-block;" >Recipe Name:   &emsp;</label> 
+    <span class="" >${recipe.name}</span><br>
     <label style="display: inline-block;" >Cooking/Setting Temperature:   &emsp;</label> 
-    <span class="" >-32</span><br>
+    <span class="" >${recipe.temperature}</span><br>
     <label style="display: inline-block;" >Cooking/Setting Time:   &emsp;</label> 
-    <span class="" >3 hours</span>    
+    <span class="" >${recipe.time}</span>    
 </div> <!--  END OVEN TEMP AND TIME  -->
 
 </body>
