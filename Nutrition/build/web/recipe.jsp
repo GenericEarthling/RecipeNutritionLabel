@@ -44,7 +44,8 @@
     <div id="modal-1" class="modal w3-animate-top">
     <!-- Modal content -->
     <div class="modal-content">
-        <form action="/recipe" method="post" >
+        <form action="<c:url value='/main/addIngredient'/>" method="post" >
+            <input type="hidden" name="ingredientId" value="${ingredient.ingredientId}">
             <!-- Modal Cancel button -->
             <div class="">            
                 <span class="close">cancel</span>
@@ -132,7 +133,7 @@
                 </select>            
             </div>     <hr class="nut-line nut-line-2" style="">             
             <!-- for servlet to process post method  -->
-            <input type="hidden" name="process" value="addIngredient">
+            
             <input class="w3-button w3-red"  type="submit" value="Add">
             <input class="w3-button w3-gray" type="reset" value="Reset">
             
@@ -165,10 +166,15 @@
         <c:forEach var="item" items="${list.items}">
             <tr>
                 <td><!-- DELETE INGREDIENT BUTTON -->
-                    <form action="<c:url value='/ingredient/removeIngredient'/>" method="post">
+                    <form action="<c:url value='/main/removeIngredient'/>" method="post">
                     <input type="hidden" name="ingredientId" value="<c:out value='${item.ingredient.ingredientId}'/>">
                     <input type="submit" value="Delete">
                     </form>
+                    <!-- This form will need to open the modal and populate the values -->
+                    <!--<form action="<c:url value='/main/updateIngredient'/>" method="post">
+                    <input type="hidden" name="ingredientId" value="<c:out value='${item.ingredient.ingredientId}'/>">
+                    <input type="submit" value="Edit">
+                    </form>-->
                 </td>
                 <td>${item.value.ingredientAmount}</td>
                 <td>${item.value.measurement}</td>
@@ -191,7 +197,7 @@
     <!-- NUTRITION LABEL BUTTON -->
     <div class="w3-container w3-blue w3-padding-16 w3-margin-top w3-margin-bottom">
         <h2><b>Step 2:</b> Prepare Nutrition Label</h2>
-        <form action="recipe" method="get">
+        <form action="<c:url value='/main/showLabel'/>" method="post">
             
             <div class="w3-cell-row">
                 Recipe Name &emsp; <input class="w3-input w3-border" type="text" name="name" value="${recipe.name}">                       
