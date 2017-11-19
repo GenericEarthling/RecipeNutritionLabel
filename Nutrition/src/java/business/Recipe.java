@@ -19,6 +19,8 @@ import java.util.Objects;
 import javax.persistence.*;                        // look this up in javadocs!!
 import static javax.persistence.FetchType.EAGER;
 
+@Entity
+@Table(name = "recipe")
 public class Recipe implements Serializable {
 
     @Id

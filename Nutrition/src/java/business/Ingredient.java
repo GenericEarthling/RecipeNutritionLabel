@@ -20,6 +20,7 @@ import static model.Calculate.totalNutrientValueInRecipe;
  * @author Tender
  */
 @Entity
+@Table(name = "ingredient")
 public class Ingredient implements Serializable {
 
     @Id
@@ -38,9 +39,9 @@ public class Ingredient implements Serializable {
     private double protein;
     
     // these are not saved to the IngredientDB. They are for display session only.
-    private double ingredientAmount;         
+    private double ingredientAmount;   // I think this should be deleted MAYBE   
     private String measurementType;             // example: cups, teas, oz,...
-    private double nutrientSum;             // for each nutrient
+    private double nutrientSum;        // I think this should be deleted along with the getter/setter
     
     // default constructor
     public Ingredient() {

@@ -44,7 +44,8 @@
     <div id="modal-1" class="modal w3-animate-top">
     <!-- Modal content -->
     <div class="modal-content">
-        <form action="<c:url value='/main/addIngredient'/>" method="post" >
+        <form action="<c:url value='/recipe.jsp'/>" method="post" >
+            <!-- for servlet to process post method  -->
             <input type="hidden" name="ingredientId" value="${ingredient.ingredientId}">
             <!-- Modal Cancel button -->
             <div class="">            
@@ -57,68 +58,57 @@
             
             <div class="">
                 <label style="display: inline-block;" >Ingredient </label>
-                <input class="w3-border" style="float: right;" type="text" 
-                   placeholder="0" name="ingredientName" value="${ingredient.ingredientName}" > 
+                <input class="w3-border" style="float: right;" type="text" name="ingredientName" value="${ingredient.ingredientName}" > 
             </div> <hr class="nut-line nut-line-1" >
             
             <div class="">
                 <label style="display: inline-block;" >Serving Size from Label (in grams)</label> 
-                <input class="w3-border"  style="float: right;" type="number" min="1" max="100" size="5"
-                       placeholder="0" name="servingSizeInGrams" value="ingredient.servingSizeInGrams" >
+                <input class="w3-border"  style="float: right;" type="number" name="servingSizeInGrams" value="ingredient.servingSizeInGrams" >
             </div> <hr class="nut-line nut-line-3" >
                        
             <div class="">
                 <label style="display: inline-block;" >Calories	&emsp;</label> 
-                <input class="w3-border" type="number" min="0" size="5"
-                       placeholder="0" name="calories" value="${ingredient.calories}" >
+                <input class="w3-border" type="number" type="number" name="calories" value="${ingredient.calories}" >
             </div>   <hr class="nut-line nut-line-2" >
             
             <div class="">
                 <label style="display: inline-block;" >Fat &emsp;</label> 
-                <input class="w3-border" type="number" min="0" size="5"
-                       placeholder="0" name="fat" value="${ingredient.fat}" >
+                <input class="w3-border" type="number" name="fat" value="${ingredient.fat}" >
             </div> <hr class="nut-line nut-line-1" style=""> 
             
             <div class="">
                 <label style="display: inline-block;" >Cholesterol &emsp;</label> 
-                <input class="w3-border" type="number" min="0" size="5"
-                       placeholder="0" name="cholesterol" value="${ingredient.cholesterol}" >
+                <input class="w3-border" type="number" name="cholesterol" value="${ingredient.cholesterol}" >
             </div>  <hr class="nut-line nut-line-1" style="">          
 
             <div class="">
                 <label style="display: inline-block;" >Sodium  &emsp;</label> 
-                <input class="w3-border" type="number" min="0" size="5"
-                       placeholder="0" name="sodium" value="${ingredient.sodium}" >
+                <input class="w3-border" type="number" name="sodium" value="${ingredient.sodium}" >
             </div>    <hr class="nut-line nut-line-1" style="">        
 
             <div class="">
                 <label style="display: inline-block;" >Potassium  &emsp;</label> 
-                <input class="w3-border" type="number" min="0" size="5"
-                       placeholder="0" name="potassium" value="${ingredient.potassium}" >
+                <input class="w3-border" type="number" name="potassium" value="${ingredient.potassium}" >
             </div>     <hr class="nut-line nut-line-1" style="">       
 
             <div class="">
                 <label style="display: inline-block;" >Carbohydrates  &emsp;</label> 
-                <input class="w3-border" type="number" min="0" size="5"
-                       placeholder="0" name="carbohydrates" value="${ingredient.carbohydrates}" >
+                <input class="w3-border" type="number" name="carbohydrates" value="${ingredient.carbohydrates}" >
             </div>      <hr class="nut-line nut-line-1" style="">      
 
             <div class="">
                 <label style="display: inline-block;" >Fiber  &emsp;</label> 
-                <input class="w3-border" type="number" min="0" size="5"
-                       placeholder="0" name="fiber" value="${ingredient.fiber}" >
+                <input class="w3-border" type="number" name="fiber" value="${ingredient.fiber}" >
             </div>   <hr class="nut-line nut-line-1" style="">         
 
             <div class="">
                 <label style="display: inline-block;" >Protein  &emsp;</label> 
-                <input class="w3-border" type="number" min="0" size="5"
-                       placeholder="0" name="protein" value="${ingredient.protein}" >
+                <input class="w3-border" type="number" name="protein" value="${ingredient.protein}" >
             </div>   <hr class="nut-line nut-line-2" style="">         
 
             <div class="w3-margin-bottom">
                 <label style="display: inline-block;" >Amount in recipe &emsp;</label> 
-                <input class="w3-border" type="number" min="1" size="5"
-                       placeholder="0" name="amount" value="${recipe.amount}" >
+                <input class="w3-border" type="number" name="amount" value="${recipe.amount}" >
                 <select name="measurementType">
                   <option value="grams">grams</option>
                   <option value="liquid oz">liquid oz</option>
@@ -131,12 +121,10 @@
                   <option value="liquid pint">liquid pint</option>
                   <option value="dry pint">dry pint</option>
                 </select>            
-            </div>     <hr class="nut-line nut-line-2" style="">             
-            <!-- for servlet to process post method  -->
-            
+            </div>     <hr class="nut-line nut-line-2" style="">           
+            <!-- SUBMIT & RESET BUTTONS -->
             <input class="w3-button w3-red"  type="submit" value="Add">
-            <input class="w3-button w3-gray" type="reset" value="Reset">
-            
+            <input class="w3-button w3-gray" type="reset" value="Reset">            
         </form>
     </div>
     </div>   <!-- END OF MODAL FORM   -->
@@ -165,18 +153,22 @@
 
         <c:forEach var="item" items="${list.items}">
             <tr>
-                <td><!-- DELETE INGREDIENT BUTTON -->
+                <td><!-- REMOVE INGREDIENT BUTTON -->
                     <form action="<c:url value='/main/removeIngredient'/>" method="post">
                     <input type="hidden" name="ingredientId" value="<c:out value='${item.ingredient.ingredientId}'/>">
                     <input type="submit" value="Delete">
                     </form>
                     <!-- This form will need to open the modal and populate the values -->
-                    <!--<form action="<c:url value='/main/updateIngredient'/>" method="post">
-                    <input type="hidden" name="ingredientId" value="<c:out value='${item.ingredient.ingredientId}'/>">
+                    <!--<form action="POINTY-BRACKET-LEFTc:url value='/main/updateIngredient'/POINTY-BRACKET-RIGHT" method="post">
+                    <input type="hidden" name="ingredientId" value="POINTY-BRACKET-LEFTc:out value='DOLLAR-SIGN{item.ingredient.ingredientId}'/POINTY-BRACKET-RIGHT">
                     <input type="submit" value="Edit">
                     </form>-->
                 </td>
-                <td>${item.value.ingredientAmount}</td>
+<!-- it seems like these need to access the the ChartLineItems.getCalorieSum() 
+I think this is grabbing the input values from the modal
+Maybe the values should be saved to a variable in eiter
+ChartLineItems file or the mainControl servlet -->
+                <td>${item.value.ingredientAmount}</td> 
                 <td>${item.value.measurement}</td>
                 <td>${item.value.ingredientName}</td>
                 <td>${item.value.calories}</td>
@@ -186,9 +178,9 @@
                 <td>${item.value.carbohydrates}</td>
                 <td>${item.value.fiber}</td>
                 <td>${item.value.protein}</td>
-            </tr>
-            
+            </tr>            
         </c:forEach>
+        
         </table>
     </c:otherwise>
 </c:choose>

@@ -4,7 +4,8 @@ Entity example #1 shows mapping the emf to persistance unit with an annotation
 placed above the declaration:
     @PersistanceUnit
     private EntityManagerFactory emf;
-
+NOTE: the name of the file is persistence.xml, but in the design view it has
+another name. So I changed it to NutritionPU.
  */
 package data;
 
@@ -17,7 +18,7 @@ import javax.persistence.Persistence;
  */
 public class DBUtil {
     private static final EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory("persistence");
+            Persistence.createEntityManagerFactory("NutritionPU");
     
     public static EntityManagerFactory getEmFactory() {
         return emf;
