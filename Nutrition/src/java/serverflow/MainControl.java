@@ -6,6 +6,7 @@ package serverflow;
 import business.ChartLineItems;
 import business.Ingredient;
 import business.IngredientList;
+import business.RecipeChart;
 import data.IngredientDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -124,7 +125,8 @@ public class MainControl extends HttpServlet {
         session.setAttribute("list", list);
         return DEFAULT_URL;
     }
-
+    
+    // if time permits ...
     private String updateIngredient(HttpServletRequest request, HttpServletResponse response) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -134,11 +136,24 @@ public class MainControl extends HttpServlet {
         HttpSession session = request.getSession();
         IngredientList list = (IngredientList) session.getAttribute("list");
         String id = request.getParameter("ingredientId");
-        
+        Ingredient ingredient = IngredientDB.selectIngredient(id);
+        if (ingredient != null && list != null) {
+            ChartLineItems lineItems = new ChartLineItems();
+            lineItems.setIngredient(ingredient);
+            list.removeItem(lineItems);
+        }
+        return DEFAULT_URL;
     }
 
     private String showLabel(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HttpSession session = request.getSession();
+        IngredientList list = (IngredientList) session.getAttribute("list");
+        
+        RecipeChart chart = new RecipeChart();
+        chart.setLineItems(chart.getLineItems());
+        
+        session.setAttribute("chart", chart);
+        
+        return "/recipe.jsp";
     }
-
 }

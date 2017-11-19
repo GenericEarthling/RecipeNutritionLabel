@@ -12,6 +12,11 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
   private static java.util.List<String> _jspx_dependants;
 
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_items;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_out_value_nobody;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_choose;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_url_value_nobody;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_otherwise;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_when_test;
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
@@ -21,10 +26,20 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   public void _jspInit() {
     _jspx_tagPool_c_forEach_var_items = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_out_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_choose = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_url_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_otherwise = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_when_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
   }
 
   public void _jspDestroy() {
     _jspx_tagPool_c_forEach_var_items.release();
+    _jspx_tagPool_c_out_value_nobody.release();
+    _jspx_tagPool_c_choose.release();
+    _jspx_tagPool_c_url_value_nobody.release();
+    _jspx_tagPool_c_otherwise.release();
+    _jspx_tagPool_c_when_test.release();
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -62,26 +77,34 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<link rel=\"stylesheet\" href=\"styles/main.css\">\n");
       out.write("<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Raleway\">\n");
       out.write("<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\n");
-      out.write("\n");
+      out.write("<style>\n");
+      out.write("    textarea {\n");
+      out.write("        font-size: 12px;\n");
+      out.write("        columns: 60;\n");
+      out.write("        rows: 4;        \n");
+      out.write("    }\n");
+      out.write("    .input-small {\n");
+      out.write("        width: auto;\n");
+      out.write("        \n");
+      out.write("    }\n");
+      out.write("</style>\n");
       out.write("<body class=\"w3-light-grey\">\n");
-      out.write("<nav class=\"w3-bar w3-black\">\n");
+      out.write("<!--<nav class=\"w3-bar w3-black\">\n");
       out.write("  <a href=\"#\" class=\"w3-bar-item w3-button w3-hover-blue\">HOME</a>\n");
       out.write("  <a href=\"#\" class=\"w3-bar-item w3-button w3-hover-blue\">START OVER</a>\n");
-      out.write("<!--  <a href=\"#\" class=\"w3-bar-item w3-button w3-hover-blue w3-right\">PRINT</a>-->\n");
-      out.write("</nav>\n");
+      out.write("</nav>-->\n");
       out.write("    \n");
-      out.write("<!-- CONTAINER FOR BOTH TABLES  -->\n");
+      out.write("<!-- CONTAINER FOR ALL  -->\n");
       out.write("<div class=\"w3-container w3-padding-24\" style=\"margin: auto; width: 800px\">\n");
       out.write("    \n");
       out.write("    <!-- CONTAINER FOR RECIPE  -->    \n");
-      out.write("    <div class=\"w3-container w3-blue\">\n");
-      out.write("        <h1>");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipeName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</h1>\n");
+      out.write("    <div class=\"w3-container w3-gray w3-block\">\n");
+      out.write("        <h1>Create Your Recipe Label</h1>\n");
       out.write("    </div>\n");
       out.write("        \n");
       out.write("    <!-- Trigger/Open The Modal -->\n");
-      out.write("    <div class=\"w3-margin-top w3-margin-bottom\">\n");
+      out.write("    <div class=\"w3-container w3-blue w3-padding-16 w3-margin-top w3-margin-bottom\">\n");
+      out.write("        <h2><b>Step 1:</b> Enter Ingredients</h2>        \n");
       out.write("        <button id=\"modal-1-btn\" class=\"w3-button w3-red\">Add Ingredient</button>\n");
       out.write("    </div>\n");
       out.write("    \n");
@@ -89,7 +112,13 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <div id=\"modal-1\" class=\"modal w3-animate-top\">\n");
       out.write("    <!-- Modal content -->\n");
       out.write("    <div class=\"modal-content\">\n");
-      out.write("        <form action=\"ingredient\" method=\"post\" >\n");
+      out.write("        <form action=\"");
+      if (_jspx_meth_c_url_0(_jspx_page_context))
+        return;
+      out.write("\" method=\"post\" >\n");
+      out.write("            <input type=\"hidden\" name=\"ingredientId\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${ingredient.ingredientId}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">\n");
       out.write("            <!-- Modal Cancel button -->\n");
       out.write("            <div class=\"\">            \n");
       out.write("                <span class=\"close\">cancel</span>\n");
@@ -196,174 +225,117 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                  <option value=\"dry pint\">dry pint</option>\n");
       out.write("                </select>            \n");
       out.write("            </div>     <hr class=\"nut-line nut-line-2\" style=\"\">             \n");
+      out.write("            <!-- for servlet to process post method  -->\n");
+      out.write("            \n");
       out.write("            <input class=\"w3-button w3-red\"  type=\"submit\" value=\"Add\">\n");
-      out.write("            <input id=\"closeModal\" class=\"w3-button w3-gray\"  type=\"submit\" value=\"Cancel\">\n");
+      out.write("            <input class=\"w3-button w3-gray\" type=\"reset\" value=\"Reset\">\n");
       out.write("            \n");
       out.write("        </form>\n");
       out.write("    </div>\n");
       out.write("    </div>   <!-- END OF MODAL FORM   -->\n");
       out.write("    \n");
       out.write("    <!-- INGREDIENT TABLE -->\n");
-      out.write("    <table class=\"w3-table-all\">\n");
-      out.write("        <tr>\n");
-      out.write("            <th></th>\n");
-      out.write("            <th>Amount</th>\n");
-      out.write("            <th></th>\n");
-      out.write("            <th style=\"width: 150px;\">Ingredient</th>\n");
-      out.write("            <th>Calories</th>\n");
-      out.write("            <th>Cholesterol</th>\n");
-      out.write("            <th>Sodium</th>\n");
-      out.write("            <th>Potassium</th>\n");
-      out.write("            <th>Carbohydrates</th>\n");
-      out.write("            <th>Fiber</th>\n");
-      out.write("            <th>Protein</th>\n");
-      out.write("        </tr>\n");
-      out.write("        <tr>\n");
-      out.write("            <td>edit delete</td>\n");
-      out.write("            <td>3</td>\n");
-      out.write("            <td>cups</td>\n");
-      out.write("            <td>Sugar by Pubblix</td>\n");
-      out.write("            <td>300</td>\n");
-      out.write("            <td>100</td>\n");
-      out.write("            <td>255</td>\n");
-      out.write("            <td>233</td>\n");
-      out.write("            <td>80</td>\n");
-      out.write("            <td>25</td>\n");
-      out.write("            <td>9</td>\n");
-      out.write("        </tr>\n");
-      out.write("        <tr>\n");
-      out.write("            <td>edit delete</td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("        </tr>\n");
-      out.write("        <tr>\n");
-      out.write("            <td>edit delete</td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("            <td></td>\n");
-      out.write("        </tr>\n");
+      if (_jspx_meth_c_choose_0(_jspx_page_context))
+        return;
       out.write("\n");
-      out.write("    </table>\n");
-      out.write("\n");
-      out.write("    <!-- Trigger/Open The DIRECTIONS Modal -->\n");
-      out.write("    <div class=\"w3-margin-top w3-margin-bottom\">\n");
-      out.write("        <button id=\"modal-2-btn\" class=\"w3-button w3-red\">Add Directions</button>\n");
-      out.write("    </div>\n");
       out.write("    \n");
-      out.write("    <!-- MODAL FORM FOR DIRECTION INPUT -->\n");
-      out.write("    <div id=\"modal-2\" class=\"modal w3-animate-top\">\n");
-      out.write("    <!-- Modal content -->\n");
-      out.write("    <div class=\"modal-content\">\n");
-      out.write("        <form>\n");
-      out.write("            <!-- cancel button -->\n");
-      out.write("            <div class=\"\">            \n");
-      out.write("                <!--<span class=\"close\">cancel</span>-->\n");
+      out.write("   \n");
+      out.write("    <!-- NUTRITION LABEL BUTTON -->\n");
+      out.write("    <div class=\"w3-container w3-blue w3-padding-16 w3-margin-top w3-margin-bottom\">\n");
+      out.write("        <h2><b>Step 2:</b> Prepare Nutrition Label</h2>\n");
+      out.write("        <form action=\"");
+      if (_jspx_meth_c_url_3(_jspx_page_context))
+        return;
+      out.write("\" method=\"post\">\n");
+      out.write("            \n");
+      out.write("            <div class=\"w3-cell-row\">\n");
+      out.write("                Recipe Name &emsp; <input class=\"w3-input w3-border\" type=\"text\" name=\"name\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">                       \n");
       out.write("            </div>\n");
       out.write("            \n");
-      out.write("            <div class=\"w3-margin-top\">\n");
-      out.write("                <h2 style=\"font-family:Impact, Charcoal;\"><b>Directions</b></h2>\n");
+      out.write("            <div class=\"w3-cell-row\">\n");
+      out.write("                Preparation Directions &emsp; <br><textarea class=\"w3-input w3-border\" type=\"text\" name=\"directions\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.directions}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\"></textarea>                       \n");
       out.write("            </div>\n");
       out.write("            \n");
-      out.write("            <div class=\"\">\n");
-      out.write("                <textarea class=\"\" cols=\"40\" rows=\"8\" name=\"directions\" > </textarea>\n");
-      out.write("            </div>   <hr class=\"nut-line nut-line-2\" style=\"\">                  \n");
-      out.write("                         \n");
-      out.write("            <input class=\"w3-button w3-red\"  type=\"submit\" value=\"Add\">\n");
-      out.write("            <input id=\"closeModal2\" class=\"w3-button w3-gray\"  type=\"submit\" value=\"Cancel\">            \n");
+      out.write("            <div class=\"w3-cell-row w3-block w3-margin-top\">    \n");
+      out.write("                <div class=\"w3-container w3-cell\">\n");
+      out.write("                    <label> Number of servings &emsp;</label>\n");
+      out.write("                    <input class=\"w3-input w3-border\" type=\"number\" min=\"1\" name=\"servings\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.servings}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\" required>\n");
+      out.write("                </div>\n");
+      out.write("                <div class=\"w3-container\">\n");
+      out.write("                    <label>Weight after cooking (in oz) &emsp;</label>\n");
+      out.write("                    <input class=\"w3-input w3-border\" type=\"number\" name=\"weight\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.weight}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">  \n");
+      out.write("                </div>    \n");
+      out.write("            </div>\n");
+      out.write("\n");
+      out.write("            <div class=\"w3-cell-row w3-block w3-margin-top\">    \n");
+      out.write("                <div class=\"w3-container w3-cell\">\n");
+      out.write("                    <label> Cook/Setting Temperature  &emsp;</label>\n");
+      out.write("                    <input class=\"w3-input w3-border\" type=\"number\" name=\"weight\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.temperature}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">\n");
+      out.write("                </div>    \n");
+      out.write("                <div class=\"w3-container w3-cell\">\n");
+      out.write("                    <label> Cook/Setting Time &emsp;</label>\n");
+      out.write("                    <input class=\"w3-input w3-border\" type=\"number\" name=\"weight\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.time}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">                \n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("          \n");
+      out.write("            <input class=\"w3-button w3-red w3-margin-top\" name=\"\" value=\"Get Nutrition Label\">         \n");
       out.write("        </form>\n");
       out.write("    </div>\n");
-      out.write("    </div>   <!-- END OF MODAL-2 FORM   -->    \n");
-      out.write("    \n");
-      out.write("    \n");
-      out.write("    <!-- DIRECTIONS TABLE -->\n");
-      out.write("    <table class=\"w3-table-all w3-left-align\">\n");
-      out.write("        <tr>\n");
-      out.write("            <th></th>\n");
-      out.write("            <th class=\"w3-left\">Directions</th>\n");
-      out.write("        </tr>\n");
-      out.write("        <tr>\n");
-      out.write("            <td>edit delete</td>\n");
-      out.write("            <td></td>\n");
-      out.write("        </tr>\n");
-      out.write("        <tr>\n");
-      out.write("            <td>edit delete</td>\n");
-      out.write("            <td></td>\n");
-      out.write("        </tr>\n");
-      out.write("        <tr>\n");
-      out.write("            <td>edit delete</td>\n");
-      out.write("            <td></td>\n");
-      out.write("        </tr>\n");
+      out.write("<!-- END NUTRITION LABEL BUTTON -->\n");
       out.write("\n");
-      out.write("    </table>  <!-- END DIRECTIONS TABLE -->\n");
-      out.write("\n");
-      out.write("<!-- NUTRITION LABEL BUTTON -->\n");
-      out.write("    <div class=\"w3-container w3-grey w3-padding-16 w3-margin-top\">\n");
-      out.write("        <h2>Nutrition Label</h2>\n");
-      out.write("        <label> servings &emsp;</label>\n");
-      out.write("        <input class=\"w3-border\" type=\"number\" min=\"1\" size=\"5\"\n");
-      out.write("                       placeholder=\"0\" name=\"servings\" value=\"recipe.servings\" required>\n");
-      out.write("        <label>Total weight after cooking (in oz) &emsp;</label>\n");
-      out.write("        <input class=\"w3-border\" type=\"number\" size=\"5\"\n");
-      out.write("                       placeholder=\"0\" name=\"weight\" value=\"recipe.weight\">        \n");
-      out.write("        <button class=\"w3-button w3-red\">Get Nutrition Label</button>\n");
-      out.write("    </div>\n");
-      out.write("\n");
-      out.write("<!-- NUTRITION LABEL BUTTON -->\n");
+      out.write("<!-- COOKIE INFORMATION TABLE -->\n");
       out.write("<div>\n");
       out.write("    <h1>Cookies</h1>\n");
-      out.write("    <p>Cookies used for this web application that are sent to the server through the browser.</p>\n");
-      out.write("    <table>\n");
+      out.write("    <h4>Cookies used for this web application:</h4>\n");
+      out.write("    <ul>\n");
+      out.write("        <li>Are sent to the server through the browser.</li>\n");
+      out.write("        <li>They only access this particular session.</li>\n");
+      out.write("        <li>They will remain in your browser until you close your browser.</li>\n");
+      out.write("    </ul>\n");
+      out.write("    <table class=\"w3-table-all w3-left-align\" >\n");
       out.write("        <tr>\n");
       out.write("            <th>Name</th>\n");
       out.write("            <th>Value</th>\n");
       out.write("        </tr>\n");
       out.write("        ");
-      if (_jspx_meth_c_forEach_0(_jspx_page_context))
+      if (_jspx_meth_c_forEach_1(_jspx_page_context))
         return;
       out.write("\n");
-      out.write("    </table>\n");
-      out.write("    \n");
-      out.write("    \n");
+      out.write("    </table>    \n");
       out.write("</div>\n");
-      out.write("</div>\n");
+      out.write("<!-- END COOKIE INFORMATION TABLE -->\n");
+      out.write("</div> <!-- END CONTAINER FOR ALL  -->\n");
+      out.write("\n");
       out.write("<script>\n");
       out.write("// INGREDIENT Modal\n");
       out.write("var modal_1 = document.getElementById('modal-1');\n");
-      out.write("var modal_2 = document.getElementById('modal-2'); \n");
       out.write("\n");
       out.write("// Get the button that opens the modal\n");
       out.write("var modal_1_btn = document.getElementById('modal-1-btn');\n");
-      out.write("var modal_2_btn = document.getElementById(\"modal-2-btn\");\n");
       out.write("\n");
       out.write("// Get the <span> element that closes the modal\n");
-      out.write("//var cancel = document.getElementsByClassName(\"close\")[0];\n");
+      out.write("var cancel = document.getElementsByClassName(\"close\")[0];\n");
       out.write("\n");
       out.write("// When the user clicks on the button, open the modal \n");
       out.write("modal_1_btn.onclick = function() {\n");
       out.write("    modal_1.style.display = \"block\";\n");
       out.write("}\n");
-      out.write("modal_2_btn.onclick = function() {\n");
-      out.write("    modal_2.style.display = \"block\";\n");
-      out.write("}\n");
       out.write("// When the user clicks on <span> (x), close the modal\n");
-      out.write("//cancel.onclick = function() {\n");
-      out.write("//    modal.style.display = \"none\";\n");
-      out.write("//}\n");
+      out.write("cancel.onclick = function() {\n");
+      out.write("    modal_1.style.display = \"none\";\n");
+      out.write("}\n");
       out.write("</script>\n");
       out.write("\n");
       out.write("</body>\n");
@@ -410,16 +382,142 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
     }
   }
 
-  private boolean _jspx_meth_c_forEach_0(PageContext _jspx_page_context)
+  private boolean _jspx_meth_c_url_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:url
+    org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_0 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
+    _jspx_th_c_url_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_url_0.setParent(null);
+    _jspx_th_c_url_0.setValue("/main/addIngredient");
+    int _jspx_eval_c_url_0 = _jspx_th_c_url_0.doStartTag();
+    if (_jspx_th_c_url_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_0);
+      return true;
+    }
+    _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_choose_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:choose
+    org.apache.taglibs.standard.tag.common.core.ChooseTag _jspx_th_c_choose_0 = (org.apache.taglibs.standard.tag.common.core.ChooseTag) _jspx_tagPool_c_choose.get(org.apache.taglibs.standard.tag.common.core.ChooseTag.class);
+    _jspx_th_c_choose_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_choose_0.setParent(null);
+    int _jspx_eval_c_choose_0 = _jspx_th_c_choose_0.doStartTag();
+    if (_jspx_eval_c_choose_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("    \n");
+        out.write("    ");
+        if (_jspx_meth_c_when_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context))
+          return true;
+        out.write("\n");
+        out.write("        ");
+        if (_jspx_meth_c_otherwise_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context))
+          return true;
+        out.write('\n');
+        int evalDoAfterBody = _jspx_th_c_choose_0.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_choose_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_choose.reuse(_jspx_th_c_choose_0);
+      return true;
+    }
+    _jspx_tagPool_c_choose.reuse(_jspx_th_c_choose_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_when_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_choose_0, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:when
+    org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_when_0 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _jspx_tagPool_c_when_test.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
+    _jspx_th_c_when_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_when_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_0);
+    _jspx_th_c_when_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${emptyList != null}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_when_0 = _jspx_th_c_when_0.doStartTag();
+    if (_jspx_eval_c_when_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("\n");
+        out.write("        <p>Your ingredient list is empty.</p>\n");
+        out.write("    ");
+        int evalDoAfterBody = _jspx_th_c_when_0.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_when_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_when_test.reuse(_jspx_th_c_when_0);
+      return true;
+    }
+    _jspx_tagPool_c_when_test.reuse(_jspx_th_c_when_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_otherwise_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_choose_0, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:otherwise
+    org.apache.taglibs.standard.tag.common.core.OtherwiseTag _jspx_th_c_otherwise_0 = (org.apache.taglibs.standard.tag.common.core.OtherwiseTag) _jspx_tagPool_c_otherwise.get(org.apache.taglibs.standard.tag.common.core.OtherwiseTag.class);
+    _jspx_th_c_otherwise_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_otherwise_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_0);
+    int _jspx_eval_c_otherwise_0 = _jspx_th_c_otherwise_0.doStartTag();
+    if (_jspx_eval_c_otherwise_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("        \n");
+        out.write("        <table class=\"w3-table-all\">\n");
+        out.write("        <tr>\n");
+        out.write("            <th></th>\n");
+        out.write("            <th>Amount</th>\n");
+        out.write("            <th></th>\n");
+        out.write("            <th style=\"width:150px;\">Ingredient</th>\n");
+        out.write("            <th>Calories</th>\n");
+        out.write("            <th>Fat</th>\n");
+        out.write("            <th>Cholesterol</th>\n");
+        out.write("            <th>Sodium</th>\n");
+        out.write("            <th>Potassium</th>\n");
+        out.write("            <th>Carbohydrates</th>\n");
+        out.write("            <th>Fiber</th>\n");
+        out.write("            <th>Protein</th>\n");
+        out.write("        </tr>\n");
+        out.write("\n");
+        out.write("        ");
+        if (_jspx_meth_c_forEach_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_otherwise_0, _jspx_page_context))
+          return true;
+        out.write("\n");
+        out.write("        </table>\n");
+        out.write("    ");
+        int evalDoAfterBody = _jspx_th_c_otherwise_0.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_otherwise_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_0);
+      return true;
+    }
+    _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_forEach_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_otherwise_0, PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  c:forEach
     org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
     _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
-    _jspx_th_c_forEach_0.setParent(null);
-    _jspx_th_c_forEach_0.setVar("c");
-    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cookie}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_forEach_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_otherwise_0);
+    _jspx_th_c_forEach_0.setVar("item");
+    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${list.items}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
     int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
     try {
       int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
@@ -427,13 +525,61 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
         do {
           out.write("\n");
           out.write("            <tr>\n");
+          out.write("                <td><!-- DELETE INGREDIENT BUTTON -->\n");
+          out.write("                    <form action=\"");
+          if (_jspx_meth_c_url_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+            return true;
+          out.write("\" method=\"post\">\n");
+          out.write("                    <input type=\"hidden\" name=\"ingredientId\" value=\"");
+          if (_jspx_meth_c_out_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+            return true;
+          out.write("\">\n");
+          out.write("                    <input type=\"submit\" value=\"Delete\">\n");
+          out.write("                    </form>\n");
+          out.write("                    <!-- This form will need to open the modal and populate the values -->\n");
+          out.write("                    <!--<form action=\"");
+          if (_jspx_meth_c_url_2((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+            return true;
+          out.write("\" method=\"post\">\n");
+          out.write("                    <input type=\"hidden\" name=\"ingredientId\" value=\"");
+          if (_jspx_meth_c_out_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+            return true;
+          out.write("\">\n");
+          out.write("                    <input type=\"submit\" value=\"Edit\">\n");
+          out.write("                    </form>-->\n");
+          out.write("                </td>\n");
           out.write("                <td>");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${c.value.name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.value.ingredientAmount}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</td>\n");
           out.write("                <td>");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${c.value.value}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.value.measurement}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\n");
+          out.write("                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.value.ingredientName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\n");
+          out.write("                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.value.calories}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\n");
+          out.write("                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.value.fat}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\n");
+          out.write("                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.value.sodium}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\n");
+          out.write("                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.value.potassium}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\n");
+          out.write("                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.value.carbohydrates}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\n");
+          out.write("                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.value.fiber}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\n");
+          out.write("                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.value.protein}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</td>\n");
           out.write("            </tr>\n");
+          out.write("            \n");
           out.write("        ");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -450,6 +596,140 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
     } finally {
       _jspx_th_c_forEach_0.doFinally();
       _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_0);
+    }
+    return false;
+  }
+
+  private boolean _jspx_meth_c_url_1(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:url
+    org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_1 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
+    _jspx_th_c_url_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_url_1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
+    _jspx_th_c_url_1.setValue("/main/removeIngredient");
+    int _jspx_eval_c_url_1 = _jspx_th_c_url_1.doStartTag();
+    if (_jspx_th_c_url_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_1);
+      return true;
+    }
+    _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_1);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_out_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:out
+    org.apache.taglibs.standard.tag.rt.core.OutTag _jspx_th_c_out_0 = (org.apache.taglibs.standard.tag.rt.core.OutTag) _jspx_tagPool_c_out_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.OutTag.class);
+    _jspx_th_c_out_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_out_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
+    _jspx_th_c_out_0.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.ingredient.ingredientId}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_out_0 = _jspx_th_c_out_0.doStartTag();
+    if (_jspx_th_c_out_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);
+      return true;
+    }
+    _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_url_2(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:url
+    org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_2 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
+    _jspx_th_c_url_2.setPageContext(_jspx_page_context);
+    _jspx_th_c_url_2.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
+    _jspx_th_c_url_2.setValue("/main/updateIngredient");
+    int _jspx_eval_c_url_2 = _jspx_th_c_url_2.doStartTag();
+    if (_jspx_th_c_url_2.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_2);
+      return true;
+    }
+    _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_2);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_out_1(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:out
+    org.apache.taglibs.standard.tag.rt.core.OutTag _jspx_th_c_out_1 = (org.apache.taglibs.standard.tag.rt.core.OutTag) _jspx_tagPool_c_out_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.OutTag.class);
+    _jspx_th_c_out_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_out_1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
+    _jspx_th_c_out_1.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.ingredient.ingredientId}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_out_1 = _jspx_th_c_out_1.doStartTag();
+    if (_jspx_th_c_out_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_1);
+      return true;
+    }
+    _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_1);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_url_3(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:url
+    org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_3 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
+    _jspx_th_c_url_3.setPageContext(_jspx_page_context);
+    _jspx_th_c_url_3.setParent(null);
+    _jspx_th_c_url_3.setValue("/main/showLabel");
+    int _jspx_eval_c_url_3 = _jspx_th_c_url_3.doStartTag();
+    if (_jspx_th_c_url_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_3);
+      return true;
+    }
+    _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_3);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_forEach_1(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:forEach
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_1 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    _jspx_th_c_forEach_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_forEach_1.setParent(null);
+    _jspx_th_c_forEach_1.setVar("c");
+    _jspx_th_c_forEach_1.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cookie}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int[] _jspx_push_body_count_c_forEach_1 = new int[] { 0 };
+    try {
+      int _jspx_eval_c_forEach_1 = _jspx_th_c_forEach_1.doStartTag();
+      if (_jspx_eval_c_forEach_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("\n");
+          out.write("            <tr>\n");
+          out.write("                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${c.value.name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\n");
+          out.write("                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${c.value.value}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\n");
+          out.write("            </tr>\n");
+          out.write("        ");
+          int evalDoAfterBody = _jspx_th_c_forEach_1.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_forEach_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_c_forEach_1[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_c_forEach_1.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_c_forEach_1.doFinally();
+      _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_1);
     }
     return false;
   }

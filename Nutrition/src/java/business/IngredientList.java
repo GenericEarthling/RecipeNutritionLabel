@@ -48,7 +48,7 @@ public class IngredientList implements Serializable {
             if (lineItem.getIngredient().getIngredientId().equals(id)) {
                 item.remove(i);
                 return;
-        }
+            }
         }
     }
 }
