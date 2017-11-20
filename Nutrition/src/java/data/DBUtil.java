@@ -10,8 +10,14 @@ placed above the declaration:
     private EntityManagerFactory emf;
 NOTE: the name of the file is persistence.xml, but in the design view it has
 another name. So I changed it to NutritionPU.
-
-
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+    private static final EntityManagerFactory emf =
+            Persistence.createEntityManagerFactory("NutritionPU");
+    
+    public static EntityManagerFactory getEmFactory() {
+        return emf;
+    } 
  */
 package data;
 
@@ -19,20 +25,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-//import javax.persistence.EntityManagerFactory;
-//import javax.persistence.Persistence;
 
 /**
  *
  * @author Tender
  */
-public class DBUtil {
-//    private static final EntityManagerFactory emf =
-//            Persistence.createEntityManagerFactory("NutritionPU");
-//    
-//    public static EntityManagerFactory getEmFactory() {
-//        return emf;
-//    }    
+public class DBUtil {   
 
     public static void closeStatement(Statement s) throws SQLException {
         try {

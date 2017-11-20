@@ -40,7 +40,7 @@ public class ConnectToSQL {
             //            Connection Factory Type: javax.sql.DataSource
             //            JNDI Subcontext: java:comp/env/jdbc
             //            context.xml name="jdbc/nutrition"
-            dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/Nutrition");
+            dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/nutrition");
                         
         } catch (NamingException e) {
             System.out.println(e);

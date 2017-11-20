@@ -14,7 +14,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>MainControl</servlet-name>
-        <url-pattern>/MainControl/*</url-pattern>
+        <url-pattern>/MainControl</url-pattern>
     </servlet-mapping>
     <!-- Use cookies (not URL encoding) for session tracking -->
     <servlet-mapping>

@@ -20,7 +20,7 @@
 
     <div lass="w3-container w3-white" style="width: 400px; margin: auto;">
         <p><i>${message}</i></p>
-        <form action="/nutrient" method="post">
+        <form action="Nutrient" method="post">
             <input type="hidden" name="action_event" value="add">
             <div class="w3-margin-bottom">
 

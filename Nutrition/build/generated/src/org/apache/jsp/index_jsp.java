@@ -61,7 +61,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <p><i>");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${message}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</i></p>\n");
-      out.write("        <form action=\"/nutrient\" method=\"post\">\n");
+      out.write("        <form action=\"Nutrient\" method=\"post\">\n");
       out.write("            <input type=\"hidden\" name=\"action_event\" value=\"add\">\n");
       out.write("            <div class=\"w3-margin-bottom\">\n");
       out.write("\n");

@@ -78,15 +78,19 @@ public class Nutrient extends HttpServlet {
             
             // validate parameters and set the message to the user
             // whether success or failure
-            String message;
-            if (RecipeDB.RecipeNameExists(recipe.getName())) {
-                message = "This recipe already exists. Please enter another name.";
-                url = DEFAULT_URL;
-            }
-            else {
-                message = "The ingredient is added";
-                url = DEFAULT_URL;
-                RecipeDB.insert(recipe);
+            String message="";
+            try {
+                if (RecipeDB.RecipeNameExists(recipe.getName())) {
+                    message = "This recipe already exists. Please enter another name.";
+                    url = DEFAULT_URL;
+                }
+                else {
+                    message = "The ingredient is added";
+                    url = DEFAULT_URL;
+                    RecipeDB.insert(recipe);
+                }
+            } catch (NullPointerException e) {
+                System.out.println(e);
             }
             request.setAttribute("recipe", recipe);
             request.setAttribute("message", message);
