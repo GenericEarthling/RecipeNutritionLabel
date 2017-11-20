@@ -97,31 +97,40 @@ public class MainControl extends HttpServlet {
     }// </editor-fold>
 
     private String addIngredient(HttpServletRequest request, HttpServletResponse response) {
+
         // Create a session or add another attribute to the current one
         HttpSession session = request.getSession();
         IngredientList list = (IngredientList) session.getAttribute("list");
         if (list == null){
             list = new IngredientList();
         }
-        // id is a Long in the ingredient bean but a string here  ??? changing it to name
-        // get the parameter and save to a string
-        // check to see if ingredient is in DB, if so, save the name to 
-        // the lineItems for display
-        String ingredName = request.getParameter("IngredientId");
-        Ingredient name = IngredientDB.selectIngredient(ingredName);
-        if (name != null) {
-            ChartLineItems lineItems = new ChartLineItems();
-            lineItems.setIngredient(name);
-            list.addItem(lineItems);
-        } 
         
-        
-        
-        // I think this 
-        System.out.println("MainControl Servlet addIngredient. list: " + list);
+        // display list
 
+        
         session.setAttribute("list", list);
-        return DEFAULT_URL;
+        return DEFAULT_URL;        
+
+
+
+//        // Create a session or add another attribute to the current one
+//        HttpSession session = request.getSession();
+//        IngredientList list = (IngredientList) session.getAttribute("list");
+//        if (list == null){
+//            list = new IngredientList();
+//        }
+//        // get the parameter and save to a string
+//        // check to see if ingredient is in DB, if so, save the name to 
+//        // the lineItems for display
+//        String ingredName = request.getParameter("IngredientId");
+//        Ingredient name = IngredientDB.selectIngredient(ingredName);
+//        if (name != null) {
+//            ChartLineItems lineItems = new ChartLineItems();
+//            lineItems.setIngredient(name);
+//            list.addItem(lineItems);
+//        }
+//        session.setAttribute("list", list);
+//        return DEFAULT_URL;
     }
     
     // if time permits ...

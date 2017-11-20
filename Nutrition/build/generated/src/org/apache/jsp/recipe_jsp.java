@@ -89,10 +89,6 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    }\n");
       out.write("</style>\n");
       out.write("<body class=\"w3-light-grey\">\n");
-      out.write("<!--<nav class=\"w3-bar w3-black\">\n");
-      out.write("  <a href=\"#\" class=\"w3-bar-item w3-button w3-hover-blue\">HOME</a>\n");
-      out.write("  <a href=\"#\" class=\"w3-bar-item w3-button w3-hover-blue\">START OVER</a>\n");
-      out.write("</nav>-->\n");
       out.write("    \n");
       out.write("<!-- CONTAINER FOR ALL  -->\n");
       out.write("<div class=\"w3-container w3-padding-24\" style=\"margin: auto; width: 800px\">\n");

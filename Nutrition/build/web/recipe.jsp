@@ -21,10 +21,6 @@
     }
 </style>
 <body class="w3-light-grey">
-<!--<nav class="w3-bar w3-black">
-  <a href="#" class="w3-bar-item w3-button w3-hover-blue">HOME</a>
-  <a href="#" class="w3-bar-item w3-button w3-hover-blue">START OVER</a>
-</nav>-->
     
 <!-- CONTAINER FOR ALL  -->
 <div class="w3-container w3-padding-24" style="margin: auto; width: 800px">

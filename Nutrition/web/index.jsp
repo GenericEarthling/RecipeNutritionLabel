@@ -17,57 +17,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="w3-light-grey">
-    
-<nav class="w3-bar w3-black">
-  <a href="#" class="w3-bar-item w3-button w3-hover-blue">HOME</a>
-  <a href="#" class="w3-bar-item w3-button w3-hover-blue">START OVER</a>
-<!--  <a href="#" class="w3-bar-item w3-button w3-hover-blue w3-right">PRINT</a>-->
-</nav> 
-    <div lass="w3-container w3-white" style="width: 400px; margin: auto;">
-       <input 
-           class="w3-right-align w3-margin w3-button w3-red"  type="submit" value="Enter Site">
-     
-    </div>
-    
-    
-    <!-- FORM BOX FOR SIGNING IN OR SIGNING UP OR GUEST  -->
-<!--    <div class="w3-container w3-padding" style="width: 400px; margin: auto;">
-    
-    <div class="w3-container w3-blue">
-        <h1>Nutrition Generator</h1>
-    </div>
-    <div class="w3-container w3-white w3-padding-16">
-        <form action="SignInServlet" method="post">
-            <p>Enter your email and password to start creating your own nutrition label for your favorite recipe.</p>
-            <p><i>${message}</i></p> 
-        <div class="w3-row-padding w3-margin-bottom" style="margin:8px -16px;">
-          <div class="w3-margin-bottom">
-            <label>User Name</label>
-            <input class="w3-input w3-border w3-left" type="text" 
-                   placeholder="0" name="name" value="${user.userName}"><br>
-          </div>
-        </div>
-          
-        <div class="w3-row-padding" style="margin:0 -16px;">
-          <div class="w3-margin-bottom">
-            <label>E-mail address</label>
-            <input class="w3-input w3-border" type="email" 
-                   placeholder="Enter email" name="email" value="${user.userEmail}" required>
-          </div>          
-        </div>
 
-        <div class="w3-row-padding" style="margin:8px -16px;">
-          <div class="w3-margin-bottom">
-              <label>Choose one: </label><br>
-            <input type="radio" name="status" value="member" > Member 
-            <input type="radio" name="status" value="newMember" > Sign Up 
-            <input type="radio" name="status" value="guest" checked> Guest <br>
-          </div>  
-        </div>    
-        <input class="w3-button w3-red"  type="submit" value="Continue">
-      </form>-->
-      <!-- END OF FORM BOX FOR SIGN-IN  -->   
-    </div>
+    <div lass="w3-container w3-white" style="width: 400px; margin: auto;">
+        <form action="nutrient" method="post">
+            <div class="w3-margin-bottom">
+                
+                <label style="display: inline-block;" >Amount in recipe &emsp;</label> 
+                <input name="amount" value="${recipe.amount}" >
+                
+                <select name="measurementType">
+                  <option value="grams">grams</option>
+                  <option value="liquid oz">liquid oz</option>
+                  <option value="dry oz">dry oz</option>
+                  <option value="teaspoon">teaspoon</option>
+                  <option value="tablespoon">tablespoon</option>
+                  <option value="milligram">milligram</option>
+                  <option value="liquid cup">liquid cup</option>
+                  <option value="dry cup">dry cup</option>
+                  <option value="liquid pint">liquid pint</option>
+                  <option value="dry pint">dry pint</option>
+                </select>  
+                
+            </div>     <hr class="nut-line nut-line-2" style="">           
+            <!-- SUBMIT & RESET BUTTONS -->
+            <input class="w3-button w3-red"  type="submit" value="Add">
+            <input class="w3-button w3-gray" type="reset" value="Reset">            
+        </form>   
     </div>
 </body>
 </html>
