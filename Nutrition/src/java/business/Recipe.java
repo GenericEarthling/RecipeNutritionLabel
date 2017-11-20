@@ -36,8 +36,8 @@ public class Recipe implements Serializable {
     // one ingredients to many recipes
     @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)
     private Collection<Ingredient> ingredients;        
-    private double amountInRecipe;
-    private String measurementType;
+    private double amountInRecipe = 28;
+    private String measurementType = "liquid oz";
 
     public Recipe() {
         name = "";
@@ -171,6 +171,7 @@ public class Recipe implements Serializable {
                 + "Cooking Time: " + time + "   "
                 + "Oven Temp: " + temperature + "   "
                 + "Ingredient: " + ingredients + "   "
+                + "Measurement type: " + measurementType + "   "
                 + "Direction: " + directions;
     }
 }

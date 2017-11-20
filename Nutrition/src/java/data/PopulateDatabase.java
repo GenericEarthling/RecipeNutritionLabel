@@ -46,6 +46,9 @@ public class PopulateDatabase {
         } finally {
             em.close();
         }
+        System.out.println("From insertIngredient method");
+        System.out.println(ingredient);
+        
     }
     
     public static void main(String[] args) {
@@ -54,7 +57,7 @@ public class PopulateDatabase {
                 PersistenceUnitTransactionType.RESOURCE_LOCAL.name());
         props.put(JDBC_DRIVER, "com.mysql.jdbc.Driver");
         props.put(JDBC_URL,
-                "jdbc:mysql://localhost:3306/music_jpa?zeroDateTimeBehavior=convertToNull");
+                "jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull");
         props.put(JDBC_USER, "root");
         props.put(JDBC_PASSWORD, "4843");
         props.put(TARGET_SERVER, TargetServer.None);
@@ -63,20 +66,38 @@ public class PopulateDatabase {
         
         // create some basic ingredients for the database
         Ingredient ingredient1 = new Ingredient();
-        ingredient1.setIngredientName("");
-        ingredient1.setCalories(120);
-        ingredient1.setFat(0);
+        ingredient1.setIngredientName("Steel Cut Oatmeal");
+        ingredient1.setCalories(150);
+        ingredient1.setFat(3);
         ingredient1.setCholesterol(0);
         ingredient1.setSodium(0);
         ingredient1.setPotassium(0);
-        ingredient1.setCarbohydrate(0);
-        ingredient1.setFiber(0);
-        ingredient1.setProtein(0);
-        ingredient1.setServingSizeInGrams(0);
-        ingredient1.setMeasurementType("");
-        ingredient1.setIngredientAmount(0);        
+        ingredient1.setCarbohydrate(27);
+        ingredient1.setFiber(4);
+        ingredient1.setProtein(5);
+        ingredient1.setServingSizeInGrams(40);
+//        ingredient1.setMeasurementType("dry cup");
+//        ingredient1.setIngredientAmount(1);        
         insertIngredient(ingredient1);
         
+        
+        Ingredient i2 = new Ingredient();
+        i2.setIngredientName("Walnuts");
+        i2.setCalories(190);
+        i2.setFat(18);
+        i2.setCholesterol(0);
+        i2.setSodium(1);
+        i2.setPotassium(125);
+        i2.setCarbohydrate(4);
+        i2.setFiber(2);
+        i2.setProtein(4);
+        i2.setServingSizeInGrams(28);
+//        i2.setMeasurementType("grams");
+//        i2.setIngredientAmount(40);        
+        insertIngredient(i2);                
+                
+        System.out.println("From Main");
+        System.out.println();        
 
     }
 }

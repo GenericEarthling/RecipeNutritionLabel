@@ -5,6 +5,7 @@
 package business;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +18,7 @@ import static model.Calculate.totalNutrientValueInRecipe;
  *
  * @author Tender
  */
+@Entity
 public class ChartLineItems implements Serializable {
     
     @Id
@@ -120,7 +122,8 @@ public class ChartLineItems implements Serializable {
     
     // 1&2) convert the Ingredient amount in the recipe to the grams equivalent
     // measurementType converted to grams
-    double amtOfIngredInGrams = Calculate.amountToGrams(amountInRecipe, measurementType);
+    double amtOfIngredInGrams = Calculate.amountToGrams(28, "liquid oz");
+//    double amtOfIngredInGrams = Calculate.amountToGrams(28, "dry cup");
     
     // calculate values for each nutrient for diplay as a chart line item
     public double getCalorieSum() {

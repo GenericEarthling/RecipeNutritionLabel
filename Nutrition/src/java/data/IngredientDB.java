@@ -59,20 +59,21 @@ public class IngredientDB {
     // not sure if this should be (Ingredient ingredientName) ??
     public static Ingredient selectIngredient(String ingredientName) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        String query = "SELECT i FROM Ingredient i " +
-                "WHERE i.ingredientName = : ingredientName" ;
+        String query = "SELECT i FROM Ingredient i WHERE i.ingredientName = :ingredientName" ;
         TypedQuery<Ingredient> q = em.createQuery(query, Ingredient.class);
         q.setParameter("ingredientName", ingredientName);
+        Ingredient result = null;
         try {
             //public List<X> getResultList()
             //Execute a SELECT query and return the query results as a typed List.
-            Ingredient ingredient = q.getSingleResult();
-            return ingredient;
+            result = q.getSingleResult();
+            
         } catch (NoResultException e) {
             return null;
         } finally {
             em.close();
         }
+        return (Ingredient)result;
     }
 
     // not sure if I need this

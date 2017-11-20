@@ -3,7 +3,6 @@
  */
 package serverflow;
 
-import business.GramEquivalent;
 import business.Ingredient;
 import business.Recipe;
 import data.IngredientDB;

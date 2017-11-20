@@ -15,11 +15,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "user")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
-    , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
-    , @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")})
 public class User implements Serializable {
     @Id
     @Basic(optional = false)

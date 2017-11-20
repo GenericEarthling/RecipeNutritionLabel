@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
-                        http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee                          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <display-name>Recipe Nutrition Label</display-name>
     <description>Creates a nutrition label for any recipe.</description>
-
     <!-- servlet definitions -->
     <servlet>
         <servlet-name>MainControl</servlet-name>
         <servlet-class>serverflow.MainControl</servlet-class>
     </servlet>
-
     <!-- servlet mappings -->
     <servlet-mapping>
         <servlet-name>MainControl</servlet-name>
-        <url-pattern>/MainControl</url-pattern>
+        <url-pattern>/MainControl/*</url-pattern>
     </servlet-mapping>
-    
     <!-- Use cookies (not URL encoding) for session tracking -->
     <session-config>
         <tracking-mode>COOKIE</tracking-mode>
-    </session-config>    
+    </session-config>
 </web-app>

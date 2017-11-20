@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
 public class MainControl extends HttpServlet {
 
     // set default url
-    private static final String DEFAULT_URL = "/Web Pages/recipe.jsp";
+    private static final String DEFAULT_URL = "/recipe.jsp";
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -103,14 +103,20 @@ public class MainControl extends HttpServlet {
         if (list == null){
             list = new IngredientList();
         }
-        // this is a Long in the ingredient bean   ???
-        String ingredientId = request.getParameter("IngredientId");
-        Ingredient ingredient = IngredientDB.selectIngredient(ingredientId);
-        if (ingredient != null) {
+        // id is a Long in the ingredient bean but a string here  ??? changing it to name
+        // get the parameter and save to a string
+        // check to see if ingredient is in DB, if so, save the name to 
+        // the lineItems for display
+        String ingredName = request.getParameter("IngredientId");
+        Ingredient name = IngredientDB.selectIngredient(ingredName);
+        if (name != null) {
             ChartLineItems lineItems = new ChartLineItems();
-            lineItems.setIngredient(ingredient);
+            lineItems.setIngredient(name);
             list.addItem(lineItems);
-        }
+        } 
+        
+        
+        
         // I think this 
         System.out.println("MainControl Servlet addIngredient. list: " + list);
 

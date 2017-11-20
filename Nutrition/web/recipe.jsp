@@ -44,7 +44,7 @@
     <div id="modal-1" class="modal w3-animate-top">
     <!-- Modal content -->
     <div class="modal-content">
-        <form action="<c:url value='/recipe.jsp'/>" method="post" >
+        <form action="<c:url value='/MainControl/addIngredient' />" method="post" >
             <!-- for servlet to process post method  -->
             <input type="hidden" name="ingredientId" value="${ingredient.ingredientId}">
             <!-- Modal Cancel button -->
