@@ -9,6 +9,8 @@ another name. So I changed it to NutritionPU.
  */
 package data;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -23,4 +25,12 @@ public class DBUtil {
     public static EntityManagerFactory getEmFactory() {
         return emf;
     }    
+
+    static void closePreparedStatement(PreparedStatement ps) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    static void closeResultSet(ResultSet rs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

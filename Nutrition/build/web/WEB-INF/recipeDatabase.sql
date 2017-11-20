@@ -61,8 +61,6 @@ FOREIGN KEY (RecipeId) REFERENCES Recipe (RecipeId),
 FOREIGN KEY (IngredientListId) REFERENCES IngredientList (IngredientListId)
 );
 
-
-
 CREATE TABLE RecipeChart (
 RecipeChartId INT NOT NULL AUTO_INCREMENT,
 RecipeId INT NOT NULL DEFAULT '0',
@@ -81,4 +79,18 @@ PRIMARY KEY (RecipeChartId),
 FOREIGN KEY (ChartLineItemId) REFERENCES ChartLineItem (ChartLineItemId),
 FOREIGN KEY (RecipeId) REFERENCES Recipe (RecipeId),
 FOREIGN KEY (IngredientListId) REFERENCES IngredientList (IngredientListId)
+);
+
+CREATE TABLE RecipeTemp (
+RecipeTempId INT NOT NULL AUTO_INCREMENT,
+IngredientId INT NOT NULL DEFAULT '0',
+RecipeTempName VARCHAR(50),
+Amount DOUBLE,
+MeasurementType VARCHAR(50),
+Directions VARCHAR(500),
+Temperature INT,
+CookTime VARCHAR(60),
+
+PRIMARY KEY (RecipeTempId),
+FOREIGN KEY (IngredientId) REFERENCES Ingredient (IngredientId)
 );

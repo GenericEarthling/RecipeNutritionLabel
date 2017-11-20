@@ -30,6 +30,7 @@ public class ConnectToSQL {
     private static DataSource dataSource = null;
     
     // connect to mySql with automatic driver loading
+    // set to private to encapsulate connection
     private ConnectToSQL() {
         try {
             InitialContext ic = new InitialContext();

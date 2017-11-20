@@ -19,11 +19,16 @@
 <body class="w3-light-grey">
 
     <div lass="w3-container w3-white" style="width: 400px; margin: auto;">
+        <p><i>${message}</i></p>
         <form action="nutrient" method="post">
+            <input type="hidden" name="action_event" value="add">
             <div class="w3-margin-bottom">
+
+                <label>Recipe Name &emsp;</label> 
+                <input type="text" name="r_name" value="${recipeTemp.name}" ><br>
                 
-                <label style="display: inline-block;" >Amount in recipe &emsp;</label> 
-                <input name="amount" value="${recipe.amount}" >
+                <label>Amount in recipe &emsp;</label> 
+                <input type="number" name="amount" value="${recipeTemp.amount}" >
                 
                 <select name="measurementType">
                   <option value="grams">grams</option>

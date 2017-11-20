@@ -19,31 +19,34 @@ import java.util.Objects;
 import javax.persistence.*;                        // look this up in javadocs!!
 import static javax.persistence.FetchType.EAGER;
 
-@Entity
-@Table(name = "recipe")
+
 public class Recipe implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)    
-    private Long RecipeId;
-    @ManyToOne
+   
+    private int RecipeId;
     private User user;
     private String name;
     private int temperature;
-    private int time;
+    private int cookTime;
     private String directions;
     
     // one ingredients to many recipes
-    @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)
+
     private Collection<Ingredient> ingredients;        
-    private double amountInRecipe = 28;
-    private String measurementType = "liquid oz";
+    private double amountInRecipe;
+    private String measurementType;
 
     public Recipe() {
         name = "";
         temperature = 0;
-        time = 0;
+        cookTime = 0;
         directions = "";
+    }
+
+    public Recipe(String name, double amountInRecipe, String measurementType) {
+        this.name = name;
+        this.amountInRecipe = amountInRecipe;
+        this.measurementType = measurementType;
     }
 
     public Recipe(double amountInRecipe) {
@@ -52,7 +55,7 @@ public class Recipe implements Serializable {
 
     public Recipe(int ovenTemp, int cookTime) {
         this.temperature = ovenTemp;
-        this.time = cookTime;
+        this.cookTime = cookTime;
     }
 
     public Recipe(String name) {
@@ -83,12 +86,12 @@ public class Recipe implements Serializable {
         this.temperature = temperature;
     }
 
-    public int getTime() {
-        return time;
+    public int getCookTime() {
+        return cookTime;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+    public void setCookTime(int cookTime) {
+        this.cookTime = cookTime;
     }
 
     public Collection<Ingredient> getIngredients() {
@@ -131,11 +134,11 @@ public class Recipe implements Serializable {
         this.user = user;
     }
 
-    public Long getRecipeId() {
+    public int getRecipeId() {
         return RecipeId;
     }
 
-    public void setRecipeId(Long RecipeId) {
+    public void setRecipeId(int RecipeId) {
         this.RecipeId = RecipeId;
     }
 
@@ -168,7 +171,7 @@ public class Recipe implements Serializable {
     public String toString() {
         return "Recipe object:::  " 
                 + "Name: " + name + "   "
-                + "Cooking Time: " + time + "   "
+                + "Cooking Time: " + cookTime + "   "
                 + "Oven Temp: " + temperature + "   "
                 + "Ingredient: " + ingredients + "   "
                 + "Measurement type: " + measurementType + "   "
