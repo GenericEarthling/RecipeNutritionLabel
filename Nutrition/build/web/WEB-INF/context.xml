@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path = "/Nutrition">
+
+    <resource 
+        name="jdbc/Nutrition" 
+        auth="Container"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull"
+        username="root" 
+        passsword="4843"
+        maxActive="0"
+        maxIdle="30"
+        maxWait="10000"
+        logAbandoned="true"
+        removeAbandoned="true"
+        removeAbandonedTimeout="60"
+        type="javax.sql.DataSource"    
+    />
+      
+</Context>

@@ -6,6 +6,7 @@
 package serverflow;
 
 import business.Recipe;
+import data.RecipeDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,6 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Nutrient extends HttpServlet {
 
+    // set default url
+    private static final String DEFAULT_URL = "/index.jsp";
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,7 +48,7 @@ public class Nutrient extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doPost(request, response);
     }
 
     /**
@@ -56,7 +60,8 @@ public class Nutrient extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, 
+            HttpServletResponse response)
             throws ServletException, IOException {
         
         String url = "/index.jsp";
@@ -64,19 +69,31 @@ public class Nutrient extends HttpServlet {
         String actionEvent = request.getParameter("action_event");
         if (actionEvent.equals("add")) {
             // get parameters
-            String name = request.getParameter("r_name");
-            double amt = Double.parseDouble( request.getParameter("amount") );
-            String amtType = request.getParameter("measurementType");
+            String name = request.getParameter("name");
+            double amountInRecipe = Double.parseDouble( request.getParameter("amountInRecipe") );
+            String measurementType = request.getParameter("measurementType");
             
-            // Store data into Recipe Temp object 
-            Recipe rt = new Recipe(name, amt, amtType);
+            // Store data into Recipe object 
+            Recipe recipe = new Recipe(name, amountInRecipe, measurementType);
             
             // validate parameters and set the message to the user
             // whether success or failure
-            
-            
-            
+            String message;
+            if (RecipeDB.RecipeNameExists(recipe.getName())) {
+                message = "This recipe already exists. Please enter another name.";
+                url = DEFAULT_URL;
+            }
+            else {
+                message = "The ingredient is added";
+                url = DEFAULT_URL;
+                RecipeDB.insert(recipe);
+            }
+            request.setAttribute("recipe", recipe);
+            request.setAttribute("message", message);
         }
+        getServletContext()
+                .getRequestDispatcher(url)
+                .forward(request, response);
     }
 
     /**

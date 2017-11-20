@@ -20,15 +20,15 @@
 
     <div lass="w3-container w3-white" style="width: 400px; margin: auto;">
         <p><i>${message}</i></p>
-        <form action="nutrient" method="post">
+        <form action="/nutrient" method="post">
             <input type="hidden" name="action_event" value="add">
             <div class="w3-margin-bottom">
 
                 <label>Recipe Name &emsp;</label> 
-                <input type="text" name="r_name" value="${recipeTemp.name}" ><br>
+                <input type="text" name="name" value="${recipe.name}" ><br>
                 
                 <label>Amount in recipe &emsp;</label> 
-                <input type="number" name="amount" value="${recipeTemp.amount}" >
+                <input type="number" name="amountInRecipe" value="${recipe.amountInRecipe}" >
                 
                 <select name="measurementType">
                   <option value="grams">grams</option>
@@ -47,7 +47,17 @@
             <!-- SUBMIT & RESET BUTTONS -->
             <input class="w3-button w3-red"  type="submit" value="Add">
             <input class="w3-button w3-gray" type="reset" value="Reset">            
-        </form>   
+        </form>  
+                
+        <div>
+            <h2> Values entered</h2>
+            <label>Recipe Name: </label>
+            <span>${recipe.name}</span><br>
+            <label>Ingredient amount in recipe: </label>
+            <span>${recipe.amountInRecipe}</span><br>
+            <label>Measurement type: </label>
+            <span>${recipe.measurementType}</span><br>
+        </div>
     </div>
 </body>
 </html>

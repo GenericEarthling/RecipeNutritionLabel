@@ -18,10 +18,10 @@ public class Testing {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Ingredient i = new Ingredient();
-        i = IngredientDB.selectIngredient("Walnuts");
-        System.out.println(i);
-        
+//        Ingredient i = new Ingredient();
+//        i = IngredientDB.selectIngredient("Walnuts");
+//        System.out.println(i);
+//        
 //        // create some basic ingredients for the database
 //        Ingredient ingredient1 = new Ingredient();
 //        ingredient1.setIngredientName("Steel Cut Oatmeal");

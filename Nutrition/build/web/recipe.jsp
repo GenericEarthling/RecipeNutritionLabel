@@ -146,12 +146,12 @@
             <th>Fiber</th>
             <th>Protein</th>
         </tr>
-
-        <c:forEach var="item" items="${list.items}">
+<!-----------    change to ingredientList??   ---------------------------->
+        <c:forEach var="item" items="${ingredientList.items}">
             <tr>
                 <td><!-- REMOVE INGREDIENT BUTTON -->
                     <form action="<c:url value='/main/removeIngredient'/>" method="post">
-                    <input type="hidden" name="ingredientId" value="<c:out value='${item.ingredient.ingredientId}'/>">
+                    <input type="hidden" name="ingredientId" value="<c:out value='${item.ingredientList.ingredientId}'/>">
                     <input type="submit" value="Delete">
                     </form>
                     <!-- This form will need to open the modal and populate the values -->

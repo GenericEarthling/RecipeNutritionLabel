@@ -25,7 +25,7 @@ public class RecipeDB  {
     // executeUpdate() returns an integer a) the row count for SQL Data 
     // Manipulation Language (DML) statements OR b) 0 (zero) for SQL 
     // statements that return nothing
-    public static int insert(Recipe recipe) throws SQLException {
+    public static int insert(Recipe recipe) {
         ConnectToSQL pool = ConnectToSQL.getInstance();
         Connection connect = pool.getConnection();
         PreparedStatement ps = null;

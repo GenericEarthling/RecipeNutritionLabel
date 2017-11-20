@@ -36,7 +36,7 @@ public class IngredientServlet extends HttpServlet {
             throws ServletException, IOException {
         
         // get connected
-        ConnectionPool pool = ConnectionPool.getInstance();
+//        ConnectionPool pool = ConnectionPool.getInstance();
         
     }
     
