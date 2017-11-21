@@ -2,6 +2,12 @@
  * Database connection pool (DBCP) a collection of connection objects that's
 stored in another object. This limits the number of times that connections 
 are opened as well as the total number of connection objects. 
+DataSource interface
+https://docs.oracle.com/javase/8/docs/api/index.html
+Tomcat
+https://tomcat.apache.org/tomcat-8.0-doc/jndi-resources-howto.html
+"Note that the resource name (here, bean/MyBeanFactory must match the 
+value specified in the web application deployment descriptor. "
 
 This is connected to the context.xml file that configures the connection pool
 javax.sql.DataSource - Interface for Jakarta's connectin pool used to store the connections
@@ -39,8 +45,8 @@ public class ConnectToSQL {
             // ic.lookup: Resource manger: JDBC 
             //            Connection Factory Type: javax.sql.DataSource
             //            JNDI Subcontext: java:comp/env/jdbc
-            //            context.xml name="jdbc/nutrition"
-            dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/nutrition");
+            //            context.xml name="jdbc/nutrition" OR jdbc/recipes ?
+            dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/RecipesDB");
                         
         } catch (NamingException e) {
             System.out.println(e);

@@ -31,7 +31,7 @@ public class RecipeDB  {
         PreparedStatement ps = null;
         
         String q = 
-                "INSERT INTO RecipeTemp (RecipeTempName, Amount, MeasurementType) "
+                "INSERT INTO Recipe (RecipeName, AmountInRecipe, MeasurementType) "
                 + "VALUES (?, ?, ?)";
         try {
             ps = connect.prepareStatement(q);
@@ -56,9 +56,9 @@ public class RecipeDB  {
         PreparedStatement ps = null;
         
         String q = "UPDATE Recipe SET "
-                + "IngredientAmountInRecipe = ?, "
+                + "AmountInRecipe = ?, "
                 + "MeasurementType = ?"
-                + "WHERE RecipeName = ?";
+                + "WHERE Name = ?";
         try {
             ps = connect.prepareStatement(q);
             ps.setString(1, recipe.getName());
@@ -80,7 +80,7 @@ public class RecipeDB  {
         PreparedStatement ps = null;
         
         String q = "DELETE FROM Recipe "
-                + "WHERE RecipeName = ?";
+                + "WHERE Name = ?";
         try {
             ps = connect.prepareStatement(q);
             ps.setString(1, recipe.getName());
@@ -100,7 +100,7 @@ public class RecipeDB  {
         ResultSet rs = null;
         
         String q = "SELECT * FROM Recipe "
-                + "WHERE RecipeName = ?";
+                + "WHERE Name = ?";
         try {
             ps = connect.prepareStatement(q);
             ps.setString(1, recipeName);
@@ -109,7 +109,7 @@ public class RecipeDB  {
             if (rs.next()) {
                 recipe = new Recipe();
                 recipe.setName(rs.getString("RecipeName"));
-                recipe.setAmountInRecipe(rs.getDouble("IngredientAmountInRecipe"));
+                recipe.setAmountInRecipe(rs.getDouble("AmountInRecipe"));
                 recipe.setMeasurementType(rs.getString("MeasurementType"));
             }
             return recipe;                   
@@ -131,8 +131,8 @@ public class RecipeDB  {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String q = "SELECT RecipeName FROM Recipe "
-                + "WHERE RecipeName = ?";
+        String q = "SELECT Name FROM Recipe "
+                + "WHERE Name = ?";
         try {
             ps = connect.prepareStatement(q);
             ps.setString(1, name);

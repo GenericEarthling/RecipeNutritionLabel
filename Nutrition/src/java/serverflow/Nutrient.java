@@ -76,11 +76,19 @@ public class Nutrient extends HttpServlet {
             // Store data into Recipe object 
             Recipe recipe = new Recipe(name, amountInRecipe, measurementType);
             
+            /*    
+            
+            MUST VALIDATE PARAMETERS FOR EMPTY OR NULL VALUES  !!!!
+            insert 0 if no value is entered
+            
+            */
+            
+            
             // validate parameters and set the message to the user
             // whether success or failure
             String message="";
             try {
-                if (RecipeDB.RecipeNameExists(recipe.getName())) {
+                if ( RecipeDB.RecipeNameExists(recipe.getName()) ) {
                     message = "This recipe already exists. Please enter another name.";
                     url = DEFAULT_URL;
                 }
