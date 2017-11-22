@@ -104,7 +104,7 @@
 
             <div class="w3-margin-bottom">
                 <label style="display: inline-block;" >Amount in recipe &emsp;</label> 
-                <input class="w3-border" type="number" name="amount" value="${recipe.amount}" >
+                <input class="w3-border" type="number" name="amount" value="${recipe.IngredientAmountInRecipe}" >
                 <select name="measurementType">
                   <option value="grams">grams</option>
                   <option value="liquid oz">liquid oz</option>
@@ -162,7 +162,7 @@
                 </td>
 <!-- it seems like these need to access the the ChartLineItems.getCalorieSum() 
 I think this is grabbing the input values from the modal
-Maybe the values should be saved to a variable in eiter
+Maybe the values should be saved to a variable in either
 ChartLineItems file or the mainControl servlet -->
                 <td>${item.value.ingredientAmount}</td> 
                 <td>${item.value.measurement}</td>
@@ -188,7 +188,7 @@ ChartLineItems file or the mainControl servlet -->
         <form action="<c:url value='/main/showLabel'/>" method="post">
             
             <div class="w3-cell-row">
-                Recipe Name &emsp; <input class="w3-input w3-border" type="text" name="name" value="${recipe.name}">                       
+                Recipe Name &emsp; <input class="w3-input w3-border" type="text" name="name" value="${recipe.recipeName}">                       
             </div>
             
             <div class="w3-cell-row">
@@ -198,11 +198,11 @@ ChartLineItems file or the mainControl servlet -->
             <div class="w3-cell-row w3-block w3-margin-top">    
                 <div class="w3-container w3-cell">
                     <label> Number of servings &emsp;</label>
-                    <input class="w3-input w3-border" type="number" min="1" name="servings" value="${recipe.servings}" required>
+                    <input class="w3-input w3-border" type="number" min="1" name="servings" value="${servings}" required>
                 </div>
                 <div class="w3-container">
                     <label>Weight after cooking (in oz) &emsp;</label>
-                    <input class="w3-input w3-border" type="number" name="weight" value="${recipe.weight}">  
+                    <input class="w3-input w3-border" type="number" name="weight" value="${weight}">  
                 </div>    
             </div>
 
@@ -213,7 +213,7 @@ ChartLineItems file or the mainControl servlet -->
                 </div>    
                 <div class="w3-container w3-cell">
                     <label> Cook/Setting Time &emsp;</label>
-                    <input class="w3-input w3-border" type="number" name="weight" value="${recipe.time}">                
+                    <input class="w3-input w3-border" type="string" name="weight" value="${recipe.cookTime}">                
                 </div>
             </div>
           

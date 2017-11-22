@@ -1,5 +1,15 @@
 /*
- * distributes procedures
+ * this servlet distributes procedures
+
+ *   ************  Main Control Servlet Status  ****************
+    NOT DONE                                DONE
+    add ingredient (trying to figure out how to bring up an already saved ingred from db)
+    delete ingredient
+    remove ingredient
+    show label (
+
+
+
  */
 package serverflow;
 
@@ -8,8 +18,10 @@ import business.Ingredient;
 import business.IngredientList;
 import business.RecipeChart;
 import data.IngredientDB;
+import data.RecipeDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -96,7 +108,7 @@ public class MainControl extends HttpServlet {
         return "MainControl servlet";
     }// </editor-fold>
 
-    private String addIngredient(HttpServletRequest request, HttpServletResponse response) {
+    private String addIngredient(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 
         // Create a session or add another attribute to the current one
         HttpSession session = request.getSession();
@@ -123,42 +135,42 @@ public class MainControl extends HttpServlet {
             measure = "grams";
         }  
                 
-        // store data into Ingredient object
-        // save the ingredient object to a session after getting totals
-        Ingredient i = new Ingredient(name, servingSize, cal, fat, chol, pot, sod, carb, fiber, protein);
-//        i.setIngredientName(name);
-//        i.setServingSizeInGrams(servingSize);
-//        i.setCalories(cal);
-//        i.setFat(fat);
-//        i.setCholesterol(chol);
-//        i.setPotassium(pot);
-//        i.setSodium(sod);
-//        i.setCarbohydrate(carb);
-//        i.setFiber(fiber);
-//        i.setProtein(protein);        
+        // store data into Ingredient object or load it from database (?)
+        String url = "";
+        String message = "";
+        Ingredient i = new Ingredient(name, servingSize, cal, fat, chol, sod, pot, carb, fiber, protein);
+        try {
+            if ( IngredientDB.ingredientExists(i.getIngredientName()) ) {
+                String id = request.getParameter("IngredientId");
+                Ingredient ingredientId = IngredientDB.selectIngredient(id);
+                if (ingredientId != null) {
+                    ChartLineItems lineItems = new ChartLineItems();
+                    lineItems.setIngredient(ingredientId);
+                    list.addItem(lineItems);
+                }                
+                message = "This ingredient already exists in Database.";
+                url = DEFAULT_URL;
+            }
+            else {
+                message = "The ingredient was added";
+                url = DEFAULT_URL;
+                IngredientDB.insert(i);
+            }
+        } catch (NullPointerException e) {
+            System.out.println(e);
+        }    
         
-        
-        // display list
+        // check to see if ingredient is in DB, if so, get the ingredient 
+        // object and save it as a lineItem in the ChartLineItems object
+        // for display on recipe.js page
 
-        
-//        session.setAttribute("list", list);
-//        return DEFAULT_URL;        
-//
-//
-//
-//
-//        // get the parameter and save to a string
-//        // check to see if ingredient is in DB, if so, save the name to 
-//        // the lineItems for display
-//        String ingredName = request.getParameter("IngredientId");
-//        Ingredient name = IngredientDB.selectIngredient(ingredName);
-//        if (name != null) {
-//            ChartLineItems lineItems = new ChartLineItems();
-//            lineItems.setIngredient(name);
-//            list.addItem(lineItems);
-//        }
-//        session.setAttribute("list", list);
-        return DEFAULT_URL;
+
+       
+        // save the  ingredientLIST to a session after getting totals
+        session.setAttribute("list", list);
+        request.setAttribute("ingredient", i);
+        request.setAttribute("message", message);
+        return DEFAULT_URL;        
     }
     
     // if time permits ...
@@ -167,18 +179,18 @@ public class MainControl extends HttpServlet {
     }
     
     // removed an ingredient list from the table (recipe.jsp)
-//    private String removeIngredient(HttpServletRequest request, HttpServletResponse response) {
-//        HttpSession session = request.getSession();
-//        IngredientList list = (IngredientList) session.getAttribute("list");
-//        String id = request.getParameter("ingredientId");
-//        Ingredient ingredient = IngredientDB.selectIngredient(id);
-//        if (ingredient != null && list != null) {
-//            ChartLineItems lineItems = new ChartLineItems();
-//            lineItems.setIngredient(ingredient);
-//            list.removeItem(lineItems);
-//        }
-//        return DEFAULT_URL;
-//    }
+    private String removeIngredient(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        HttpSession session = request.getSession();
+        IngredientList list = (IngredientList) session.getAttribute("list");
+        String id = request.getParameter("ingredientId");
+        Ingredient ingredient = IngredientDB.selectIngredient(id);
+        if (ingredient != null && list != null) {
+            ChartLineItems lineItems = new ChartLineItems();
+            lineItems.setIngredient(ingredient);
+            list.removeItem(lineItems);
+        }
+        return DEFAULT_URL;
+    }
 
     private String showLabel(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -189,6 +201,6 @@ public class MainControl extends HttpServlet {
         
         session.setAttribute("chart", chart);
         
-        return "/recipe.jsp";
+        return "/print_all.jsp";
     }
 }

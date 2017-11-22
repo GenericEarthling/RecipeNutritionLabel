@@ -27,7 +27,7 @@ public class Recipe implements Serializable {
     private User user;
     private String name;
     private int temperature;
-    private int cookTime;
+    private String cookTime;
     private String directions;
     
     // one ingredients to many recipes
@@ -39,7 +39,7 @@ public class Recipe implements Serializable {
     public Recipe() {
         name = "";
         temperature = 0;
-        cookTime = 0;
+        cookTime = "";
         directions = "";
     }
 
@@ -49,7 +49,7 @@ public class Recipe implements Serializable {
         this.measurementType = measurementType;
     }
 
-    public Recipe(String name, int temperature, int cookTime, String directions, double amountInRecipe, String measurementType) {
+    public Recipe(String name, int temperature, String cookTime, String directions, double amountInRecipe, String measurementType) {
         this.name = name;
         this.temperature = temperature;
         this.cookTime = cookTime;
@@ -62,7 +62,7 @@ public class Recipe implements Serializable {
         this.amountInRecipe = amountInRecipe;
     }
 
-    public Recipe(int ovenTemp, int cookTime) {
+    public Recipe(int ovenTemp, String cookTime) {
         this.temperature = ovenTemp;
         this.cookTime = cookTime;
     }
@@ -95,11 +95,11 @@ public class Recipe implements Serializable {
         this.temperature = temperature;
     }
 
-    public int getCookTime() {
+    public String getCookTime() {
         return cookTime;
     }
 
-    public void setCookTime(int cookTime) {
+    public void setCookTime(String cookTime) {
         this.cookTime = cookTime;
     }
 

@@ -109,8 +109,12 @@ public class RecipeDB  {
             if (rs.next()) {
                 recipe = new Recipe();
                 recipe.setName(rs.getString("RecipeName"));
-                recipe.setAmountInRecipe(rs.getDouble("AmountInRecipe"));
+                recipe.setAmountInRecipe(rs.getDouble("IngredientAmountInRecipe"));
                 recipe.setMeasurementType(rs.getString("MeasurementType"));
+                recipe.setCookTime(rs.getString("CookTime"));
+                recipe.setTemperature(rs.getInt("Temperature"));
+                recipe.setDirections(rs.getString("Directions"));
+                recipe.setIngredients(rs.);
             }
             return recipe;                   
         } catch (SQLException e) {
