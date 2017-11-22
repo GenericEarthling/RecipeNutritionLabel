@@ -72,9 +72,13 @@ public class Nutrient extends HttpServlet {
             String name = request.getParameter("name");
             double amountInRecipe = Double.parseDouble( request.getParameter("amountInRecipe") );
             String measurementType = request.getParameter("measurementType");
+            int temp = 100;
+            int cook = 20;
+            String directions = "do this.";
             
             // Store data into Recipe object 
-            Recipe recipe = new Recipe(name, amountInRecipe, measurementType);
+            Recipe recipe = new Recipe(name, temp, cook, directions, amountInRecipe, measurementType);
+//            Recipe(name, temp, int cook, directions, double amountInRecipe, String measurementType)
             
             /*    
             
@@ -82,7 +86,7 @@ public class Nutrient extends HttpServlet {
             insert 0 if no value is entered
             
             */
-            
+
             
             // validate parameters and set the message to the user
             // whether success or failure

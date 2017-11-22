@@ -19,14 +19,10 @@ import static model.Calculate.totalNutrientValueInRecipe;
  *
  * @author Tender
  */
-@Entity
-@Table(name = "ingredient")
 public class Ingredient implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long ingredientId;
-    
+
+    private int ingredientId;             // primary key
     private String ingredientName;
     private int servingSizeInGrams;       // not displayed in RecipeChart
     private double calories;
@@ -39,8 +35,8 @@ public class Ingredient implements Serializable {
     private double protein;
     
     // these are not saved to the IngredientDB. They are for display session only.
-    private double ingredientAmount;   // I think this should be deleted MAYBE   
-    private String measurementType;             // example: cups, teas, oz,...
+//    private double ingredientAmount;   // I think this should be deleted MAYBE   
+//    private String measurementType;             // example: cups, teas, oz,...
     private double nutrientSum;        // I think this should be deleted along with the getter/setter
     
     // default constructor
@@ -74,7 +70,7 @@ public class Ingredient implements Serializable {
     }
 
     // constructor for saving to session to display in table
-    public Ingredient(double ingredientAmount, String measurement,
+    public Ingredient(
             String ingredientName, double calories, double fat, 
             double cholesterol, double sodium, double potassium, 
             double carbohydrate, double fiber, double protein) {
@@ -87,8 +83,6 @@ public class Ingredient implements Serializable {
         this.carbohydrate = carbohydrate;
         this.fiber = fiber;
         this.protein = protein;
-        this.ingredientAmount = ingredientAmount;
-        this.measurementType = measurement;
     }    
 
     // getters and setters
@@ -100,27 +94,27 @@ public class Ingredient implements Serializable {
         this.nutrientSum = nutrientSum;
     }
 
-    public double getIngredientAmount() {
-        return ingredientAmount;
-    }
-
-    public void setIngredientAmount(double ingredientAmount) {
-        this.ingredientAmount = ingredientAmount;
-    }
-
-    public String getMeasurementType() {
-        return measurementType;
-    }
-
-    public void setMeasurementType(String measurementType) {
-        this.measurementType = measurementType;
-    }
+//    public double getIngredientAmount() {
+//        return ingredientAmount;
+//    }
+//
+//    public void setIngredientAmount(double ingredientAmount) {
+//        this.ingredientAmount = ingredientAmount;
+//    }
+//
+//    public String getMeasurementType() {
+//        return measurementType;
+//    }
+//
+//    public void setMeasurementType(String measurementType) {
+//        this.measurementType = measurementType;
+//    }
     
-    public Long getIngredientId() {
+    public int getIngredientId() {
         return ingredientId;
     }
 
-    public void setIngredientId(Long ingredientId) {
+    public void setIngredientId(int ingredientId) {
         this.ingredientId = ingredientId;
     }
 
@@ -203,26 +197,6 @@ public class Ingredient implements Serializable {
     public void setProtein(double protein) {
         this.protein = protein;
     }    
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.ingredientId);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // ALERT !! - this method won't work in the case the ingredientId fields are not set
-        if (!(object instanceof Ingredient)) {
-            return false;
-        }
-        Ingredient other = (Ingredient) object;
-        if ((this.ingredientId == null && other.ingredientId != null) || (this.ingredientId != null && !this.ingredientId.equals(other.ingredientId))) {
-            return false;
-        }
-        return true;
-    }
 
     // override toString
     @Override

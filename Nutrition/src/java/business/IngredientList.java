@@ -38,14 +38,13 @@ public class IngredientList implements Serializable {
         item.add(items);
     }
     
-    // this shows getting ingredient ID, 
-    // maybe it should get the ChartLineItems id ???
+    // this accesses ChartLineItems id. If it matches "items", then delete line
     public void removeItem(ChartLineItems items) {
-        long id = items.getIngredient().getIngredientId();
+        int id = items.getLineItemId();
         // loop through list and find the match to remove it
         for ( int i = 0; i < item.size(); i++ ) {
             ChartLineItems lineItem = item.get(i);
-            if (lineItem.getIngredient().getIngredientId().equals(id)) {
+            if (lineItem.equals(id)) {
                 item.remove(i);
                 return;
             }

@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS recipe;
+DROP DATABASE IF EXISTS RecipeDB;
 
-CREATE DATABASE recipe;
+CREATE DATABASE RecipeDB;
 
-USE recipe;
+USE RecipeDB;
 
 CREATE TABLE Ingredient (
 IngredientId INT NOT NULL AUTO_INCREMENT,
@@ -81,16 +81,4 @@ FOREIGN KEY (RecipeId) REFERENCES Recipe (RecipeId),
 FOREIGN KEY (IngredientListId) REFERENCES IngredientList (IngredientListId)
 );
 
-CREATE TABLE RecipeTemp (
-RecipeTempId INT NOT NULL AUTO_INCREMENT,
-IngredientId INT NOT NULL DEFAULT '0',
-RecipeTempName VARCHAR(50),
-Amount DOUBLE,
-MeasurementType VARCHAR(50),
-Directions VARCHAR(500),
-Temperature INT,
-CookTime VARCHAR(60),
 
-PRIMARY KEY (RecipeTempId),
-FOREIGN KEY (IngredientId) REFERENCES Ingredient (IngredientId)
-);

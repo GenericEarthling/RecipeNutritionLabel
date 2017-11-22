@@ -18,16 +18,13 @@ import static model.Calculate.totalNutrientValueInRecipe;
  *
  * @author Tender
  */
-@Entity
 public class ChartLineItems implements Serializable {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long lineItemId;
+    private int lineItemId;
     
-    @OneToOne                         // one ingredient to one chart line item
+    // one ingredient to one chart line item
     private Ingredient ingredient;
-    @OneToOne                         // one recipe to one chart line item
+    // one recipe to one chart line item
     private Recipe recipe;
     
     private double amountInRecipe;
@@ -40,11 +37,11 @@ public class ChartLineItems implements Serializable {
     public ChartLineItems() {
     }
 
-    public Long getLineItemId() {
+    public int getLineItemId() {
         return lineItemId;
     }
 
-    public void setLineItemId(Long lineItemId) {
+    public void setLineItemId(int lineItemId) {
         this.lineItemId = lineItemId;
     }
 

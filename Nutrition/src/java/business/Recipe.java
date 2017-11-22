@@ -49,6 +49,15 @@ public class Recipe implements Serializable {
         this.measurementType = measurementType;
     }
 
+    public Recipe(String name, int temperature, int cookTime, String directions, double amountInRecipe, String measurementType) {
+        this.name = name;
+        this.temperature = temperature;
+        this.cookTime = cookTime;
+        this.directions = directions;
+        this.amountInRecipe = amountInRecipe;
+        this.measurementType = measurementType;
+    }
+
     public Recipe(double amountInRecipe) {
         this.amountInRecipe = amountInRecipe;
     }

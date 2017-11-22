@@ -22,6 +22,7 @@ This will return the pool back
 package sql;
 
 import java.sql.*;               
+import javax.naming.Context;
 import javax.sql.DataSource;    
 import javax.naming.InitialContext;   
 import javax.naming.NamingException;
@@ -40,15 +41,21 @@ public class ConnectToSQL {
     private ConnectToSQL() {
         try {
             InitialContext ic = new InitialContext();
+//            Context initContext = new InitialContext();
+//            Context envCtx = (Context) initContext.lookup("java:comp/env");            
+//            dataSource = (DataSource) envCtx.lookup("jdbc/RecipesDB");
+            
+            
             // the end of the string that's passed to the lookup method matches 
             // the name attribute that's specified in the context.xml file.
             // ic.lookup: Resource manger: JDBC 
             //            Connection Factory Type: javax.sql.DataSource
             //            JNDI Subcontext: java:comp/env/jdbc
             //            context.xml name="jdbc/nutrition" OR jdbc/recipes ?
-            dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/RecipesDB");
+            dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/recipe");
                         
         } catch (NamingException e) {
+            e.printStackTrace();
             System.out.println(e);
         }
     }
