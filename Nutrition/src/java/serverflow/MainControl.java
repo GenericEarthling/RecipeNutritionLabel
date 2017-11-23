@@ -13,7 +13,7 @@
  */
 package serverflow;
 
-import business.ChartLineItems;
+import business.RecipeLineItems;
 import business.Ingredient;
 import business.IngredientList;
 import business.RecipeChart;
@@ -144,11 +144,11 @@ public class MainControl extends HttpServlet {
                 String id = request.getParameter("IngredientId");
                 Ingredient ingredientId = IngredientDB.selectIngredient(id);
                 if (ingredientId != null) {
-                    ChartLineItems lineItems = new ChartLineItems();
+                    RecipeLineItems lineItems = new RecipeLineItems();
                     lineItems.setIngredient(ingredientId);
                     list.addItem(lineItems);
                 }                
-                message = "This ingredient already exists in Database.";
+                message = "This ingredient already exists in Database. " ;
                 url = DEFAULT_URL;
             }
             else {
@@ -161,7 +161,7 @@ public class MainControl extends HttpServlet {
         }    
         
         // check to see if ingredient is in DB, if so, get the ingredient 
-        // object and save it as a lineItem in the ChartLineItems object
+        // object and save it as a lineItem in the RecipeLineItems object
         // for display on recipe.js page
 
 
@@ -185,7 +185,7 @@ public class MainControl extends HttpServlet {
         String id = request.getParameter("ingredientId");
         Ingredient ingredient = IngredientDB.selectIngredient(id);
         if (ingredient != null && list != null) {
-            ChartLineItems lineItems = new ChartLineItems();
+            RecipeLineItems lineItems = new RecipeLineItems();
             lineItems.setIngredient(ingredient);
             list.removeItem(lineItems);
         }

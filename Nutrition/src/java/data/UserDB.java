@@ -4,7 +4,7 @@ See chap 13 email example
 package data;
 
 
-import business.User;
+//import business.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;

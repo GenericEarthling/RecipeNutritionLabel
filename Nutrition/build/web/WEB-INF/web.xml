@@ -8,19 +8,11 @@
         <servlet-class>serverflow.MainControl</servlet-class>
     </servlet>
     <!-- servlet mappings -->
-    <servlet>
-        <servlet-name>Nutrient</servlet-name>
-        <servlet-class>serverflow.Nutrient</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>MainControl</servlet-name>
         <url-pattern>/MainControl</url-pattern>
     </servlet-mapping>
     <!-- Use cookies (not URL encoding) for session tracking -->
-    <servlet-mapping>
-        <servlet-name>Nutrient</servlet-name>
-        <url-pattern>/Nutrient</url-pattern>
-    </servlet-mapping>
     <session-config>
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>

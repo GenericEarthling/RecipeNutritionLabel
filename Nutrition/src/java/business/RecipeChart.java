@@ -1,44 +1,34 @@
 /*
- * This class holds the data to be displayed in the Total Nutrion Print view
+ * This class holds the data to be displayed in the Total Nutrion Label view
+ * Also calculates running total of nutrient values
+
+ * Used a collection, should it be an ArrayList? Chaned it to List
+
+ * Found this online for setting 2 decimal places:
+            DecimalFormat df = new DecimalFormat("#.##");
+            or
+            value = value.setScale(2, RoundingMode.CEILING) 
+ * the 2nd one returns "double cannot be dereferenced" So there is in int in there somewhere.
  */
 package business;
 
 import java.io.Serializable;
-import java.util.Collection;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import static javax.persistence.FetchType.EAGER;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import java.util.List;
 
 /**
  *
  * @author Tender
  */
-@Entity
+//@Entity
 public class RecipeChart implements Serializable {
     
-    @ManyToOne
-    private User user;
+    //@ManyToOne
+//    private User user;
     
-    @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)
-    private Collection<ChartLineItems> lineItems;
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long chartNumber;    
+    //@OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)
+    private List<RecipeLineItems> lineItems;
+    private int recipeChartId;    
     private boolean isProcessed;
-    double totalCalorie;
-    double totalFat;
-    double totalCholesterol;
-    double totalSodium;
-    double totalPotassium;
-    double totalCarbohydrate;
-    double totalFiber;
-    double totalProtein;
             
     // constructor
     public RecipeChart() {
@@ -52,84 +42,84 @@ public class RecipeChart implements Serializable {
         this.isProcessed = isProcessed;
     }
 
-    public User getUser() {
-        return user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Collection<ChartLineItems> getLineItems() {
+    public List<RecipeLineItems> getLineItems() {
         return lineItems;
     }
 
-    public void setLineItems(Collection<ChartLineItems> lineItems) {
+    public void setLineItems(List<RecipeLineItems> lineItems) {
         this.lineItems = lineItems;
     }
 
-    public Long getChartNumber() {
-        return chartNumber;
+    public int getRecipeChartId() {
+        return recipeChartId;
     }
 
-    public void setChartNumber(Long chartNumber) {
-        this.chartNumber = chartNumber;
+    public void setRecipeChartId(int recipeChartId) {
+        this.recipeChartId = recipeChartId;
     }
     
     // increment the nutrient totals
     public double getCalorieTotals() {
-        totalCalorie = 0.0;
-        for (ChartLineItems lineItem : lineItems) {
+        double totalCalorie = 0.0;
+        for (RecipeLineItems lineItem : lineItems) {
                 totalCalorie += lineItem.getCalorieSum();
         }
         return totalCalorie;
     }
     public double getFatTotals() {
-        totalFat = 0.0;
-        for (ChartLineItems lineItem : lineItems) {
+        double totalFat = 0.0;
+        for (RecipeLineItems lineItem : lineItems) {
                 totalFat += lineItem.getFatSum();
         }
         return totalFat;
     }
     public double getCholesterolTotals() {
-        totalCholesterol = 0.0;
-        for (ChartLineItems lineItem : lineItems) {
+        double totalCholesterol = 0.0;
+        for (RecipeLineItems lineItem : lineItems) {
                 totalCholesterol += lineItem.getCholesterolSum();
         }
         return totalCholesterol;
     }
     public double getSodiumTotals() {
-        totalSodium = 0.0;
-        for (ChartLineItems lineItem : lineItems) {
+        double totalSodium = 0.0;
+        for (RecipeLineItems lineItem : lineItems) {
                 totalSodium += lineItem.getSodiumSum();
         }
         return totalSodium;
     }
     public double getPotassiumTotals() {
-        totalPotassium = 0.0;
-        for (ChartLineItems lineItem : lineItems) {
+        double totalPotassium = 0.0;
+        for (RecipeLineItems lineItem : lineItems) {
                 totalPotassium += lineItem.getPotassiumSum();
         }
         return totalPotassium;
     }
     public double getCarbohydrateTotals() {
-        totalCarbohydrate = 0.0;
-        for (ChartLineItems lineItem : lineItems) {
+        double totalCarbohydrate = 0.0;
+        for (RecipeLineItems lineItem : lineItems) {
                 totalCarbohydrate += lineItem.getCarbohydrateSum();
         }
         return totalCarbohydrate;
     }
     public double getFiberTotals() {
-        totalFiber = 0.0;
-        for (ChartLineItems lineItem : lineItems) {
+        double totalFiber = 0.0;
+        for (RecipeLineItems lineItem : lineItems) {
                 totalFiber += lineItem.getFiberSum();
         }
         return totalFiber;
     }
     public double getProteinTotals() {
-        totalProtein = 0.0;
-        for (ChartLineItems lineItem : lineItems) {
-                totalProtein += lineItem.getProteinSum();
+        double totalProtein = 0.0;
+        for (RecipeLineItems lineItem : lineItems) {
+            totalProtein += lineItem.getProteinSum();
         }
         return totalProtein;
     }

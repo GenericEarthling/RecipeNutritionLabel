@@ -160,10 +160,10 @@
                     <input type="submit" value="Edit">
                     </form>-->
                 </td>
-<!-- it seems like these need to access the the ChartLineItems.getCalorieSum() 
+<!-- it seems like these need to access the the RecipeLineItems.getCalorieSum() 
 I think this is grabbing the input values from the modal
 Maybe the values should be saved to a variable in either
-ChartLineItems file or the mainControl servlet -->
+RecipeLineItems file or the mainControl servlet -->
                 <td>${item.value.ingredientAmount}</td> 
                 <td>${item.value.measurement}</td>
                 <td>${item.value.ingredientName}</td>

@@ -86,8 +86,8 @@ public class Calculate {
     }
     
     // 4) find the total value for each nutrient in each ingredient
-    // totalNutrientValueInRecipe = percentageOfNutrientInEachGram x totalNutrientGramsInRecipe
-    public static double totalNutrientValueInRecipe(double percentOfNutrient, double amtOfIngredInGrams) {        
+    // totalNutrientValueInIngredient = percentageOfNutrientInEachGram x totalNutrientGramsInRecipe
+    public static double totalNutrientValueInIngredient(double percentOfNutrient, double amtOfIngredInGrams) {        
         return percentOfNutrient * amtOfIngredInGrams;
     }
     

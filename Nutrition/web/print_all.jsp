@@ -90,7 +90,7 @@
             <th>Protein</th>
         </tr>
         
-        <c:forEach var="item" items="${recipeChart.chartLineItems}">
+        <c:forEach var="item" items="${recipeChart.RecipeLineItems}">
         <tr>
             <td>${item.recipe.amountInRecipe}3</td>
             <td>${item.recipe.measurementType}3</td>
@@ -126,7 +126,7 @@
             <th>Directions</th>
         </tr>
         <tr>
-            <td>${chartLineItems.recipe.directions} OR ${recipe.directions}</td>
+            <td>${recipeLineItems.recipe.directions} OR ${recipe.directions}</td>
         </tr>
         <tr>            
         </tr>
@@ -142,6 +142,13 @@
     <label style="display: inline-block;" >Cooking/Setting Time:   &emsp;</label> 
     <span class="" >${recipe.time}</span>    
 </div> <!--  END OVEN TEMP AND TIME  -->
+
+<!--  SAVE THE RECIPE BUTTON  -->
+<div class="w3-container w3-blue w3-padding-16 w3-margin-top w3-margin-bottom">
+    <h2>Do you want to save this recipe?</h2>        
+    <button class="w3-button w3-red">Save Recipe</button>
+</div>
+<!--  END SAVE THE RECIPE BUTTON  -->
 
 </body>
 </html>

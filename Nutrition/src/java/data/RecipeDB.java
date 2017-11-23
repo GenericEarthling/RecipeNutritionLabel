@@ -9,7 +9,7 @@ object-relational mapping, O/R mapping, or ORM.
 package data;
 
 import business.Recipe;
-import business.User;
+//import business.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;  // interface
 import java.sql.ResultSet;
@@ -114,7 +114,6 @@ public class RecipeDB  {
                 recipe.setCookTime(rs.getString("CookTime"));
                 recipe.setTemperature(rs.getInt("Temperature"));
                 recipe.setDirections(rs.getString("Directions"));
-                recipe.setIngredients(rs.);
             }
             return recipe;                   
         } catch (SQLException e) {

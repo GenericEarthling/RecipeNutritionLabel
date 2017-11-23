@@ -61,8 +61,8 @@ public class Testing {
 //                 
 //        System.out.println("i: " + i);
 //        
-//        ChartLineItems cli = new ChartLineItems();
-//        System.out.println("cli: " + cli.getAmtOfIngredInGrams());
+//        RecipeLineItems rli = new RecipeLineItems();
+//        System.out.println("rli: " + rli.getAmtOfIngredInGrams());
 //        
 //        IngredientDB.insert(i);
 //        IngredientDB.insert(i2);

@@ -14,25 +14,22 @@ http://www.codejava.net/java-core/collections/java-map-collection-tutorial-and-e
 package business;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
-import javax.persistence.*;                        // look this up in javadocs!!
-import static javax.persistence.FetchType.EAGER;
+import model.Calculate;
 
 
 public class Recipe implements Serializable {
-
+    //    private User user;
    
     private int RecipeId;
-    private User user;
     private String name;
     private int temperature;
     private String cookTime;
     private String directions;
     
     // one ingredients to many recipes
-
-    private Collection<Ingredient> ingredients;        
+    private List<Ingredient> ingredients;        
     private double amountInRecipe;
     private String measurementType;
 
@@ -41,12 +38,6 @@ public class Recipe implements Serializable {
         temperature = 0;
         cookTime = "";
         directions = "";
-    }
-
-    public Recipe(String name, double amountInRecipe, String measurementType) {
-        this.name = name;
-        this.amountInRecipe = amountInRecipe;
-        this.measurementType = measurementType;
     }
 
     public Recipe(String name, int temperature, String cookTime, String directions, double amountInRecipe, String measurementType) {
@@ -58,20 +49,7 @@ public class Recipe implements Serializable {
         this.measurementType = measurementType;
     }
 
-    public Recipe(double amountInRecipe) {
-        this.amountInRecipe = amountInRecipe;
-    }
-
-    public Recipe(int ovenTemp, String cookTime) {
-        this.temperature = ovenTemp;
-        this.cookTime = cookTime;
-    }
-
-    public Recipe(String name) {
-        this.name = name;
-    }
-
-    public Recipe(Collection<Ingredient> ingredient, 
+    public Recipe(List<Ingredient> ingredient, 
             double amountInRecipe, String measurementType) {
         this.ingredients = ingredient;
         this.amountInRecipe = amountInRecipe;
@@ -103,11 +81,11 @@ public class Recipe implements Serializable {
         this.cookTime = cookTime;
     }
 
-    public Collection<Ingredient> getIngredients() {
+    public List<Ingredient> getIngredients() {            // should these be getting the IngredientId???
         return ingredients;
     }
 
-    public void setIngredients(Collection<Ingredient> ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -126,7 +104,16 @@ public class Recipe implements Serializable {
     public void setMeasurementType(String measurementType) {        
         this.measurementType = measurementType;
     }
-
+    
+    // 1&2) convert the Ingredient amount in the recipe to the grams equivalent
+    //////////////////////////////////////// Not sure about this being here
+    public double getAmtToGrams() {
+        double amtToGrams = Calculate.amountToGrams(getAmountInRecipe(), getMeasurementType());
+        return amtToGrams;
+    }
+    ///////////////////////////////////////
+    
+    
     public String getDirections() {
         return directions;
     }
@@ -135,13 +122,13 @@ public class Recipe implements Serializable {
         this.directions = directions;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public int getRecipeId() {
         return RecipeId;

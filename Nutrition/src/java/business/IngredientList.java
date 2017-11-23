@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This class is used to display the ingredient list in the recipe.jsp table
+   linked to RecipeLineItems
+    RecipeLineItems are then used to display the final totals in the RecipeChart
  */
 package business;
 
@@ -16,36 +16,36 @@ import java.util.*;
  */
 public class IngredientList implements Serializable {
     
-    private List<ChartLineItems> item;
+    private List<RecipeLineItems> items;
     
     public IngredientList() {
-        item = new ArrayList<>();
+        items = new ArrayList<>();
     }
     
-    public void setItem(List<ChartLineItems> listItem) {
-        item = listItem;
+    public void setItem(List<RecipeLineItems> listItems) {
+        items = listItems;
     }
     
-    public List<ChartLineItems> getItem() {
-        return item;
+    public List<RecipeLineItems> getItems() {
+        return items;
     }
     
     public int getCount() {
-        return item.size();
+        return items.size();
     }
     
-    public void addItem(ChartLineItems items) {
-        item.add(items);
+    public void addItem(RecipeLineItems item) {
+        items.add(item);
     }
     
-    // this accesses ChartLineItems id. If it matches "items", then delete line
-    public void removeItem(ChartLineItems items) {
-        int id = items.getLineItemId();
+    // this accesses RecipeLineItems id. If it matches "item", then delete line
+    public void removeItem(RecipeLineItems item) {
+        int id = item.getRecipeLineItemId();      // should this be   item.getIngredient().getIngredientId();
         // loop through list and find the match to remove it
-        for ( int i = 0; i < item.size(); i++ ) {
-            ChartLineItems lineItem = item.get(i);
-            if (lineItem.equals(id)) {
-                item.remove(i);
+        for ( int i = 0; i < items.size(); i++ ) {
+            RecipeLineItems lineItem = items.get(i);
+            if (lineItem.equals(id)) {      // should this be    lineItem.getIngredient().getIngredientId().equals(id)
+                items.remove(i);
                 return;
             }
         }

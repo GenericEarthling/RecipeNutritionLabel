@@ -10,10 +10,6 @@ public ArrayList(Collection<? extends E> c);
 package business;
 
 import java.io.Serializable;
-import java.util.Objects;
-import javax.persistence.*;
-import model.Calculate;
-import static model.Calculate.totalNutrientValueInRecipe;
 
 /**
  *
@@ -213,5 +209,4 @@ public class Ingredient implements Serializable {
                 + "fiber: " + fiber + "  "
                 + "protein: " + protein + "  ";
     } 
-    
 }
