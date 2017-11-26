@@ -90,6 +90,15 @@ public class Calculate {
     public static double totalNutrientValueInIngredient(double percentOfNutrient, double amtOfIngredInGrams) {        
         return percentOfNutrient * amtOfIngredInGrams;
     }
+
+    // 4a) calculate values for each nutrient sum for diplay in ingredient list
+    public static double getNutrientSum(double nutrientValue, double servingSize, double amtToGrams) {
+        // 4b) calculate percentage of each nutrient per gram
+        double percentOfNutrientPerGram = nutrientsPerGram(nutrientValue, servingSize);
+        // 4c) find the total value sum for each nutrient in each ingredient
+        double nutrientValueSum = totalNutrientValueInIngredient(percentOfNutrientPerGram, amtToGrams);
+        return nutrientValueSum;        
+    }
     
     // 5) find the totals for each nutrient for display in the Nut Label for printing
     // needs to be formated to 1 decimal
@@ -101,5 +110,6 @@ public class Calculate {
     public static double weightPerServing(double totalGramsOfWholeRecipe, int numberOfServings) {
         return totalGramsOfWholeRecipe / numberOfServings;
     }
+    
     
 }

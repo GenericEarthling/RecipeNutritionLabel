@@ -196,7 +196,7 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div class=\"w3-margin-bottom\">\n");
       out.write("                <label style=\"display: inline-block;\" >Amount in recipe &emsp;</label> \n");
       out.write("                <input class=\"w3-border\" type=\"number\" name=\"amount\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.amount}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.IngredientAmountInRecipe}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\" >\n");
       out.write("                <select name=\"measurementType\">\n");
       out.write("                  <option value=\"grams\">grams</option>\n");
@@ -234,7 +234,7 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            \n");
       out.write("            <div class=\"w3-cell-row\">\n");
       out.write("                Recipe Name &emsp; <input class=\"w3-input w3-border\" type=\"text\" name=\"name\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.recipeName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\">                       \n");
       out.write("            </div>\n");
       out.write("            \n");
@@ -248,13 +248,13 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <div class=\"w3-container w3-cell\">\n");
       out.write("                    <label> Number of servings &emsp;</label>\n");
       out.write("                    <input class=\"w3-input w3-border\" type=\"number\" min=\"1\" name=\"servings\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.servings}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${servings}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\" required>\n");
       out.write("                </div>\n");
       out.write("                <div class=\"w3-container\">\n");
       out.write("                    <label>Weight after cooking (in oz) &emsp;</label>\n");
       out.write("                    <input class=\"w3-input w3-border\" type=\"number\" name=\"weight\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.weight}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${weight}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\">  \n");
       out.write("                </div>    \n");
       out.write("            </div>\n");
@@ -268,8 +268,8 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </div>    \n");
       out.write("                <div class=\"w3-container w3-cell\">\n");
       out.write("                    <label> Cook/Setting Time &emsp;</label>\n");
-      out.write("                    <input class=\"w3-input w3-border\" type=\"number\" name=\"weight\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.time}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("                    <input class=\"w3-input w3-border\" type=\"string\" name=\"weight\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${recipe.cookTime}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\">                \n");
       out.write("                </div>\n");
       out.write("            </div>\n");
@@ -472,7 +472,7 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
         out.write("            <th>Fiber</th>\n");
         out.write("            <th>Protein</th>\n");
         out.write("        </tr>\n");
-        out.write("\n");
+        out.write("<!-----------    change to ingredientList??   ---------------------------->\n");
         out.write("        ");
         if (_jspx_meth_c_forEach_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_otherwise_0, _jspx_page_context))
           return true;
@@ -502,7 +502,7 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
     _jspx_th_c_forEach_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_otherwise_0);
     _jspx_th_c_forEach_0.setVar("item");
-    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${list.items}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${ingredientList.items}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
     int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
     try {
       int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
@@ -527,10 +527,10 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("                    <input type=\"submit\" value=\"Edit\">\n");
           out.write("                    </form>-->\n");
           out.write("                </td>\n");
-          out.write("<!-- it seems like these need to access the the ChartLineItems.getCalorieSum() \n");
+          out.write("<!-- it seems like these need to access the the RecipeLineItems.getCalorieSum() \n");
           out.write("I think this is grabbing the input values from the modal\n");
-          out.write("Maybe the values should be saved to a variable in eiter\n");
-          out.write("ChartLineItems file or the mainControl servlet -->\n");
+          out.write("Maybe the values should be saved to a variable in either\n");
+          out.write("RecipeLineItems file or the mainControl servlet -->\n");
           out.write("                <td>");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.value.ingredientAmount}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</td> \n");
@@ -608,7 +608,7 @@ public final class recipe_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.OutTag _jspx_th_c_out_0 = (org.apache.taglibs.standard.tag.rt.core.OutTag) _jspx_tagPool_c_out_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.OutTag.class);
     _jspx_th_c_out_0.setPageContext(_jspx_page_context);
     _jspx_th_c_out_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
-    _jspx_th_c_out_0.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.ingredient.ingredientId}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_out_0.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.ingredientList.ingredientId}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
     int _jspx_eval_c_out_0 = _jspx_th_c_out_0.doStartTag();
     if (_jspx_th_c_out_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);

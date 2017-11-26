@@ -22,6 +22,8 @@ import data.RecipeDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +35,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Tender
  */
-@WebServlet(name = "MainControl", urlPatterns = {"/MainControl"})
+//@WebServlet(name = "MainControl", urlPatterns = {"/MainControl"})
 public class MainControl extends HttpServlet {
 
     // set default url
@@ -49,7 +51,26 @@ public class MainControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String requestURI = request.getRequestURI();
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+                String requestURI = request.getRequestURI();
         String url="";
         if (requestURI.endsWith("/addIngredient")) {
             url = addIngredient(request, response);
@@ -64,21 +85,6 @@ public class MainControl extends HttpServlet {
         getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);
-    }
-    
-    
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -158,6 +164,7 @@ public class MainControl extends HttpServlet {
             }
         } catch (NullPointerException e) {
             System.out.println(e);
+            log("Add ingredient, Catch block: ", e);
         }    
         
         // check to see if ingredient is in DB, if so, get the ingredient 

@@ -5,8 +5,10 @@
  */
 package business;
 
+import commandline.IngredBean;
+import commandline.IngredList;
 import java.util.*;
-import data.IngredientDB;
+import model.Calculate;
 
 /**
  *
@@ -18,55 +20,68 @@ public class Testing {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        Ingredient i = new Ingredient();
-//        i = IngredientDB.selectIngredient("Walnuts");
-//        System.out.println(i);
-//        
-//        // create some basic ingredients for the database
-//        Ingredient ingredient1 = new Ingredient();
-//        ingredient1.setIngredientName("Steel Cut Oatmeal");
-//        ingredient1.setCalories(150);
-//        ingredient1.setFat(3);
-//        ingredient1.setCholesterol(0);
-//        ingredient1.setSodium(0);
-//        ingredient1.setPotassium(0);
-//        ingredient1.setCarbohydrate(27);
-//        ingredient1.setFiber(4);
-//        ingredient1.setProtein(5);
-//        ingredient1.setServingSizeInGrams(40);
-//        
-//        Ingredient i2 = new Ingredient();
-//        i2.setIngredientName("Walnuts");
-//        i2.setCalories(190);
-//        i2.setFat(18);
-//        i2.setCholesterol(0);
-//        i2.setSodium(1);
-//        i2.setPotassium(125);
-//        i2.setCarbohydrate(4);
-//        i2.setFiber(2);
-//        i2.setProtein(4);
-//        i2.setServingSizeInGrams(28);
-//        
-//        Ingredient i = new Ingredient();
-//        i.setIngredientName("Trisquit");
-//        i.setServingSizeInGrams(28);
-//        i.setCalories(120);
-//        i.setFat(4);
-//        i.setCholesterol(0);
-//        i.setPotassium(150);
-//        i.setSodium(115);
-//        i.setCarbohydrate(20);
-//        i.setFiber(5);
-//        i.setProtein(5);
-//                 
-//        System.out.println("i: " + i);
-//        
-//        RecipeLineItems rli = new RecipeLineItems();
-//        System.out.println("rli: " + rli.getAmtOfIngredInGrams());
-//        
-//        IngredientDB.insert(i);
-//        IngredientDB.insert(i2);
-//        IngredientDB.insert(ingredient1);
+                 
+        IngredBean i2 = new IngredBean("Walnuts", 28, 190, 18, 0, 1, 125, 4, 2, 4);
+        i2.setIngredientAmount(2);
+        i2.setMeasurementType("dry cup");
+        double amtInGrams = Calculate.amountToGrams(i2.getIngredientAmount(), i2.getMeasurementType() );
+        i2.setIngredientAmtInGrams(amtInGrams); // need this before we can calculate sum totals
+        double sumCalories = Calculate.getNutrientSum(i2.getCalories(), i2.getServingSizeInGrams(), amtInGrams);
+        
+
+       IngredBean i3 = new IngredBean();
+        i3.setIngredientName("Walnuts");
+        i3.setCalories(190);
+        i3.setFat(18);
+        i3.setCholesterol(0);
+        i3.setSodium(1);
+        i3.setPotassium(125);
+        i3.setCarbohydrate(4);
+        i3.setFiber(2);
+        i3.setProtein(4);
+        i3.setServingSizeInGrams(28);
+        i3.setIngredientAmount(2);
+        i3.setMeasurementType("teaspoon");
+        double i3amtInGrams = Calculate.amountToGrams(i3.getIngredientAmount(), i3.getMeasurementType() );
+        i3.setIngredientAmtInGrams(i3amtInGrams);
+
+        
+        IngredBean i = new IngredBean();
+        i.setIngredientName("Trisquit");
+        i.setCalories(120);
+        i.setFat(4);
+        i.setCholesterol(0);
+        i.setPotassium(150);
+        i.setSodium(115);
+        i.setCarbohydrate(20);
+        i.setFiber(5);
+        i.setProtein(5); 
+        i.setServingSizeInGrams(28);
+        i.setIngredientAmount(10);
+        i.setMeasurementType("dry cup");
+        
+        Recipe snacks = new Recipe();
+        snacks.setDirections("Alternate eating between Trisquit and Walnuts.");
+        snacks.setCookTime("5 minutes");
+        snacks.setTemperature(76);
+        
+        // add Items to a list
+        IngredList items = new IngredList();
+        
+        items.addItem(i2);
+        items.addItem(i3);
+        System.out.println(items);
+        
+        System.out.println("3121.42 ::: Sum Calories: " + sumCalories);
+
+        
+        //////////////// display ingredient list ///////////////////////////
+        // get IngredBeanList
+
+        
+        
+//        System.out.println("ingredient i2 toString:\n" + i2.toString());
+
     }
     
 }
